@@ -6,11 +6,11 @@ class Timer extends React.Component {
   render() {
     return (
       <div>
-        <TwoTimingDigits />
+        <TwoTimingDigits value={this.props.hours} />
         :
-        <TwoTimingDigits />
+        <TwoTimingDigits value={this.props.minutes} />
         :
-        <TwoTimingDigits />
+        <TwoTimingDigits value={this.props.seconds} />
       </div>
     );
   }
