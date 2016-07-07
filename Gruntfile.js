@@ -7,9 +7,9 @@ module.exports = function (grunt) {
       jsx: {
         files: [{
           expand: true,
-          cwd: 'lib/components/jsx/',
+          cwd: 'lib/components/',
           src: '*.jsx',
-          dest: 'lib/components/js/',
+          dest: 'lib/components/',
           ext: '.js'
         }]
       }

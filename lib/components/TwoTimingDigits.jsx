@@ -1,6 +1,6 @@
 const React = require('react');
 
-const date = require('./../../date');
+const date = require('./../date');
 
 class TwoTimingDigits extends React.Component {
   render() {

@@ -1,7 +1,7 @@
 const React = require('react');
 const redux = require('redux');
 
-const date = require('./../../date');
+const date = require('./../date');
 
 const Timer = require('./Timer');
 const PlayButton = require('./PlayButton');
