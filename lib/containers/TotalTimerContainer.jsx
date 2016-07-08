@@ -10,15 +10,15 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    clickPlayHandler: function() {
+    clickPlayHandler: function () {
       dispatch(actions.play());
 
       const intervalId = setInterval(
         () => dispatch(actions.tick(intervalId)),
         100
       );
-    }
-  }
+    },
+  };
 }
 
 const TotalTimerContainer = connect(
