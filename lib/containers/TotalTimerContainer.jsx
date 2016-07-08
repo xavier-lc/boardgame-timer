@@ -13,7 +13,10 @@ function mapDispatchToProps(dispatch) {
     clickPlayHandler: function() {
       dispatch(actions.play());
 
-      setInterval(() => dispatch(actions.tick()), 100);
+      const intervalId = setInterval(
+        () => dispatch(actions.tick(intervalId)),
+        100
+      );
     }
   }
 }
