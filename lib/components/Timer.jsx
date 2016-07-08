@@ -2,18 +2,16 @@ const React = require('react');
 
 const TwoTimingDigits = require('./TwoTimingDigits');
 
-class Timer extends React.Component {
-  render() {
-    return (
-      <div>
-        <TwoTimingDigits value={this.props.hours} />
-        :
-        <TwoTimingDigits value={this.props.minutes} />
-        :
-        <TwoTimingDigits value={this.props.seconds} />
-      </div>
-    );
-  }
+function Timer(props) {
+  return (
+    <div>
+      <TwoTimingDigits value={props.hours} />
+      :
+      <TwoTimingDigits value={props.minutes} />
+      :
+      <TwoTimingDigits value={props.seconds} />
+    </div>
+  );
 }
 
-module .exports = Timer;
+module.exports = Timer;

@@ -1,15 +1,13 @@
 const React = require('react');
 
-const date = require('./../utils/date');
+const twoDigits = require('./../utils/date').twoDigits;
 
-class TwoTimingDigits extends React.Component {
-  render() {
-    return (
-      <span>
-        {date.twoDigits(this.props.value)}
-      </span>
-    );
-  }
+function TwoTimingDigits(props) {
+  return (
+    <span>
+      {twoDigits(props.value)}
+    </span>
+  );
 }
 
 module.exports = TwoTimingDigits;
