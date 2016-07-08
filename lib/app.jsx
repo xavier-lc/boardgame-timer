@@ -9,8 +9,9 @@ const TotalTimerContainer = require('./containers/TotalTimerContainer');
 
 const store = createStore(stopwatch);
 
-ReactDOM.render(React.createElement(
-  Provider,
-  { store: store },
-  React.createElement(TotalTimerContainer, null)
-), document.getElementById('example'));
+ReactDOM.render(
+  <Provider store={store}>
+    <TotalTimerContainer />
+  </Provider>,
+  document.getElementById('example')
+);

@@ -5,13 +5,24 @@ module.exports = function (grunt) {
         presets: ['react']
       },
       jsx: {
-        files: [{
-          expand: true,
-          cwd: 'lib/components/',
-          src: '*.jsx',
-          dest: 'lib/components/',
-          ext: '.js'
-        }]
+        files: [
+          {
+            expand: true,
+            cwd: 'lib/components/',
+            src: '*.jsx',
+            dest: 'lib/components/',
+            ext: '.js'
+          }, {
+            expand: true,
+            cwd: 'lib/containers/',
+            src: '*.jsx',
+            dest: 'lib/containers/',
+            ext: '.js'
+          }, {
+            src: ['lib/app.jsx'],
+            dest: 'lib/app.js'
+          }
+        ]
       }
     },
     browserify: {
