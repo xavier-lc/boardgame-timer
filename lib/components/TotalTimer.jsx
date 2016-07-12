@@ -3,6 +3,10 @@ const React = require('react');
 const Timer = require('./Timer');
 const PlayButton = require('./PlayButton');
 
+const propTypes = {
+  start: React.PropTypes.number,
+};
+
 function TotalTimer(props) {
   return (
     <div>
@@ -19,5 +23,7 @@ function TotalTimer(props) {
     </div>
   );
 }
+
+TotalTimer.propTypes = propTypes;
 
 module.exports = TotalTimer;
