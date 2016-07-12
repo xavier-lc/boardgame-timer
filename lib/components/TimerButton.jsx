@@ -4,16 +4,17 @@ const PropTypes = React.PropTypes;
 const propTypes = {
   clickHandler: PropTypes.func.isRequired,
   isVisible: PropTypes.bool.isRequired,
+  txt: PropTypes.string.isRequired,
 };
 
-function PlayButton(props) {
+function TimerButton(props) {
   return (
     <button onClick={props.clickHandler} className={props.isVisible ? '' : 'no'}>
-      Play
+      {props.txt}
     </button>
   );
 }
 
-PlayButton.propTypes = propTypes;
+TimerButton.propTypes = propTypes;
 
-module.exports = PlayButton;
+module.exports = TimerButton;
