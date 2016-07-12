@@ -12,7 +12,10 @@ function TotalTimer(props) {
         seconds={props.seconds}
       />
 
-      <PlayButton clickHandler={props.clickPlayHandler} />
+      <PlayButton
+        clickHandler={props.clickPlayHandler}
+        hasStarted={props.start !== null}
+      />
     </div>
   );
 }
