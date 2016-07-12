@@ -6,14 +6,14 @@ const propTypes = {
   isVisible: PropTypes.bool.isRequired,
 };
 
-function PlayButton(props) {
+function ResumeButton(props) {
   return (
     <button onClick={props.clickHandler} className={props.isVisible ? '' : 'no'}>
-      Play
+      Resume
     </button>
   );
 }
 
-PlayButton.propTypes = propTypes;
+ResumeButton.propTypes = propTypes;
 
-module.exports = PlayButton;
+module.exports = ResumeButton;

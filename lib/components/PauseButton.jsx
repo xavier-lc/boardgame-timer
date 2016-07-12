@@ -6,14 +6,14 @@ const propTypes = {
   isVisible: PropTypes.bool.isRequired,
 };
 
-function PlayButton(props) {
+function PauseButton(props) {
   return (
     <button onClick={props.clickHandler} className={props.isVisible ? '' : 'no'}>
-      Play
+      Pause
     </button>
   );
 }
 
-PlayButton.propTypes = propTypes;
+PauseButton.propTypes = propTypes;
 
-module.exports = PlayButton;
+module.exports = PauseButton;
