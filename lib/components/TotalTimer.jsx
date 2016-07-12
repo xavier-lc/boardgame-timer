@@ -1,7 +1,8 @@
 const React = require('react');
 
 const Timer = require('./Timer');
-const TimerButton = require('./TimerButton');
+const TimerControls = require('./TimerControls');
+const Statistics = require('./Statistics');
 
 const propTypes = {
   start: React.PropTypes.number,
@@ -16,23 +17,9 @@ function TotalTimer(props) {
         seconds={props.seconds}
       />
 
-      <TimerButton
-        clickHandler={props.clickPlayHandler}
-        isVisible={!props.isOn && props.start === null}
-        txt="Play"
-      />
+      <TimerControls {...props} />
 
-      <TimerButton
-        clickHandler={props.clickPauseHandler}
-        isVisible={props.isOn && props.start !== null}
-        txt="Pause"
-      />
-
-      <TimerButton
-        clickHandler={props.clickResumeHandler}
-        isVisible={!props.isOn && props.elapsed !== 0}
-        txt="Resume"
-      />
+      <Statistics {...props} />
     </div>
   );
 }

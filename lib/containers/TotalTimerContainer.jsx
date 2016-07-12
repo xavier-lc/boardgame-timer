@@ -45,6 +45,12 @@ function mergeProps(stateProps, dispatchProps) {
         100
       );
     },
+
+    clickStopHandler: function () {
+      clearInterval(stateProps.intervalId);
+
+      dispatch(actions.stop());
+    },
   };
 
   return Object.assign({}, stateProps, mapDispatchToProps);
