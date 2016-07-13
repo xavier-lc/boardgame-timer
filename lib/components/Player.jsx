@@ -1,0 +1,19 @@
+const React = require('react');
+
+const Timer = require('./Timer');
+
+function Player(props) {
+  return (
+    <div>
+      <span>{props.name}</span>
+
+      <Timer
+        hours={props.hours}
+        minutes={props.minutes}
+        seconds={props.seconds}
+      />
+    </div>
+  );
+}
+
+module.exports = Player;
