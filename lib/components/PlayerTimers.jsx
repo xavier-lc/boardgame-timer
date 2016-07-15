@@ -6,16 +6,17 @@ const TimerButton = require('./TimerButton');
 function PlayerTimers(props) {
   return (
     <div>
-      <Player
-        name="Player #1"
-        hours={props.hours}
-        minutes={props.minutes}
-        seconds={props.seconds}
-      />
+      {props.players.ids.map((id) => (
+        <Player
+          key={id}
+          name={props.players.data[id].name}
+          {...props.players.time[id]}
+        />
+      ))}
 
       <TimerButton
         clickHandler={props.clickAddHandler}
-        isVisible
+        isVisible={!props.stopwatch.isOn && props.stopwatch.start === null}
         txt="Add player"
       />
     </div>

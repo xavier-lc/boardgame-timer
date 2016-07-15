@@ -32,7 +32,7 @@ function mergeProps(stateProps, dispatchProps) {
     },
 
     clickPauseHandler: function () {
-      clearInterval(stateProps.intervalId);
+      clearInterval(stateProps.stopwatch.intervalId);
 
       dispatch(actions.pause());
     },
@@ -47,7 +47,7 @@ function mergeProps(stateProps, dispatchProps) {
     },
 
     clickStopHandler: function () {
-      clearInterval(stateProps.intervalId);
+      clearInterval(stateProps.stopwatch.intervalId);
 
       dispatch(actions.stop());
     },

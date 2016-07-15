@@ -1,5 +1,7 @@
 const connect = require('react-redux').connect;
 
+const actions = require('./../actions/actions');
+
 const PlayerTimers = require('./../components/PlayerTimers');
 
 function mapStateToProps(state) {
@@ -9,7 +11,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     clickAddHandler: function () {
-
+      dispatch(actions.addPlayer());
     },
   };
 }

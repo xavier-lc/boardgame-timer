@@ -12,14 +12,14 @@ function TotalTimer(props) {
   return (
     <div>
       <Timer
-        hours={props.hours}
-        minutes={props.minutes}
-        seconds={props.seconds}
+        hours={props.stopwatch.hours}
+        minutes={props.stopwatch.minutes}
+        seconds={props.stopwatch.seconds}
       />
 
       <TimerControls {...props} />
 
-      <Statistics {...props} />
+      <Statistics {...props.stopwatch} />
     </div>
   );
 }
