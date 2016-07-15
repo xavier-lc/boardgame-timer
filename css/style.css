@@ -1,3 +1,7 @@
 .no {
     display: none;
 }
+
+.active {
+    background: lightgreen;
+}

@@ -5,7 +5,7 @@ const Timer = require('./Timer');
 function Player(props) {
   return (
     <div>
-      <span>{props.name}</span>
+      <span className={props.isActive ? 'active' : ''}>{props.name}</span>
 
       <Timer
         hours={props.hours}

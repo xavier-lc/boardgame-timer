@@ -13,6 +13,10 @@ function mapDispatchToProps(dispatch) {
     clickAddHandler: function () {
       dispatch(actions.addPlayer());
     },
+
+    clickNextHandler: function () {
+      dispatch(actions.next());
+    },
   };
 }
 
