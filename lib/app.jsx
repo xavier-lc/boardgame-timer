@@ -5,13 +5,17 @@ const Provider = require('react-redux').Provider;
 
 const stopwatch = require('./reducers/stopwatch');
 
-const AppContainer = require('./containers/AppContainer');
+const TotalTimerContainer = require('./containers/TotalTimerContainer');
+const PlayerTimersContainer = require('./containers/PlayerTimersContainer');
 
 const store = createStore(stopwatch);
 
 ReactDOM.render(
   <Provider store={store}>
-    <AppContainer />
+    <div>
+      <TotalTimerContainer />
+      <PlayerTimersContainer />
+    </div>
   </Provider>,
   document.getElementById('example')
 );
