@@ -1,7 +1,7 @@
-const React = require('react');
+import React from 'react';
 
-const Player = require('./Player.jsx');
-const TimerButton = require('./TimerButton.jsx');
+import Player from './Player.jsx';
+import TimerButton from './TimerButton.jsx';
 
 function PlayerTimers(props) {
   return (
@@ -29,4 +29,4 @@ function PlayerTimers(props) {
   );
 }
 
-module.exports = PlayerTimers;
+export default PlayerTimers;

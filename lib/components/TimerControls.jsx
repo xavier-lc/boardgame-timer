@@ -1,6 +1,6 @@
-const React = require('react');
+import React from 'react';
 
-const TimerButton = require('./TimerButton.jsx');
+import TimerButton from './TimerButton.jsx';
 
 function TimerControls(props) {
   return (
@@ -32,4 +32,4 @@ function TimerControls(props) {
   );
 }
 
-module.exports = TimerControls;
+export default TimerControls;

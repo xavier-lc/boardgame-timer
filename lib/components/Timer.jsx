@@ -1,6 +1,6 @@
-const React = require('react');
+import React from 'react';
 
-const TwoTimingDigits = require('./TwoTimingDigits.jsx');
+import TwoTimingDigits from './TwoTimingDigits.jsx';
 
 function Timer(props) {
   return (
@@ -14,4 +14,4 @@ function Timer(props) {
   );
 }
 
-module.exports = Timer;
+export default Timer;

@@ -1,19 +1,19 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const redux = require('redux');
-const Provider = require('react-redux').Provider;
+import React from 'react';
+import { render } from 'react-dom';
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
 
-const stopwatch = require('./reducers/stopwatch');
-const players = require('./reducers/players');
+import stopwatch from './reducers/stopwatch';
+import players from './reducers/players';
 
-const TotalTimerContainer = require('./containers/TotalTimerContainer.jsx');
-const PlayerTimersContainer = require('./containers/PlayerTimersContainer.jsx');
+import TotalTimerContainer from './containers/TotalTimerContainer.jsx';
+import PlayerTimersContainer from './containers/PlayerTimersContainer.jsx';
 
-const store = redux.createStore(
-  redux.combineReducers({ stopwatch, players })
+const store = createStore(
+  combineReducers({ stopwatch, players })
 );
 
-ReactDOM.render(
+render(
   <Provider store={store}>
     <div>
       <TotalTimerContainer />

@@ -1,8 +1,8 @@
-const connect = require('react-redux').connect;
+import { connect } from 'react-redux';
 
-const actions = require('./../actions/actions');
+import { play, tick, pause, resume, stop } from './../actions/actions';
 
-const TotalTimer = require('./../components/TotalTimer.jsx');
+import TotalTimer from './../components/TotalTimer.jsx';
 
 function mapStateToProps(state) {
   return state;
@@ -23,10 +23,10 @@ function mergeProps(stateProps, dispatchProps) {
 
   const mapDispatchToProps = {
     clickPlayHandler: function () {
-      dispatch(actions.play());
+      dispatch(play());
 
       const intervalId = setInterval(
-        () => dispatch(actions.tick(intervalId)),
+        () => dispatch(tick(intervalId)),
         100
       );
     },
@@ -34,14 +34,14 @@ function mergeProps(stateProps, dispatchProps) {
     clickPauseHandler: function () {
       clearInterval(stateProps.stopwatch.intervalId);
 
-      dispatch(actions.pause());
+      dispatch(pause());
     },
 
     clickResumeHandler: function () {
-      dispatch(actions.resume());
+      dispatch(resume());
 
       const intervalId = setInterval(
-        () => dispatch(actions.tick(intervalId)),
+        () => dispatch(tick(intervalId)),
         100
       );
     },
@@ -49,7 +49,7 @@ function mergeProps(stateProps, dispatchProps) {
     clickStopHandler: function () {
       clearInterval(stateProps.stopwatch.intervalId);
 
-      dispatch(actions.stop());
+      dispatch(stop());
     },
   };
 
@@ -62,4 +62,4 @@ const TotalTimerContainer = connect(
   mergeProps
 )(TotalTimer);
 
-module.exports = TotalTimerContainer;
+export default TotalTimerContainer;

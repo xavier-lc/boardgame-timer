@@ -1,8 +1,8 @@
-const React = require('react');
+import React from 'react';
 
-const diff = require('./../utils/date').diff;
+import { diff } from './../utils/date';
 
-const Timer = require('./Timer.jsx');
+import Timer from './Timer.jsx';
 
 function timeObject(start, finish, elapsed) {
   if (finish === null) {
@@ -34,4 +34,4 @@ function Statistics(props) {
   );
 }
 
-module.exports = Statistics;
+export default Statistics;

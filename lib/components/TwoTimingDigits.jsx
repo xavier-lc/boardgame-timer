@@ -1,6 +1,6 @@
-const React = require('react');
+import React from 'react';
 
-const twoDigits = require('./../utils/date').twoDigits;
+import { twoDigits } from './../utils/date';
 
 const propTypes = {
   value: React.PropTypes.number.isRequired,
@@ -16,4 +16,4 @@ function TwoTimingDigits(props) {
 
 TwoTimingDigits.propTypes = propTypes;
 
-module.exports = TwoTimingDigits;
+export default TwoTimingDigits;

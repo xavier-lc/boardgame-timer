@@ -1,8 +1,8 @@
-const connect = require('react-redux').connect;
+import { connect } from 'react-redux';
 
-const actions = require('./../actions/actions');
+import { addPlayer, next } from './../actions/actions';
 
-const PlayerTimers = require('./../components/PlayerTimers.jsx');
+import PlayerTimers from './../components/PlayerTimers.jsx';
 
 function mapStateToProps(state) {
   return state;
@@ -11,11 +11,11 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     clickAddHandler: function () {
-      dispatch(actions.addPlayer());
+      dispatch(addPlayer());
     },
 
     clickNextHandler: function () {
-      dispatch(actions.next());
+      dispatch(next());
     },
   };
 }
@@ -25,4 +25,4 @@ const PlayerTimersContainer = connect(
   mapDispatchToProps
 )(PlayerTimers);
 
-module.exports = PlayerTimersContainer;
+export default PlayerTimersContainer;

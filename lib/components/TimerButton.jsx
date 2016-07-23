@@ -1,4 +1,4 @@
-const React = require('react');
+import React from 'react';
 const PropTypes = React.PropTypes;
 
 const propTypes = {
@@ -17,4 +17,4 @@ function TimerButton(props) {
 
 TimerButton.propTypes = propTypes;
 
-module.exports = TimerButton;
+export default TimerButton;

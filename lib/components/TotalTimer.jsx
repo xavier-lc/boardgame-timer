@@ -1,8 +1,8 @@
-const React = require('react');
+import React from 'react';
 
-const Timer = require('./Timer.jsx');
-const TimerControls = require('./TimerControls.jsx');
-const Statistics = require('./Statistics.jsx');
+import Timer from './Timer.jsx';
+import TimerControls from './TimerControls.jsx';
+import Statistics from './Statistics.jsx';
 
 const propTypes = {
   start: React.PropTypes.number,
@@ -26,4 +26,4 @@ function TotalTimer(props) {
 
 TotalTimer.propTypes = propTypes;
 
-module.exports = TotalTimer;
+export default TotalTimer;
