@@ -1,6 +1,6 @@
 const React = require('react');
 
-const TimerButton = require('./TimerButton');
+const TimerButton = require('./TimerButton.jsx');
 
 function TimerControls(props) {
   return (

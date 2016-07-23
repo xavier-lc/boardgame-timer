@@ -1,47 +1,24 @@
 module.exports = function (grunt) {
   grunt.initConfig({
-    babel: {
-      options: {
-        presets: ['react']
-      },
-      jsx: {
-        files: [
-          {
-            expand: true,
-            cwd: 'lib/components/',
-            src: '*.jsx',
-            dest: 'lib/components/',
-            ext: '.js'
-          }, {
-            expand: true,
-            cwd: 'lib/containers/',
-            src: '*.jsx',
-            dest: 'lib/containers/',
-            ext: '.js'
-          }, {
-            src: ['lib/app.jsx'],
-            dest: 'lib/app.js'
-          }
-        ]
-      }
-    },
     browserify: {
       default: {
         files: {
-          'src/app.js': 'lib/app.js'
-        }
-      }
-    }
+          'src/app.js': 'lib/app.jsx',
+        },
+        options: {
+          transform: [['babelify', { presets: ['react', 'es2015'] }]],
+        },
+      },
+    },
   });
 
-  grunt.loadNpmTasks('grunt-babel');
+  //grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-browserify');
 
   grunt.registerTask(
     'default',
     [
-      'babel',
-      'browserify'
+      'browserify',
     ]
   );
 };

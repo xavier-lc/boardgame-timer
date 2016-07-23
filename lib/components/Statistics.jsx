@@ -2,7 +2,7 @@ const React = require('react');
 
 const diff = require('./../utils/date').diff;
 
-const Timer = require('./Timer');
+const Timer = require('./Timer.jsx');
 
 function timeObject(start, finish, elapsed) {
   if (finish === null) {

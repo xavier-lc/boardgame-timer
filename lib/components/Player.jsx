@@ -1,6 +1,6 @@
 const React = require('react');
 
-const Timer = require('./Timer');
+const Timer = require('./Timer.jsx');
 
 function Player(props) {
   return (

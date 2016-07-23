@@ -1,8 +1,8 @@
 const React = require('react');
 
-const Timer = require('./Timer');
-const TimerControls = require('./TimerControls');
-const Statistics = require('./Statistics');
+const Timer = require('./Timer.jsx');
+const TimerControls = require('./TimerControls.jsx');
+const Statistics = require('./Statistics.jsx');
 
 const propTypes = {
   start: React.PropTypes.number,

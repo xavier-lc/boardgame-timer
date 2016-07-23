@@ -2,7 +2,7 @@ const connect = require('react-redux').connect;
 
 const actions = require('./../actions/actions');
 
-const TotalTimer = require('./../components/TotalTimer');
+const TotalTimer = require('./../components/TotalTimer.jsx');
 
 function mapStateToProps(state) {
   return state;

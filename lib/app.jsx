@@ -6,8 +6,8 @@ const Provider = require('react-redux').Provider;
 const stopwatch = require('./reducers/stopwatch');
 const players = require('./reducers/players');
 
-const TotalTimerContainer = require('./containers/TotalTimerContainer');
-const PlayerTimersContainer = require('./containers/PlayerTimersContainer');
+const TotalTimerContainer = require('./containers/TotalTimerContainer.jsx');
+const PlayerTimersContainer = require('./containers/PlayerTimersContainer.jsx');
 
 const store = redux.createStore(
   redux.combineReducers({ stopwatch, players })

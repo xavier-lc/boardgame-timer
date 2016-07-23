@@ -1,6 +1,6 @@
 const React = require('react');
 
-const TwoTimingDigits = require('./TwoTimingDigits');
+const TwoTimingDigits = require('./TwoTimingDigits.jsx');
 
 function Timer(props) {
   return (
