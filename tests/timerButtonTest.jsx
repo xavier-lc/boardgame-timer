@@ -3,10 +3,19 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import TimerButton from '../lib/components/TimerButton.jsx';
 
+/**
+ * dummy button handler function
+ */
 function clic() {
   console.log('clic');
 }
 
+/**
+ * Set up a TimerButton element for testing purposes
+ *
+ * @param {boolean} isVisible
+ * @returns {ReactElement}
+ */
 function setup(isVisible) {
   const props = {
     clickHandler: clic,

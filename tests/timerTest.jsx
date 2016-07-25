@@ -4,6 +4,11 @@ import TestUtils from 'react-addons-test-utils';
 import Timer from '../lib/components/Timer.jsx';
 import TwoTimingDigits from '../lib/components/TwoTimingDigits.jsx';
 
+/**
+ * Set up a Timer element for testing purposes
+ *
+ * @returns {ReactElement}
+ */
 function setup() {
   const props = { hours: 0, minutes: 1, seconds: 2 };
 
