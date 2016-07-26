@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { diff, twoDigits } from '../../lib/utils/date';
+import { diff, twoDigits } from './../../lib/utils/date';
 
 describe('date utils', function () {
   describe('twoDigits function', function () {

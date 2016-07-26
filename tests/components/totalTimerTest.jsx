@@ -1,10 +1,10 @@
 import expect from 'expect';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import Timer from '../../lib/components/Timer.jsx';
-import TimerControls from '../../lib/components/TimerControls.jsx';
-import Statistics from '../../lib/components/Statistics.jsx';
-import TotalTimer from '../../lib/components/TotalTimer.jsx';
+import Timer from './../../lib/components/Timer.jsx';
+import TimerControls from './../../lib/components/TimerControls.jsx';
+import Statistics from './../../lib/components/Statistics.jsx';
+import TotalTimer from './../../lib/components/TotalTimer.jsx';
 
 /**
  * dummy button handler function
