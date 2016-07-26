@@ -37,7 +37,7 @@ describe('Statistics', function () {
 
     const element = setup(start, finish, elapsed);
 
-    const emptyTime = {
+    const testTime = {
       days: 0,
       hours: 0,
       minutes: 0,
@@ -51,7 +51,7 @@ describe('Statistics', function () {
         <Timer
           {...Object.assign(
             {},
-            emptyTime,
+            testTime,
             { seconds: (finish - (start + elapsed)) / 1000 }
           )}
         />
@@ -61,7 +61,7 @@ describe('Statistics', function () {
         <Timer
           {...Object.assign(
             {},
-            emptyTime,
+            testTime,
             { seconds: (finish - start) / 1000 }
           )}
         />
