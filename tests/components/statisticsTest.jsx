@@ -1,8 +1,8 @@
 import expect from 'expect';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import Statistics from '../lib/components/Statistics.jsx';
-import Timer from '../lib/components/Timer.jsx';
+import Statistics from '../../lib/components/Statistics.jsx';
+import Timer from '../../lib/components/Timer.jsx';
 
 /**
  * Set up a Statistics element for testing purposes

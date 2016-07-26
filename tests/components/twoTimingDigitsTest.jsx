@@ -1,7 +1,7 @@
 import expect from 'expect';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import TwoTimingDigits from '../lib/components/TwoTimingDigits.jsx';
+import TwoTimingDigits from '../../lib/components/TwoTimingDigits.jsx';
 
 /**
  * Set up a TwoTimingDigits element for testing purposes

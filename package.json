@@ -4,7 +4,7 @@
   "description": "timer app for boardgames",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --compilers jsx:babel-register tests"
+    "test": "./node_modules/mocha/bin/mocha --compilers jsx:babel-register --recursive tests"
   },
   "author": "patillades",
   "license": "ISC",

@@ -1,7 +1,7 @@
 import expect from 'expect';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import TimerButton from '../lib/components/TimerButton.jsx';
+import TimerButton from '../../lib/components/TimerButton.jsx';
 
 /**
  * dummy button handler function

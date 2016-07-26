@@ -1,8 +1,8 @@
 import expect from 'expect';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import Timer from '../lib/components/Timer.jsx';
-import Player from '../lib/components/Player.jsx';
+import Timer from '../../lib/components/Timer.jsx';
+import Player from '../../lib/components/Player.jsx';
 
 /**
  * Set up a Player element for testing purposes
