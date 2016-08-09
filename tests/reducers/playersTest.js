@@ -2,7 +2,6 @@ import expect from 'expect';
 import { ADD_PLAYER, PLAY, PAUSE, RESUME, TICK, NEXT } from './../../lib/constants/actionTypes';
 import { play, tick, pause, resume, stop, addPlayer, next } from './../../lib/actions/actions';
 import players, { initialState } from './../../lib/reducers/players';
-import { diff, timeToMs } from './../../lib/utils/date';
 
 describe('players reducer', function () {
   const initialLength = initialState.ids.length;
@@ -107,23 +106,22 @@ describe('players reducer', function () {
         pauseAction.time - stateAfterPause.time[1].offset
       );
 
-      expect(timeToMs(stateAfterPause.time[1])).toBeMoreThan(
-        timeToMs(stateAfterPlay.time[1])
-      );
+      expect(stateAfterPause.time[1].elapsed).toBeMoreThan(stateAfterPlay.time[1].elapsed);
 
       expect(stateAfterPause.time[1]).toEqual(
         Object.assign(
           {},
           stateAfterPlay.time[1],
-          diff(stateAfterPlay.time[1].offset, pauseAction.time),
           { elapsed: pauseAction.time - stateAfterPlay.time[1].offset }
         )
       );
     });
 
     it('should update player\'s offset on "RESUME" action', function () {
-      expect(stateAfterResume.time[1].offset).toBe(resumeAction.time);
-      expect(stateAfterResume.time[1].offset).toBeMoreThan(stateAfterPlay.time[1].offset);
+      expect(stateAfterResume.time[1].offset).toBe(
+        resumeAction.time - stateAfterPause.time[1].elapsed
+      );
+      expect(stateAfterResume.time[1].offset).toBeMoreThan(stateAfterPause.time[1].offset);
     });
 
     it('should update player\'s time on "TICK" action', function () {
@@ -131,13 +129,11 @@ describe('players reducer', function () {
         Object.assign(
           {},
           stateAfterResume.time[1],
-          diff(stateAfterResume.time[1].offset, tickAction.time + stateAfterResume.time[1].elapsed)
+          { elapsed: tickAction.time - stateAfterResume.time[1].offset }
         )
       );
 
-      expect(timeToMs(stateAfterTick.time[1])).toBeMoreThan(
-        timeToMs(stateAfterResume.time[1])
-      );
+      expect(stateAfterTick.time[1].elapsed).toBeMoreThan(stateAfterResume.time[1].elapsed);
     });
 
     it('should update player\'s time on "NEXT" action and set the next one as active', function () {
@@ -145,16 +141,11 @@ describe('players reducer', function () {
         Object.assign(
           {},
           stateAfterTick.time[1],
-          diff(stateAfterTick.time[1].offset, nextAction.time + stateAfterTick.time[1].elapsed),
-          { elapsed: stateAfterTick.time[1].elapsed + nextAction.time - stateAfterTick.time[1].offset }
+          { elapsed: nextAction.time - stateAfterTick.time[1].offset }
         )
       );
 
-      expect(timeToMs(stateAfterNext.time[1])).toBeMoreThan(
-        timeToMs(stateAfterTick.time[1])
-      );
-
-      expect(stateAfterNext.time[1].elapsed).toBeMoreThan(stateAfterResume.time[1].elapsed);
+      expect(stateAfterNext.time[1].elapsed).toBeMoreThan(stateAfterTick.time[1].elapsed);
 
       expect(stateAfterNext.data[1].isActive).toBe(false);
       expect(stateAfterNext.data[2].isActive).toBe(true);
@@ -167,13 +158,8 @@ describe('players reducer', function () {
         Object.assign(
           {},
           stateAfterNext.time[2],
-          diff(stateAfterNext.time[2].offset, secondNextAction.time),
           { elapsed: secondNextAction.time - stateAfterNext.time[2].offset }
         )
-      );
-
-      expect(timeToMs(stateAfterSecondNext.time[2])).toBeMoreThan(
-        timeToMs(stateAfterNext.time[2])
       );
 
       expect(stateAfterSecondNext.time[2].elapsed).toBeMoreThan(stateAfterNext.time[2].elapsed);
@@ -181,7 +167,9 @@ describe('players reducer', function () {
       expect(stateAfterSecondNext.data[1].isActive).toBe(true);
       expect(stateAfterSecondNext.data[2].isActive).toBe(false);
 
-      expect(stateAfterSecondNext.time[1].offset).toBe(secondNextAction.time);
+      expect(stateAfterSecondNext.time[1].offset).toBe(
+        secondNextAction.time - stateAfterNext.time[1].elapsed
+      );
     });
   });
 });

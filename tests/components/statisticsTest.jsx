@@ -37,34 +37,14 @@ describe('Statistics', function () {
 
     const element = setup(start, finish, elapsed);
 
-    const testTime = {
-      days: 0,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-      milliseconds: 0,
-    };
-
     expect(element.props.children).toEqual([
       <div>
         <span>Paused time:</span>
-        <Timer
-          {...Object.assign(
-            {},
-            testTime,
-            { seconds: (finish - (start + elapsed)) / 1000 }
-          )}
-        />
+        <Timer elapsed={finish - start - elapsed} />
       </div>,
       <div>
         <span>Total time:</span>
-        <Timer
-          {...Object.assign(
-            {},
-            testTime,
-            { seconds: (finish - start) / 1000 }
-          )}
-        />
+        <Timer elapsed={finish - start} />
       </div>,
     ]);
   });

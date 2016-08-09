@@ -10,7 +10,7 @@ import TwoTimingDigits from './../../lib/components/TwoTimingDigits.jsx';
  * @returns {ReactElement}
  */
 function setup() {
-  const props = { hours: 0, minutes: 1, seconds: 2 };
+  const props = { elapsed: 62000 };
 
   const renderer = TestUtils.createRenderer();
 

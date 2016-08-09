@@ -20,9 +20,7 @@ function setup(props) {
 
 const testProps = {
   name: 'Player #1',
-  hours: 0,
-  minutes: 1,
-  seconds: 2,
+  elapsed: 62000,
 };
 
 describe('Player', function () {
@@ -34,11 +32,7 @@ describe('Player', function () {
     expect(element.type).toBe('div');
     expect(element.props.children).toEqual([
       <span className="">{props.name}</span>,
-      <Timer
-        hours={props.hours}
-        minutes={props.minutes}
-        seconds={props.seconds}
-      />,
+      <Timer elapsed={props.elapsed} />,
     ]);
   });
 
@@ -50,11 +44,7 @@ describe('Player', function () {
     expect(element.type).toBe('div');
     expect(element.props.children).toEqual([
       <span className="active">{props.name}</span>,
-      <Timer
-        hours={props.hours}
-        minutes={props.minutes}
-        seconds={props.seconds}
-      />,
+      <Timer elapsed={props.elapsed} />,
     ]);
   });
 });

@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { diff, timeToMs, twoDigits } from './../../lib/utils/date';
+import { msToTime, twoDigits } from './../../lib/utils/date';
 
 describe('date utils', function () {
   describe('twoDigits function', function () {
@@ -19,7 +19,7 @@ describe('date utils', function () {
   });
 
   describe('timeToMs function', function () {
-    it('should be the reverse of the diff function', function () {
+    it('should convert milliseconds to a Time object', function () {
       const time = {
         days: 1,
         hours: 2,
@@ -28,13 +28,13 @@ describe('date utils', function () {
         milliseconds: 5,
       };
 
-      const difference = diff(0, timeToMs(time));
+      const timeObj = msToTime(5 + (4 + (3 + (2 + (1 * 24)) * 60) * 60) * 1000);
 
-      expect(difference.days).toBe(time.days);
-      expect(difference.hours).toBe(time.hours);
-      expect(difference.minutes).toBe(time.minutes);
-      expect(difference.seconds).toBe(time.seconds);
-      expect(difference.milliseconds).toBe(time.milliseconds);
+      expect(timeObj.days).toBe(time.days);
+      expect(timeObj.hours).toBe(time.hours);
+      expect(timeObj.minutes).toBe(time.minutes);
+      expect(timeObj.seconds).toBe(time.seconds);
+      expect(timeObj.milliseconds).toBe(time.milliseconds);
     });
   });
 });

@@ -7,11 +7,7 @@ function Player(props) {
     <div>
       <span className={props.isActive ? 'active' : ''}>{props.name}</span>
 
-      <Timer
-        hours={props.hours}
-        minutes={props.minutes}
-        seconds={props.seconds}
-      />
+      <Timer elapsed={props.elapsed} />
     </div>
   );
 }

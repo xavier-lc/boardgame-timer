@@ -11,11 +11,7 @@ const propTypes = {
 function TotalTimer(props) {
   return (
     <div>
-      <Timer
-        hours={props.stopwatch.hours}
-        minutes={props.stopwatch.minutes}
-        seconds={props.stopwatch.seconds}
-      />
+      <Timer elapsed={props.stopwatch.elapsed} />
 
       <TimerControls {...props} />
 

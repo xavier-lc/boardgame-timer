@@ -2,18 +2,12 @@ import expect from 'expect';
 import { ADD_PLAYER, PLAY, PAUSE, RESUME, TICK, NEXT } from './../../lib/constants/actionTypes';
 import { play, tick, pause, resume, stop, addPlayer, next } from './../../lib/actions/actions';
 import stopwatch, { initialState } from './../../lib/reducers/stopwatch';
-import { diff, timeToMs } from './../../lib/utils/date';
 
 describe('stopwatch reducer', function () {
   it('should be off on its initial state', function () {
     expect(initialState.isOn).toBe(false);
     expect(initialState.start).toBe(null);
     expect(initialState.offset).toBe(null);
-    expect(initialState.days).toBe(0);
-    expect(initialState.hours).toBe(0);
-    expect(initialState.minutes).toBe(0);
-    expect(initialState.seconds).toBe(0);
-    expect(initialState.milliseconds).toBe(0);
     expect(initialState.elapsed).toBe(0);
     expect(initialState.finish).toBe(null);
     expect(initialState.intervalId).toBe(null);
@@ -81,10 +75,9 @@ describe('stopwatch reducer', function () {
         Object.assign(
           {},
           stateAfterPlay,
-          diff(stateAfterPlay.offset, pauseAction.time),
           {
             isOn: false,
-            elapsed: pauseAction.time - stateAfterPlay.offset
+            elapsed: pauseAction.time - stateAfterPlay.offset,
           }
         )
       );
@@ -92,7 +85,7 @@ describe('stopwatch reducer', function () {
 
     it('should be back "on" on "RESUME" action', function () {
       expect(stateAfterResume.isOn).toBe(true);
-      expect(stateAfterResume.offset).toBe(resumeAction.time);
+      expect(stateAfterResume.offset).toBe(resumeAction.time - stateAfterPause.elapsed);
     });
 
     it('should be updated on "TICK" action', function () {
@@ -100,8 +93,10 @@ describe('stopwatch reducer', function () {
         Object.assign(
           {},
           stateAfterResume,
-          diff(stateAfterResume.offset, tickAction.time + stateAfterResume.elapsed),
-          { intervalId: intervalId }
+          {
+            elapsed: tickAction.time - stateAfterResume.offset,
+            intervalId: intervalId,
+          }
         )
       );
     });
@@ -111,12 +106,11 @@ describe('stopwatch reducer', function () {
         Object.assign(
           {},
           stateAfterTick,
-          diff(stateAfterTick.offset, secondPauseAction.time + stateAfterTick.elapsed),
           {
             isOn: false,
-            elapsed: stateAfterTick.elapsed + secondPauseAction.time - stateAfterTick.offset,
+            elapsed: secondPauseAction.time - stateAfterTick.offset,
             finish: stopAction.time,
-            intervalId: null
+            intervalId: null,
           }
         )
       );

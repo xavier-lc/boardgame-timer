@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import TwoTimingDigits from './TwoTimingDigits.jsx';
 
+import { msToTime } from '../utils/date';
+
+const propTypes = { elapsed: PropTypes.number };
+
 function Timer(props) {
+  const time = msToTime(props.elapsed);
+
   return (
     <div>
-      <TwoTimingDigits value={props.hours} />
+      <TwoTimingDigits value={time.hours} />
       :
-      <TwoTimingDigits value={props.minutes} />
+      <TwoTimingDigits value={time.minutes} />
       :
-      <TwoTimingDigits value={props.seconds} />
+      <TwoTimingDigits value={time.seconds} />
     </div>
   );
 }
+
+Timer.propTypes = propTypes;
 
 export default Timer;

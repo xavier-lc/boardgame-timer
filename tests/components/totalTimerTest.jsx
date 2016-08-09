@@ -53,15 +53,10 @@ describe('TotalTimer', function () {
     const props = {
       stopwatch: {
         isOn: false,
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-        milliseconds: 0,
+        elapsed: 0,
         start: null,
         finish: null,
         offset: null,
-        elapsed: 0,
       },
       clickPlayHandler: play,
       clickPauseHandler: pause,
@@ -73,11 +68,7 @@ describe('TotalTimer', function () {
 
     expect(element.type).toBe('div');
     expect(element.props.children).toEqual([
-      <Timer
-        hours={props.stopwatch.hours}
-        minutes={props.stopwatch.minutes}
-        seconds={props.stopwatch.seconds}
-      />,
+      <Timer elapsed={props.stopwatch.elapsed} />,
       <TimerControls {...props} />,
       <Statistics {...props.stopwatch} />,
     ]);
