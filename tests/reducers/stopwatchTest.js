@@ -2,6 +2,7 @@ import expect from 'expect';
 import { ADD_PLAYER, PLAY, PAUSE, RESUME, TICK, NEXT } from './../../lib/constants/actionTypes';
 import { play, tick, pause, resume, stop, addPlayer, next } from './../../lib/actions/actions';
 import stopwatch, { initialState } from './../../lib/reducers/stopwatch';
+import { msToTime } from './../../lib/utils/date';
 
 describe('stopwatch reducer', function () {
   it('should be off on its initial state', function () {
@@ -61,7 +62,7 @@ describe('stopwatch reducer', function () {
             }, 100);
           }, 100);
         }, 100);
-      }, 100);
+      }, 1100);
     });
 
     it('should be started on "PLAY" action', function () {
@@ -70,21 +71,28 @@ describe('stopwatch reducer', function () {
       expect(stateAfterPlay.offset).toBe(playAction.time);
     });
 
-    it('should be updated on "PAUSE" action', function () {
+    it('should be updated on "PAUSE" action and 1 second should be elapsed', function () {
+      const elapsed = pauseAction.time - stateAfterPlay.offset;
+
       expect(stateAfterPause).toEqual(
         Object.assign(
           {},
           stateAfterPlay,
           {
             isOn: false,
-            elapsed: pauseAction.time - stateAfterPlay.offset,
+            elapsed,
           }
         )
       );
+
+      const time = msToTime(elapsed);
+
+      expect(time.seconds).toBe(1);
     });
 
-    it('should be back "on" on "RESUME" action', function () {
+    it('should be back "on" on "RESUME" action and no time should have gone by', function () {
       expect(stateAfterResume.isOn).toBe(true);
+      expect(stateAfterResume.elapsed).toBe(stateAfterPause.elapsed);
       expect(stateAfterResume.offset).toBe(resumeAction.time - stateAfterPause.elapsed);
     });
 
