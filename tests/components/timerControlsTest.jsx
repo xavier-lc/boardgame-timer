@@ -38,16 +38,15 @@ function stop() {
  * @param {boolean} isOn
  * @param {?number} start
  * @param {?number} finish
- * @param {number} elapsed
  * @returns {ReactElement}
  */
-function setup(isOn, start, finish, elapsed) {
+function setup(isOn, start, finish) {
   const props = Object.assign({
     clickPlayHandler: play,
     clickPauseHandler: pause,
     clickResumeHandler: resume,
     clickStopHandler: stop,
-  }, { isOn, start, finish, elapsed });
+  }, { isOn, start, finish });
 
   const renderer = TestUtils.createRenderer();
 

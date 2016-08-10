@@ -11,7 +11,6 @@ function TotalTimer(props) {
 
       <TimerControls
         isOn={props.stopwatch.isOn}
-        elapsed={props.stopwatch.elapsed}
         start={props.stopwatch.start}
         finish={props.stopwatch.finish}
         clickPlayHandler={props.clickPlayHandler}

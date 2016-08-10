@@ -4,7 +4,6 @@ import TimerButton from './TimerButton.jsx';
 
 const propTypes = {
   isOn: PropTypes.bool.isRequired,
-  elapsed: PropTypes.number.isRequired,
   start: PropTypes.number,
   finish: PropTypes.number,
   clickPlayHandler: PropTypes.func.isRequired,
@@ -18,7 +17,7 @@ function TimerControls(props) {
     <div className={props.finish === null ? '' : 'no'}>
       <TimerButton
         clickHandler={props.clickPlayHandler}
-        isVisible={!props.isOn && props.start === null}
+        isVisible={props.start === null}
         txt="Play"
       />
 
@@ -30,13 +29,13 @@ function TimerControls(props) {
 
       <TimerButton
         clickHandler={props.clickResumeHandler}
-        isVisible={!props.isOn && props.elapsed !== 0}
+        isVisible={!props.isOn && props.start !== null}
         txt="Resume"
       />
 
       <TimerButton
         clickHandler={props.clickStopHandler}
-        isVisible={!props.isOn && props.elapsed !== 0}
+        isVisible={!props.isOn && props.start !== null}
         txt="Stop"
       />
     </div>
