@@ -76,6 +76,16 @@ describe('PlayerTimers', function () {
 
     expect(element.type).toBe('div');
     expect(element.props.children).toEqual([
+      <TimerButton
+        clickHandler={testProps.clickAddHandler}
+        isVisible
+        txt="Add player"
+      />,
+      <TimerButton
+        clickHandler={testProps.clickNextHandler}
+        isVisible={false}
+        txt="Next"
+      />,
       [
         <Player
           id={1}
@@ -94,16 +104,6 @@ describe('PlayerTimers', function () {
           inputChangeHandler={testProps.inputChangeHandler}
         />,
       ],
-      <TimerButton
-        clickHandler={testProps.clickAddHandler}
-        isVisible
-        txt="Add player"
-      />,
-      <TimerButton
-        clickHandler={testProps.clickNextHandler}
-        isVisible={false}
-        txt="Next"
-      />,
     ]);
   });
 
@@ -113,24 +113,6 @@ describe('PlayerTimers', function () {
 
     expect(element.type).toBe('div');
     expect(element.props.children).toEqual([
-      [
-        <Player
-          id={1}
-          key="1"
-          isEditable={false}
-          {...testProps.players.data[1]}
-          elapsed={testProps.players.time[1].elapsed}
-          inputChangeHandler={testProps.inputChangeHandler}
-        />,
-        <Player
-          id={2}
-          key="2"
-          isEditable={false}
-          {...testProps.players.data[2]}
-          elapsed={testProps.players.time[2].elapsed}
-          inputChangeHandler={testProps.inputChangeHandler}
-        />,
-      ],
       <TimerButton
         clickHandler={testProps.clickAddHandler}
         isVisible={false}
@@ -141,15 +123,6 @@ describe('PlayerTimers', function () {
         isVisible
         txt="Next"
       />,
-    ]);
-  });
-
-  it('should render element with no buttons if finished', function () {
-    const testProps = getTestProps(false, 0);
-    const element = setup(testProps);
-
-    expect(element.type).toBe('div');
-    expect(element.props.children).toEqual([
       [
         <Player
           id={1}
@@ -168,6 +141,15 @@ describe('PlayerTimers', function () {
           inputChangeHandler={testProps.inputChangeHandler}
         />,
       ],
+    ]);
+  });
+
+  it('should render element with no buttons if finished', function () {
+    const testProps = getTestProps(false, 0);
+    const element = setup(testProps);
+
+    expect(element.type).toBe('div');
+    expect(element.props.children).toEqual([
       <TimerButton
         clickHandler={testProps.clickAddHandler}
         isVisible={false}
@@ -178,6 +160,24 @@ describe('PlayerTimers', function () {
         isVisible={false}
         txt="Next"
       />,
+      [
+        <Player
+          id={1}
+          key="1"
+          isEditable={false}
+          {...testProps.players.data[1]}
+          elapsed={testProps.players.time[1].elapsed}
+          inputChangeHandler={testProps.inputChangeHandler}
+        />,
+        <Player
+          id={2}
+          key="2"
+          isEditable={false}
+          {...testProps.players.data[2]}
+          elapsed={testProps.players.time[2].elapsed}
+          inputChangeHandler={testProps.inputChangeHandler}
+        />,
+      ],
     ]);
   });
 });
