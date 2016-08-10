@@ -9,14 +9,17 @@ function PlayerTimers(props) {
       {props.players.ids.map((id) => (
         <Player
           key={id}
+          id={id}
+          isEditable={props.stopwatch.start === null}
           {...props.players.data[id]}
           elapsed={props.players.time[id].elapsed}
+          inputChangeHandler={props.inputChangeHandler}
         />
       ))}
 
       <TimerButton
         clickHandler={props.clickAddHandler}
-        isVisible={!props.stopwatch.isOn && props.stopwatch.start === null}
+        isVisible={props.stopwatch.start === null}
         txt="Add player"
       />
 

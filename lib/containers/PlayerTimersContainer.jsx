@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { addPlayer, next } from './../actions/actions';
+import { addPlayer, next, nameInputChange } from './../actions/actions';
 
 import PlayerTimers from './../components/PlayerTimers.jsx';
 
@@ -17,6 +17,10 @@ function mapDispatchToProps(dispatch) {
     clickNextHandler: function () {
       dispatch(next());
     },
+    
+    inputChangeHandler: function (e) {
+      dispatch(nameInputChange(e.target.id, e.target.value));
+    }
   };
 }
 
