@@ -47,11 +47,14 @@ describe('Player', function () {
       <span className="no">{props.name}</span>,
       <PlayerNameInput
         id={props.id}
-        isEditable={props.isEditable}
+        isEditable
         changeHandler={props.inputChangeHandler}
         value={props.name}
       />,
-      <Timer elapsed={props.elapsed} />,
+      <Timer
+        elapsed={props.elapsed}
+        isVisible={false}
+      />,
     ]);
   });
 
@@ -69,11 +72,14 @@ describe('Player', function () {
       <span className="active">{props.name}</span>,
       <PlayerNameInput
         id={props.id}
-        isEditable={props.isEditable}
+        isEditable={false}
         changeHandler={props.inputChangeHandler}
         value={props.name}
       />,
-      <Timer elapsed={props.elapsed} />,
+      <Timer
+        elapsed={props.elapsed}
+        isVisible
+      />,
     ]);
   });
 });

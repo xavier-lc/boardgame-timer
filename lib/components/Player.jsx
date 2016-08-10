@@ -42,7 +42,10 @@ function Player(props) {
         value={props.name}
       />
 
-      <Timer elapsed={props.elapsed} />
+      <Timer
+        elapsed={props.elapsed}
+        isVisible={!props.isEditable}
+      />
     </div>
   );
 }

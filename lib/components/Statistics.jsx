@@ -12,15 +12,15 @@ function Statistics(props) {
   return (
     <div className={props.finish === null ? 'no' : ''}>
       <div>
-        <span>Paused time:</span>
+        <span>Total time:</span>
 
-        <Timer elapsed={props.finish - props.start - props.elapsed} />
+        <Timer elapsed={props.finish - props.start} isVisible />
       </div>
 
       <div>
-        <span>Total time:</span>
+        <span>Paused time:</span>
 
-        <Timer elapsed={props.finish - props.start} />
+        <Timer elapsed={props.finish - props.start - props.elapsed} isVisible />
       </div>
     </div>
   );

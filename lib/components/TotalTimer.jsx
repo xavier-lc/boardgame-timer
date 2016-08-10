@@ -6,8 +6,11 @@ import Statistics from './Statistics.jsx';
 
 function TotalTimer(props) {
   return (
-    <div>
-      <Timer elapsed={props.stopwatch.elapsed} />
+    <div className="totalTimer">
+      <Timer
+        elapsed={props.stopwatch.elapsed}
+        isVisible={props.stopwatch.finish === null}
+      />
 
       <TimerControls
         isOn={props.stopwatch.isOn}

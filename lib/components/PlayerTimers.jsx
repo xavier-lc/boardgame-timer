@@ -5,7 +5,7 @@ import TimerButton from './TimerButton.jsx';
 
 function PlayerTimers(props) {
   return (
-    <div>
+    <div className="playerTimers">
       {props.players.ids.map((id) => (
         <Player
           key={id}

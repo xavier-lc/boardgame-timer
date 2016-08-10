@@ -68,7 +68,10 @@ describe('TotalTimer', function () {
 
     expect(element.type).toBe('div');
     expect(element.props.children).toEqual([
-      <Timer elapsed={props.stopwatch.elapsed} />,
+      <Timer
+        elapsed={props.stopwatch.elapsed}
+        isVisible
+      />,
       <TimerControls
         isOn={props.stopwatch.isOn}
         start={props.stopwatch.start}

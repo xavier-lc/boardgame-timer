@@ -39,12 +39,12 @@ describe('Statistics', function () {
 
     expect(element.props.children).toEqual([
       <div>
-        <span>Paused time:</span>
-        <Timer elapsed={finish - start - elapsed} />
+        <span>Total time:</span>
+        <Timer elapsed={finish - start} isVisible />
       </div>,
       <div>
-        <span>Total time:</span>
-        <Timer elapsed={finish - start} />
+        <span>Paused time:</span>
+        <Timer elapsed={finish - start - elapsed} isVisible />
       </div>,
     ]);
   });
