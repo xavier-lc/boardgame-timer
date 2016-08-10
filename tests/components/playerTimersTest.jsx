@@ -19,6 +19,13 @@ function next() {
   console.log('next');
 }
 
+/**
+ * dummy input handler function
+ */
+function change() {
+  console.log('change');
+}
+
 function setup(props) {
   const renderer = TestUtils.createRenderer();
 
@@ -58,6 +65,7 @@ function getTestProps(isOn = false, start = null) {
     },
     clickAddHandler: add,
     clickNextHandler: next,
+    inputChangeHandler: change,
   };
 }
 
@@ -70,14 +78,20 @@ describe('PlayerTimers', function () {
     expect(element.props.children).toEqual([
       [
         <Player
+          id={1}
           key="1"
+          isEditable
           {...testProps.players.data[1]}
           elapsed={testProps.players.time[1].elapsed}
+          inputChangeHandler={testProps.inputChangeHandler}
         />,
         <Player
+          id={2}
           key="2"
+          isEditable
           {...testProps.players.data[2]}
           elapsed={testProps.players.time[2].elapsed}
+          inputChangeHandler={testProps.inputChangeHandler}
         />,
       ],
       <TimerButton
@@ -101,14 +115,20 @@ describe('PlayerTimers', function () {
     expect(element.props.children).toEqual([
       [
         <Player
+          id={1}
           key="1"
+          isEditable={false}
           {...testProps.players.data[1]}
           elapsed={testProps.players.time[1].elapsed}
+          inputChangeHandler={testProps.inputChangeHandler}
         />,
         <Player
+          id={2}
           key="2"
+          isEditable={false}
           {...testProps.players.data[2]}
           elapsed={testProps.players.time[2].elapsed}
+          inputChangeHandler={testProps.inputChangeHandler}
         />,
       ],
       <TimerButton
@@ -132,14 +152,20 @@ describe('PlayerTimers', function () {
     expect(element.props.children).toEqual([
       [
         <Player
+          id={1}
           key="1"
+          isEditable={false}
           {...testProps.players.data[1]}
           elapsed={testProps.players.time[1].elapsed}
+          inputChangeHandler={testProps.inputChangeHandler}
         />,
         <Player
+          id={2}
           key="2"
+          isEditable={false}
           {...testProps.players.data[2]}
           elapsed={testProps.players.time[2].elapsed}
+          inputChangeHandler={testProps.inputChangeHandler}
         />,
       ],
       <TimerButton

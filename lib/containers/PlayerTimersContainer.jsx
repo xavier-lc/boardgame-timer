@@ -17,10 +17,13 @@ function mapDispatchToProps(dispatch) {
     clickNextHandler: function () {
       dispatch(next());
     },
-    
+
     inputChangeHandler: function (e) {
-      dispatch(nameInputChange(e.target.id, e.target.value));
-    }
+      dispatch(nameInputChange(
+        e.target.id,
+        e.target.value
+      ));
+    },
   };
 }
 

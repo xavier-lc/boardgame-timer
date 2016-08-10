@@ -2,7 +2,15 @@ import expect from 'expect';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import Timer from './../../lib/components/Timer.jsx';
+import PlayerNameInput from './../../lib/components/PlayerNameInput.jsx';
 import Player from './../../lib/components/Player.jsx';
+
+/**
+ * dummy input handler function
+ */
+function change() {
+  console.log('change');
+}
 
 /**
  * Set up a Player element for testing purposes
@@ -19,31 +27,52 @@ function setup(props) {
 }
 
 const testProps = {
+  id: 1,
   name: 'Player #1',
-  elapsed: 62000,
+  inputChangeHandler: change,
 };
 
 describe('Player', function () {
-  it('should render element', function () {
-    const props = Object.assign({ isActive: false }, testProps);
+  it('should render element with input visible when timer is not started', function () {
+    const props = Object.assign({
+      isEditable: true,
+      isActive: false,
+      elapsed: 0,
+    }, testProps);
 
     const element = setup(props);
 
     expect(element.type).toBe('div');
     expect(element.props.children).toEqual([
-      <span className="">{props.name}</span>,
+      <span className="no">{props.name}</span>,
+      <PlayerNameInput
+        id={props.id}
+        isEditable={props.isEditable}
+        changeHandler={props.inputChangeHandler}
+        value={props.name}
+      />,
       <Timer elapsed={props.elapsed} />,
     ]);
   });
 
   it('should have "active" class on "span" when active', function () {
-    const props = Object.assign({ isActive: true }, testProps);
+    const props = Object.assign({
+      isEditable: false,
+      isActive: true,
+      elapsed: 62000,
+    }, testProps);
 
     const element = setup(props);
 
     expect(element.type).toBe('div');
     expect(element.props.children).toEqual([
       <span className="active">{props.name}</span>,
+      <PlayerNameInput
+        id={props.id}
+        isEditable={props.isEditable}
+        changeHandler={props.inputChangeHandler}
+        value={props.name}
+      />,
       <Timer elapsed={props.elapsed} />,
     ]);
   });
