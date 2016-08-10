@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { addPlayer, next, nameInputChange } from './../actions/actions';
+import { addPlayer, next, changeName } from './../actions/actions';
 
 import PlayerTimers from './../components/PlayerTimers.jsx';
 
@@ -19,7 +19,7 @@ function mapDispatchToProps(dispatch) {
     },
 
     inputChangeHandler: function (e) {
-      dispatch(nameInputChange(
+      dispatch(changeName(
         e.target.id,
         e.target.value
       ));

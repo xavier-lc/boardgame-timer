@@ -1,6 +1,6 @@
 import expect from 'expect';
 import { ADD_PLAYER, PLAY, PAUSE, RESUME, TICK, NEXT } from './../../lib/constants/actionTypes';
-import { play, tick, pause, resume, stop, addPlayer, next } from './../../lib/actions/actions';
+import { play, tick, pause, resume, stop, addPlayer, next, changeName } from './../../lib/actions/actions';
 import players, { initialState } from './../../lib/reducers/players';
 
 describe('players reducer', function () {
@@ -16,6 +16,14 @@ describe('players reducer', function () {
 
     expect(initialState.time[1].offset).toBe(null);
     expect(initialState.time[2].offset).toBe(null);
+  });
+
+  it('should update user name on "CHANGE" action', function () {
+    const id = 1;
+    const name = 'tureru';
+    const newState = players(initialState, changeName(id, name));
+
+    expect(newState.data[id].name).toBe(name);
   });
 
   it('should add a new player on "ADD_PLAYER" action', function () {
