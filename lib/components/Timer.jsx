@@ -4,7 +4,7 @@ import TwoTimingDigits from './TwoTimingDigits.jsx';
 
 import { msToTime } from '../utils/date';
 
-const propTypes = { elapsed: PropTypes.number };
+const propTypes = { elapsed: PropTypes.number.isRequired };
 
 function Timer(props) {
   const time = msToTime(props.elapsed);

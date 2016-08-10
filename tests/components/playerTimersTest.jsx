@@ -43,20 +43,12 @@ function getTestProps(isOn = false, start = null) {
       },
       time: {
         1: {
-          hours: 0,
-          minutes: 0,
-          seconds: 0,
-          milliseconds: 0,
-          offset: null,
           elapsed: 0,
+          offset: null,
         },
         2: {
-          hours: 0,
-          minutes: 0,
-          seconds: 0,
-          milliseconds: 0,
-          offset: null,
           elapsed: 0,
+          offset: null,
         },
       },
     },
@@ -80,12 +72,12 @@ describe('PlayerTimers', function () {
         <Player
           key="1"
           {...testProps.players.data[1]}
-          {...testProps.players.time[1]}
+          elapsed={testProps.players.time[1].elapsed}
         />,
         <Player
           key="2"
           {...testProps.players.data[2]}
-          {...testProps.players.time[2]}
+          elapsed={testProps.players.time[2].elapsed}
         />,
       ],
       <TimerButton
@@ -111,12 +103,12 @@ describe('PlayerTimers', function () {
         <Player
           key="1"
           {...testProps.players.data[1]}
-          {...testProps.players.time[1]}
+          elapsed={testProps.players.time[1].elapsed}
         />,
         <Player
           key="2"
           {...testProps.players.data[2]}
-          {...testProps.players.time[2]}
+          elapsed={testProps.players.time[2].elapsed}
         />,
       ],
       <TimerButton
@@ -142,12 +134,12 @@ describe('PlayerTimers', function () {
         <Player
           key="1"
           {...testProps.players.data[1]}
-          {...testProps.players.time[1]}
+          elapsed={testProps.players.time[1].elapsed}
         />,
         <Player
           key="2"
           {...testProps.players.data[2]}
-          {...testProps.players.time[2]}
+          elapsed={testProps.players.time[2].elapsed}
         />,
       ],
       <TimerButton

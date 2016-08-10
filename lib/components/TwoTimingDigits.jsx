@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import { twoDigits } from './../utils/date';
 
-const propTypes = {
-  value: React.PropTypes.number.isRequired,
-};
+const propTypes = { value: PropTypes.number.isRequired };
 
 function TwoTimingDigits(props) {
   return (

@@ -42,13 +42,12 @@ function stop() {
  * @returns {ReactElement}
  */
 function setup(isOn, start, finish, elapsed) {
-  const props = {
-    stopwatch: { isOn, start, finish, elapsed },
+  const props = Object.assign({
     clickPlayHandler: play,
     clickPauseHandler: pause,
     clickResumeHandler: resume,
     clickStopHandler: stop,
-  };
+  }, { isOn, start, finish, elapsed });
 
   const renderer = TestUtils.createRenderer();
 

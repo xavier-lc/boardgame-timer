@@ -69,8 +69,21 @@ describe('TotalTimer', function () {
     expect(element.type).toBe('div');
     expect(element.props.children).toEqual([
       <Timer elapsed={props.stopwatch.elapsed} />,
-      <TimerControls {...props} />,
-      <Statistics {...props.stopwatch} />,
+      <TimerControls
+        isOn={props.stopwatch.isOn}
+        elapsed={props.stopwatch.elapsed}
+        start={props.stopwatch.start}
+        finish={props.stopwatch.finish}
+        clickPlayHandler={props.clickPlayHandler}
+        clickPauseHandler={props.clickPauseHandler}
+        clickResumeHandler={props.clickResumeHandler}
+        clickStopHandler={props.clickStopHandler}
+      />,
+      <Statistics
+        elapsed={props.stopwatch.elapsed}
+        start={props.stopwatch.start}
+        finish={props.stopwatch.finish}
+      />,
     ]);
   });
 });

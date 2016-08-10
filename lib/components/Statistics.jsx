@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import Timer from './Timer.jsx';
+
+const propTypes = {
+  elapsed: PropTypes.number.isRequired,
+  start: PropTypes.number,
+  finish: PropTypes.number,
+};
 
 function Statistics(props) {
   return (
@@ -19,5 +25,7 @@ function Statistics(props) {
     </div>
   );
 }
+
+Statistics.propTypes = propTypes;
 
 export default Statistics;

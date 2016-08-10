@@ -10,7 +10,7 @@ function PlayerTimers(props) {
         <Player
           key={id}
           {...props.players.data[id]}
-          {...props.players.time[id]}
+          elapsed={props.players.time[id].elapsed}
         />
       ))}
 

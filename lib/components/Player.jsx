@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import Timer from './Timer.jsx';
+
+const propTypes = {
+  isActive: PropTypes.bool.isRequired,
+  name: PropTypes.string.isRequired,
+  elapsed: PropTypes.number.isRequired,
+};
 
 function Player(props) {
   return (
@@ -11,5 +17,7 @@ function Player(props) {
     </div>
   );
 }
+
+Player.propTypes = propTypes;
 
 export default Player;
