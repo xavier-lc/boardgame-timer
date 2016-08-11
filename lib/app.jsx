@@ -16,8 +16,8 @@ const store = createStore(
 render(
   <Provider store={store}>
     <div>
-      <TotalTimerContainer />
       <PlayerTimersContainer />
+      <TotalTimerContainer />
     </div>
   </Provider>,
   document.getElementById('example')
