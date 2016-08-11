@@ -4,12 +4,22 @@ import TestUtils from 'react-addons-test-utils';
 import TimeSelector from './../../lib/components/TimeSelector.jsx';
 
 /**
+ * dummy change handler function
+ */
+function change() {
+  console.log('change');
+}
+
+/**
  * Set up a TimeSelector element for testing purposes
  *
  * @returns {ReactElement}
  */
 function setup(max) {
-  const props = { max };
+  const props = {
+    max,
+    limitSelectChange: change,
+  };
 
   const renderer = TestUtils.createRenderer();
 

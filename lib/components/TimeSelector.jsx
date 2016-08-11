@@ -5,11 +5,12 @@ import { twoDigits } from '../utils/date';
 
 const propTypes = {
   max: PropTypes.number.isRequired,
+  limitSelectChange: PropTypes.func.isRequired,
 };
 
 function TimeSelector(props) {
   return (
-    <select>
+    <select onChange={props.limitSelectChange}>
       {_.range(props.max + 1).map((el) => (
         <option
           key={el}
