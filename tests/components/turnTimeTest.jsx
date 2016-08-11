@@ -19,7 +19,7 @@ function change() {
 function setup(maxMinutes) {
   const props = {
     maxMinutes,
-    limitSelectChange: change,
+    selectChangeHandler: change,
   };
 
   const renderer = TestUtils.createRenderer();
@@ -39,15 +39,17 @@ describe('TurnTime', function () {
       <span>Turn time:</span>,
       <div>
         <TimeSelector
+          units="minutes"
+          changeHandler={change}
           max={maxMinutes}
-          limitSelectChange={change}
         />
         :
         <TimeSelector
+          units="seconds"
+          changeHandler={change}
           max={59}
-          limitSelectChange={change}
         />
       </div>,
-    ])
+    ]);
   });
 });

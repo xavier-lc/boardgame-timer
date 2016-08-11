@@ -2,8 +2,10 @@ import React, { PropTypes } from 'react';
 import TimeSelector from './TimeSelector.jsx';
 
 const propTypes = {
+  minutes: PropTypes.number.isRequired,
+  seconds: PropTypes.number.isRequired,
   maxMinutes: PropTypes.number.isRequired,
-  limitSelectChange: PropTypes.func.isRequired,
+  selectChangeHandler: PropTypes.func.isRequired,
 };
 
 function TurnTime(props) {
@@ -13,13 +15,17 @@ function TurnTime(props) {
 
       <div>
         <TimeSelector
+          value={props.minutes}
+          units="minutes"
+          changeHandler={props.selectChangeHandler}
           max={props.maxMinutes}
-          limitSelectChange={props.limitSelectChange}
         />
         :
         <TimeSelector
+          value={props.seconds}
+          units="seconds"
+          changeHandler={props.selectChangeHandler}
           max={59}
-          limitSelectChange={props.limitSelectChange}
         />
       </div>
     </div>

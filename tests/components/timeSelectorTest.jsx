@@ -17,8 +17,9 @@ function change() {
  */
 function setup(max) {
   const props = {
+    units: 'some unit',
+    changeHandler: change,
     max,
-    limitSelectChange: change,
   };
 
   const renderer = TestUtils.createRenderer();
