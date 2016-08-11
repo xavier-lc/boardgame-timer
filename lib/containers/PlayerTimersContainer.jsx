@@ -20,7 +20,7 @@ function mapDispatchToProps(dispatch) {
 
     inputChangeHandler: function (e) {
       dispatch(changeName(
-        e.target.id,
+        e.target.dataset.playerid,
         e.target.value
       ));
     },

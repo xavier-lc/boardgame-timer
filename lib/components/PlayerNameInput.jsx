@@ -10,7 +10,7 @@ const propTypes = {
 function PlayerNameInput(props) {
   return (
     <input
-      id={props.id}
+      data-playerid={props.id}
       className={props.isEditable ? '' : 'no'}
       onChange={props.changeHandler}
       value={props.value}
