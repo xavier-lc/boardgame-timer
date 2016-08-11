@@ -14,10 +14,15 @@ function change() {
 /**
  * Set up a TurnTime element for testing purposes
  *
+ * @param {number} minutes
+ * @param {number} seconds
+ * @param {number} maxMinutes
  * @returns {ReactElement}
  */
-function setup(maxMinutes) {
+function setup(minutes, seconds, maxMinutes) {
   const props = {
+    minutes,
+    seconds,
     maxMinutes,
     selectChangeHandler: change,
   };
@@ -31,20 +36,24 @@ function setup(maxMinutes) {
 
 describe('TurnTime', function () {
   it('should render element', function () {
+    const minutes = 1;
+    const seconds = 0;
     const maxMinutes = 10;
-    const element = setup(maxMinutes);
+    const element = setup(minutes, seconds, maxMinutes);
 
     expect(element.type).toBe('div');
     expect(element.props.children).toEqual([
       <span>Turn time:</span>,
       <div>
         <TimeSelector
+          value={minutes}
           units="minutes"
           changeHandler={change}
           max={maxMinutes}
         />
         :
         <TimeSelector
+          value={seconds}
           units="seconds"
           changeHandler={change}
           max={59}

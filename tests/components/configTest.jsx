@@ -28,7 +28,11 @@ describe('Config', function () {
   it('should render element', function () {
     const props = {
       config: {
-        maxMinutes: 59,
+        turnTime: {
+          minutes: 1,
+          seconds: 0,
+          maxMinutes: 59,
+        },
       },
       selectChangeHandler: change,
     };
@@ -39,7 +43,9 @@ describe('Config', function () {
     expect(element.props.children).toEqual([
       <h2>Config</h2>,
       <TurnTime
-        maxMinutes={props.config.maxMinutes}
+        minutes={props.config.turnTime.minutes}
+        seconds={props.config.turnTime.seconds}
+        maxMinutes={props.config.turnTime.maxMinutes}
         selectChangeHandler={props.selectChangeHandler}
       />,
     ]);

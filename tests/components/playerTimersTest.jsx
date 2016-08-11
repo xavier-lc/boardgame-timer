@@ -26,6 +26,12 @@ function change() {
   console.log('change');
 }
 
+/**
+ * Set up a PlayerTimers element for testing purposes
+ *
+ * @param {object} props
+ * @returns {ReactElement}
+ */
 function setup(props) {
   const renderer = TestUtils.createRenderer();
 

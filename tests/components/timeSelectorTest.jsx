@@ -13,10 +13,13 @@ function change() {
 /**
  * Set up a TimeSelector element for testing purposes
  *
+ * @param {number} max
+ * @param {number} value
  * @returns {ReactElement}
  */
-function setup(max) {
+function setup(max = 10, value = 1) {
   const props = {
+    value,
     units: 'some unit',
     changeHandler: change,
     max,
@@ -39,11 +42,17 @@ describe('TimeSelector', function () {
   });
 
   it('should have "00" as the content of its first children', function () {
-    const max = 10;
-    const element = setup(max);
+    const element = setup();
 
     expect(element.props.children[0].props.value).toBe(0);
     expect(element.props.children[0].props.children).toBe('00');
+  });
+
+  it('should have "01" as the selected value', function () {
+    const element = setup();
+
+    expect(element.props.children[0].props.selected).toBe(false);
+    expect(element.props.children[1].props.selected).toBe(true);
   });
 
   it('should have "max" as the content of its last children', function () {

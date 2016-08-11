@@ -7,10 +7,11 @@ import TwoTimingDigits from './../../lib/components/TwoTimingDigits.jsx';
 /**
  * Set up a Timer element for testing purposes
  *
+ * @param {boolean} isVisible
  * @returns {ReactElement}
  */
-function setup() {
-  const props = { elapsed: 62000 };
+function setup(isVisible = true) {
+  const props = { elapsed: 62000, isVisible };
 
   const renderer = TestUtils.createRenderer();
 
@@ -24,6 +25,7 @@ describe('Timer', function () {
     const element = setup();
 
     expect(element.type).toBe('div');
+    expect(element.props.className).toBe('');
     expect(element.props.children).toEqual([
       <TwoTimingDigits value={0} />,
       ':',
@@ -31,5 +33,11 @@ describe('Timer', function () {
       ':',
       <TwoTimingDigits value={2} />,
     ]);
+  });
+
+  it('should hide element if isVisible is false', function () {
+    const element = setup(false);
+
+    expect(element.props.className).toBe('no');
   });
 });
