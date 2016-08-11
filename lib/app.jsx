@@ -23,5 +23,5 @@ render(
       <TotalTimerContainer />
     </div>
   </Provider>,
-  document.getElementById('example')
+  document.getElementById('js-container')
 );

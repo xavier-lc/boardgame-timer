@@ -1,9 +1,37 @@
+body,
+button,
+input,
+select,
+menu,
+h1,
+h2,
+h3,
+h4,
+ol,
+ul,
+li,
+p,
+a,
+th,
+td {
+    border: 0;
+    font-size: 14px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
 .no {
     display: none;
 }
 
 .active {
     background: lightgreen;
+}
+
+.container {
+    padding: 10px;
 }
 
 .totalTimer,
