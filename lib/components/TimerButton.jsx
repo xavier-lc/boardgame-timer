@@ -8,7 +8,11 @@ const propTypes = {
 };
 
 function TimerButton(props) {
-  const btnCls = classnames({ no: !props.isVisible });
+  const btnCls = classnames(
+    'btn',
+    'btn-default',
+    { no: !props.isVisible }
+  );
 
   return (
     <button

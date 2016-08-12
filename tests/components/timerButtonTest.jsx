@@ -36,13 +36,13 @@ describe('TimerButton', function () {
 
     expect(element.type).toBe('button');
     expect(element.props.children).toBe('test me');
-    expect(element.props.className).toBe('');
+    expect(element.props.className).toExclude('no');
     expect(element.props.onClick).toBe(clic);
   });
 
   it('should have "no" class if not visible', function () {
     const element = setup(false);
 
-    expect(element.props.className).toBe('no');
+    expect(element.props.className).toInclude('no');
   });
 });
