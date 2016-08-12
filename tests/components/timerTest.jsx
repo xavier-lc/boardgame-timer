@@ -8,10 +8,11 @@ import TwoTimingDigits from './../../lib/components/TwoTimingDigits.jsx';
  * Set up a Timer element for testing purposes
  *
  * @param {boolean} isVisible
+ * @param {boolean} isOn
  * @returns {ReactElement}
  */
-function setup(isVisible = true) {
-  const props = { elapsed: 62000, isVisible };
+function setup(isVisible = true, isOn = true) {
+  const props = { elapsed: 62125, isVisible, isOn };
 
   const renderer = TestUtils.createRenderer();
 
@@ -21,7 +22,7 @@ function setup(isVisible = true) {
 }
 
 describe('Timer', function () {
-  it('should render element', function () {
+  it('should render element without milliseconds if isOn and has elapsed time', function () {
     const element = setup();
 
     expect(element.type).toBe('div');
@@ -32,6 +33,7 @@ describe('Timer', function () {
       <TwoTimingDigits value={1} />,
       ':',
       <TwoTimingDigits value={2} />,
+      '',
     ]);
   });
 
@@ -39,5 +41,18 @@ describe('Timer', function () {
     const element = setup(false);
 
     expect(element.props.className).toBe('no');
+  });
+
+  it('should show milliseconds if is not on', function () {
+    const element = setup(true, false);
+
+    expect(element.props.children).toEqual([
+      <TwoTimingDigits value={0} />,
+      ':',
+      <TwoTimingDigits value={1} />,
+      ':',
+      <TwoTimingDigits value={2} />,
+      '.125',
+    ]);
   });
 });

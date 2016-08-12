@@ -9,6 +9,7 @@ function TotalTimer(props) {
     <div className="totalTimer">
       <Timer
         elapsed={props.stopwatch.elapsed}
+        isOn={props.stopwatch.isOn}
         isVisible={props.stopwatch.finish === null}
       />
 

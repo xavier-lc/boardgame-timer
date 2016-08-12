@@ -3,10 +3,11 @@ import classnames from 'classnames';
 
 import TwoTimingDigits from './TwoTimingDigits.jsx';
 
-import { msToTime } from '../utils/date';
+import { msToTime, leadingDigits } from '../utils/date';
 
 const propTypes = {
   elapsed: PropTypes.number.isRequired,
+  isOn: PropTypes.bool.isRequired,
   isVisible: PropTypes.bool.isRequired,
 };
 
@@ -21,6 +22,11 @@ function Timer(props) {
       <TwoTimingDigits value={time.minutes} />
       :
       <TwoTimingDigits value={time.seconds} />
+      {
+        (props.isOn || props.elapsed === 0) ?
+          '' :
+          '.' + leadingDigits(time.milliseconds, 3)
+      }
     </div>
   );
 }

@@ -8,6 +8,7 @@ const propTypes = {
   id: PropTypes.number.isRequired,
   isEditable: PropTypes.bool.isRequired,
   isActive: PropTypes.bool.isRequired,
+  isStopwatchOn: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   elapsed: PropTypes.number.isRequired,
   inputChangeHandler: PropTypes.func.isRequired,
@@ -32,6 +33,7 @@ function Player(props) {
 
       <Timer
         elapsed={props.elapsed}
+        isOn={props.isStopwatchOn}
         isVisible={!props.isEditable}
       />
     </div>

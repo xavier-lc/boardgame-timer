@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
-import { twoDigits } from '../utils/date';
+import { leadingDigits } from '../utils/date';
 
 const propTypes = {
   value: PropTypes.number.isRequired,
@@ -23,7 +23,7 @@ function TimeSelector(props) {
           value={el}
           selected={el === props.value}
         >
-          {twoDigits(el)}
+          {leadingDigits(el)}
         </option>
       ))}
     </select>

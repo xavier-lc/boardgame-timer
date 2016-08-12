@@ -97,6 +97,7 @@ describe('PlayerTimers', function () {
           id={1}
           key="1"
           isEditable
+          isStopwatchOn={testProps.stopwatch.isOn}
           {...testProps.players.data[1]}
           elapsed={testProps.players.time[1].elapsed}
           inputChangeHandler={testProps.inputChangeHandler}
@@ -105,6 +106,7 @@ describe('PlayerTimers', function () {
           id={2}
           key="2"
           isEditable
+          isStopwatchOn={testProps.stopwatch.isOn}
           {...testProps.players.data[2]}
           elapsed={testProps.players.time[2].elapsed}
           inputChangeHandler={testProps.inputChangeHandler}
@@ -134,6 +136,7 @@ describe('PlayerTimers', function () {
           id={1}
           key="1"
           isEditable={false}
+          isStopwatchOn={testProps.stopwatch.isOn}
           {...testProps.players.data[1]}
           elapsed={testProps.players.time[1].elapsed}
           inputChangeHandler={testProps.inputChangeHandler}
@@ -142,6 +145,7 @@ describe('PlayerTimers', function () {
           id={2}
           key="2"
           isEditable={false}
+          isStopwatchOn={testProps.stopwatch.isOn}
           {...testProps.players.data[2]}
           elapsed={testProps.players.time[2].elapsed}
           inputChangeHandler={testProps.inputChangeHandler}
@@ -171,6 +175,7 @@ describe('PlayerTimers', function () {
           id={1}
           key="1"
           isEditable={false}
+          isStopwatchOn={testProps.stopwatch.isOn}
           {...testProps.players.data[1]}
           elapsed={testProps.players.time[1].elapsed}
           inputChangeHandler={testProps.inputChangeHandler}
@@ -179,6 +184,7 @@ describe('PlayerTimers', function () {
           id={2}
           key="2"
           isEditable={false}
+          isStopwatchOn={testProps.stopwatch.isOn}
           {...testProps.players.data[2]}
           elapsed={testProps.players.time[2].elapsed}
           inputChangeHandler={testProps.inputChangeHandler}

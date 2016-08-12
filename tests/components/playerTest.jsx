@@ -38,6 +38,7 @@ describe('Player', function () {
       isEditable: true,
       isActive: false,
       elapsed: 0,
+      isStopwatchOn: false,
     }, testProps);
 
     const element = setup(props);
@@ -53,6 +54,7 @@ describe('Player', function () {
       />,
       <Timer
         elapsed={props.elapsed}
+        isOn={props.isStopwatchOn}
         isVisible={false}
       />,
     ]);
@@ -63,6 +65,7 @@ describe('Player', function () {
       isEditable: false,
       isActive: true,
       elapsed: 62000,
+      isStopwatchOn: true,
     }, testProps);
 
     const element = setup(props);
@@ -78,6 +81,7 @@ describe('Player', function () {
       />,
       <Timer
         elapsed={props.elapsed}
+        isOn={props.isStopwatchOn}
         isVisible
       />,
     ]);

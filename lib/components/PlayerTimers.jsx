@@ -23,6 +23,7 @@ function PlayerTimers(props) {
           key={id}
           id={id}
           isEditable={props.stopwatch.start === null}
+          isStopwatchOn={props.stopwatch.isOn}
           {...props.players.data[id]}
           elapsed={props.players.time[id].elapsed}
           inputChangeHandler={props.inputChangeHandler}
