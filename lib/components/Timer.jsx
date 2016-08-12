@@ -13,6 +13,7 @@ const propTypes = {
 
 function Timer(props) {
   const timerCls = classnames({ no: !props.isVisible });
+  const msCls = classnames({ no: props.isOn || props.elapsed === 0 });
   const time = msToTime(props.elapsed);
 
   return (
@@ -22,11 +23,10 @@ function Timer(props) {
       <TwoTimingDigits value={time.minutes} />
       :
       <TwoTimingDigits value={time.seconds} />
-      {
-        (props.isOn || props.elapsed === 0) ?
-          '' :
-          '.' + leadingDigits(time.milliseconds, 3)
-      }
+
+      <span className={msCls}>
+        .{leadingDigits(time.milliseconds, 3)}
+      </span>
     </div>
   );
 }

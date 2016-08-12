@@ -33,7 +33,9 @@ describe('Timer', function () {
       <TwoTimingDigits value={1} />,
       ':',
       <TwoTimingDigits value={2} />,
-      '',
+      <span className="no">
+        {['.', '125']}
+      </span>,
     ]);
   });
 
@@ -52,7 +54,9 @@ describe('Timer', function () {
       <TwoTimingDigits value={1} />,
       ':',
       <TwoTimingDigits value={2} />,
-      '.125',
+      <span className="">
+        {['.', '125']}
+      </span>,
     ]);
   });
 });
