@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
 
 import Timer from './Timer.jsx';
 
@@ -9,8 +10,10 @@ const propTypes = {
 };
 
 function Statistics(props) {
+  const statisticsCls = classnames({ no: props.finish === null });
+
   return (
-    <div className={props.finish === null ? 'no' : ''}>
+    <div className={statisticsCls}>
       <div>
         <span>Total time:</span>
 

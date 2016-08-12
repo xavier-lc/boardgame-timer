@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
 
 import TwoTimingDigits from './TwoTimingDigits.jsx';
 
@@ -10,10 +11,11 @@ const propTypes = {
 };
 
 function Timer(props) {
+  const timerCls = classnames({ no: !props.isVisible });
   const time = msToTime(props.elapsed);
 
   return (
-    <div className={props.isVisible ? '' : 'no'}>
+    <div className={timerCls}>
       <TwoTimingDigits value={time.hours} />
       :
       <TwoTimingDigits value={time.minutes} />

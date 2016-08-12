@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
 
 import Timer from './Timer.jsx';
 import PlayerNameInput from './PlayerNameInput.jsx';
@@ -12,28 +13,15 @@ const propTypes = {
   inputChangeHandler: PropTypes.func.isRequired,
 };
 
-/**
- * Get the class for the <span> element with the user's name depending on the crrent props
- *
- * @param {object} props
- * @returns {('no'|'active'|'')}
- */
-function getNameClass(props) {
-  if (props.isEditable) {
-    return 'no';
-  }
-
-  if (props.isActive) {
-    return 'active';
-  }
-
-  return '';
-}
-
 function Player(props) {
+  const spanCls = classnames({
+    active: props.isActive,
+    no: props.isEditable,
+  });
+
   return (
     <div>
-      <span className={getNameClass(props)}>{props.name}</span>
+      <span className={spanCls}>{props.name}</span>
 
       <PlayerNameInput
         id={props.id}

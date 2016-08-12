@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
 
 import TimerButton from './TimerButton.jsx';
 
@@ -13,8 +14,10 @@ const propTypes = {
 };
 
 function TimerControls(props) {
+  const timerControlsCls = classnames({ no: props.finish !== null });
+
   return (
-    <div className={props.finish === null ? '' : 'no'}>
+    <div className={timerControlsCls}>
       <TimerButton
         clickHandler={props.clickPlayHandler}
         isVisible={props.start === null}

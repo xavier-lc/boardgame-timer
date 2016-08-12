@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
 
 const propTypes = {
   id: PropTypes.number.isRequired,
@@ -8,10 +9,15 @@ const propTypes = {
 };
 
 function PlayerNameInput(props) {
+  const inputCls = classnames(
+    'form-control',
+    { no: !props.isEditable }
+  );
+
   return (
     <input
       data-playerid={props.id}
-      className={props.isEditable ? '' : 'no'}
+      className={inputCls}
       onChange={props.changeHandler}
       value={props.value}
     />

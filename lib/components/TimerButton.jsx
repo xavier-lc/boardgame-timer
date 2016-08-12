@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
 
 const propTypes = {
   clickHandler: PropTypes.func.isRequired,
@@ -7,8 +8,13 @@ const propTypes = {
 };
 
 function TimerButton(props) {
+  const btnCls = classnames({ no: !props.isVisible });
+
   return (
-    <button onClick={props.clickHandler} className={props.isVisible ? '' : 'no'}>
+    <button
+      className={btnCls}
+      onClick={props.clickHandler}
+    >
       {props.txt}
     </button>
   );

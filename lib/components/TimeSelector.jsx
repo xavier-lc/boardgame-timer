@@ -15,6 +15,7 @@ function TimeSelector(props) {
     <select data-units={props.units} onChange={props.changeHandler}>
       {_.range(props.max + 1).map((el) => (
         <option
+          className="form-control"
           key={el}
           value={el}
           selected={el === props.value}
