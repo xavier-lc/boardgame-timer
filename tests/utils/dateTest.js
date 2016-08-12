@@ -28,14 +28,14 @@ describe('date utils', function () {
   describe('timeToMs function', function () {
     it('should convert milliseconds to a Time object', function () {
       const time = {
-        days: 1,
+        days: 2,
         hours: 2,
         minutes: 3,
         seconds: 4,
         milliseconds: 5,
       };
 
-      const timeObj = msToTime(5 + (4 + (3 + (2 + (1 * 24)) * 60) * 60) * 1000);
+      const timeObj = msToTime(5 + (4 + (3 + (2 + (2 * 24)) * 60) * 60) * 1000);
 
       expect(timeObj.days).toBe(time.days);
       expect(timeObj.hours).toBe(time.hours);
