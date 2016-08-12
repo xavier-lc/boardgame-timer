@@ -29,6 +29,8 @@ function setup(props) {
 const testProps = {
   id: 1,
   name: 'Player #1',
+  turns: [],
+  isStopwatchOn: false,
   inputChangeHandler: change,
 };
 
@@ -37,8 +39,6 @@ describe('Player', function () {
     const props = Object.assign({
       isEditable: true,
       isActive: false,
-      elapsed: 0,
-      isStopwatchOn: false,
     }, testProps);
 
     const element = setup(props);
@@ -53,18 +53,17 @@ describe('Player', function () {
         value={props.name}
       />,
       <Timer
-        elapsed={props.elapsed}
+        elapsed={0}
         isOn={props.isStopwatchOn}
         isVisible={false}
       />,
     ]);
   });
 
-  it('should have "active" class on "span" when active', function () {
+  it('should have "active" class on "span" and visible Timer when active', function () {
     const props = Object.assign({
       isEditable: false,
       isActive: true,
-      elapsed: 62000,
       isStopwatchOn: true,
     }, testProps);
 
@@ -80,7 +79,7 @@ describe('Player', function () {
         value={props.name}
       />,
       <Timer
-        elapsed={props.elapsed}
+        elapsed={0}
         isOn={props.isStopwatchOn}
         isVisible
       />,

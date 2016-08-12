@@ -48,11 +48,10 @@ describe('TimeSelector', function () {
     expect(element.props.children[0].props.children).toBe('00');
   });
 
-  it('should have "01" as the selected value', function () {
+  it('should have 1 as the selected value', function () {
     const element = setup();
 
-    expect(element.props.children[0].props.selected).toBe(false);
-    expect(element.props.children[1].props.selected).toBe(true);
+    expect(element.props.value).toBe(1);
   });
 
   it('should have "max" as the content of its last children', function () {

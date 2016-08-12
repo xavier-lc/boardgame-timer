@@ -54,16 +54,14 @@ function getTestProps(isOn = false, start = null) {
           isActive: false,
         },
       },
-      time: {
-        1: {
-          elapsed: 0,
-          offset: null,
-        },
-        2: {
-          elapsed: 0,
-          offset: null,
-        },
+      offsets: {
+        1: null,
+        2: null,
       },
+      turns: {
+        1: [],
+        2: [],
+      }
     },
     stopwatch: {
       isOn: isOn,
@@ -99,7 +97,7 @@ describe('PlayerTimers', function () {
           isEditable
           isStopwatchOn={testProps.stopwatch.isOn}
           {...testProps.players.data[1]}
-          elapsed={testProps.players.time[1].elapsed}
+          turns={testProps.players.turns[1]}
           inputChangeHandler={testProps.inputChangeHandler}
         />,
         <Player
@@ -108,7 +106,7 @@ describe('PlayerTimers', function () {
           isEditable
           isStopwatchOn={testProps.stopwatch.isOn}
           {...testProps.players.data[2]}
-          elapsed={testProps.players.time[2].elapsed}
+          turns={testProps.players.turns[2]}
           inputChangeHandler={testProps.inputChangeHandler}
         />,
       ],
@@ -138,7 +136,7 @@ describe('PlayerTimers', function () {
           isEditable={false}
           isStopwatchOn={testProps.stopwatch.isOn}
           {...testProps.players.data[1]}
-          elapsed={testProps.players.time[1].elapsed}
+          turns={testProps.players.turns[1]}
           inputChangeHandler={testProps.inputChangeHandler}
         />,
         <Player
@@ -147,7 +145,7 @@ describe('PlayerTimers', function () {
           isEditable={false}
           isStopwatchOn={testProps.stopwatch.isOn}
           {...testProps.players.data[2]}
-          elapsed={testProps.players.time[2].elapsed}
+          turns={testProps.players.turns[2]}
           inputChangeHandler={testProps.inputChangeHandler}
         />,
       ],
@@ -177,7 +175,7 @@ describe('PlayerTimers', function () {
           isEditable={false}
           isStopwatchOn={testProps.stopwatch.isOn}
           {...testProps.players.data[1]}
-          elapsed={testProps.players.time[1].elapsed}
+          turns={testProps.players.turns[1]}
           inputChangeHandler={testProps.inputChangeHandler}
         />,
         <Player
@@ -186,7 +184,7 @@ describe('PlayerTimers', function () {
           isEditable={false}
           isStopwatchOn={testProps.stopwatch.isOn}
           {...testProps.players.data[2]}
-          elapsed={testProps.players.time[2].elapsed}
+          turns={testProps.players.turns[2]}
           inputChangeHandler={testProps.inputChangeHandler}
         />,
       ],

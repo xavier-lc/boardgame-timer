@@ -20,6 +20,7 @@ function Player(props) {
     no: props.isEditable,
   });
 
+  // sum the turns to get the elapsed time
   const elapsed = props.turns.reduce(
     (previous, current) => previous + current,
     0

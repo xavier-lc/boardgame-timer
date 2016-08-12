@@ -84,6 +84,7 @@ describe('TotalTimer', function () {
       />,
       <Statistics
         elapsed={props.stopwatch.elapsed}
+        isOn={props.stopwatch.isOn}
         start={props.stopwatch.start}
         finish={props.stopwatch.finish}
       />,

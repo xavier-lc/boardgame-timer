@@ -10,10 +10,11 @@ import Timer from './../../lib/components/Timer.jsx';
  * @param {?number} start
  * @param {?number} finish
  * @param {number} elapsed
+ * @param {boolean} isOn
  * @returns {ReactElement}
  */
-function setup(start, finish, elapsed) {
-  const props = { start, finish, elapsed };
+function setup(start, finish, elapsed, isOn) {
+  const props = { start, finish, elapsed, isOn };
 
   const renderer = TestUtils.createRenderer();
 
@@ -24,7 +25,7 @@ function setup(start, finish, elapsed) {
 
 describe('Statistics', function () {
   it('should have "no" class if not finished', function () {
-    const element = setup(0, null, 1);
+    const element = setup(0, null, 1, true);
 
     expect(element.type).toBe('div');
     expect(element.props.className).toBe('no');
@@ -35,16 +36,24 @@ describe('Statistics', function () {
     const finish = 5000;
     const elapsed = 2000;
 
-    const element = setup(start, finish, elapsed);
+    const element = setup(start, finish, elapsed, false);
 
     expect(element.props.children).toEqual([
       <div>
         <span>Total time:</span>
-        <Timer elapsed={finish - start} isVisible />
+        <Timer
+          elapsed={finish - start}
+          isVisible
+          isOn={false}
+        />
       </div>,
       <div>
         <span>Paused time:</span>
-        <Timer elapsed={finish - start - elapsed} isVisible />
+        <Timer
+          elapsed={finish - start - elapsed}
+          isVisible
+          isOn={false}
+        />
       </div>,
     ]);
   });
