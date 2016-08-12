@@ -16,12 +16,12 @@ function TimeSelector(props) {
       className="form-control"
       data-units={props.units}
       onChange={props.changeHandler}
+      value={props.value}
     >
       {_.range(props.max + 1).map((el) => (
         <option
           key={el}
           value={el}
-          selected={el === props.value}
         >
           {leadingDigits(el)}
         </option>
