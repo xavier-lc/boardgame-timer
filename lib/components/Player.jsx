@@ -10,7 +10,7 @@ const propTypes = {
   isActive: PropTypes.bool.isRequired,
   isStopwatchOn: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
-  elapsed: PropTypes.number.isRequired,
+  turns: PropTypes.arrayOf(PropTypes.number).isRequired,
   inputChangeHandler: PropTypes.func.isRequired,
 };
 
@@ -19,6 +19,11 @@ function Player(props) {
     active: props.isActive,
     no: props.isEditable,
   });
+
+  const elapsed = props.turns.reduce(
+    (previous, current) => previous + current,
+    0
+  );
 
   return (
     <div>
@@ -32,7 +37,7 @@ function Player(props) {
       />
 
       <Timer
-        elapsed={props.elapsed}
+        elapsed={elapsed}
         isOn={props.isStopwatchOn}
         isVisible={!props.isEditable}
       />
