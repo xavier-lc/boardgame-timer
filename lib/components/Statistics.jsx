@@ -5,6 +5,7 @@ import Timer from './Timer.jsx';
 
 const propTypes = {
   elapsed: PropTypes.number.isRequired,
+  isOn: PropTypes.bool.isRequired,
   start: PropTypes.number,
   finish: PropTypes.number,
 };
@@ -17,13 +18,20 @@ function Statistics(props) {
       <div>
         <span>Total time:</span>
 
-        <Timer elapsed={props.finish - props.start} isVisible />
+        <Timer
+          elapsed={props.finish - props.start}
+          isOn={props.isOn}
+          isVisible
+        />
       </div>
 
       <div>
         <span>Paused time:</span>
 
-        <Timer elapsed={props.finish - props.start - props.elapsed} isVisible />
+        <Timer
+          elapsed={props.finish - props.start - props.elapsed}
+          isOn={props.isOn}
+          isVisible />
       </div>
     </div>
   );
