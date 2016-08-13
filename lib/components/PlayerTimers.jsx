@@ -3,6 +3,8 @@ import React from 'react';
 import Player from './Player.jsx';
 import TimerButton from './TimerButton.jsx';
 
+import { timeToMs } from './../utils/date';
+
 function PlayerTimers(props) {
   return (
     <div className="playerTimers">
@@ -26,6 +28,10 @@ function PlayerTimers(props) {
           isStopwatchOn={props.stopwatch.isOn}
           {...props.players.data[id]}
           turns={props.players.turns[id]}
+          turnLimit={timeToMs({
+            minutes: props.config.turnTime.minutes,
+            seconds: props.config.turnTime.seconds,
+          })}
           inputChangeHandler={props.inputChangeHandler}
         />
       ))}

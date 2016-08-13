@@ -1,24 +1,24 @@
 import expect from 'expect';
-import { msToTime, leadingDigits } from './../../lib/utils/date';
+import { msToTime, leadingZeros } from './../../lib/utils/date';
 
 describe('date utils', function () {
-  describe('leadingDigits function', function () {
+  describe('leadingZeros function', function () {
     it('should return any two-digit number as a string', function () {
-      const result = leadingDigits(11);
+      const result = leadingZeros(11);
 
       expect(result).toBeA('string');
       expect(result).toBe('11');
     });
 
     it('should add a leading 0 to any one-digit number', function () {
-      const result = leadingDigits(1);
+      const result = leadingZeros(1);
 
       expect(result).toBeA('string');
       expect(result).toBe('01');
     });
 
     it('should be able to pad milliseconds', function () {
-      const result = leadingDigits(1, 3);
+      const result = leadingZeros(1, 3);
 
       expect(result).toBeA('string');
       expect(result).toBe('001');

@@ -1,13 +1,13 @@
 import React, { PropTypes } from 'react';
 
-import { leadingDigits } from './../utils/date';
+import { leadingZeros } from './../utils/date';
 
 const propTypes = { value: PropTypes.number.isRequired };
 
 function TwoTimingDigits(props) {
   return (
     <span>
-      {leadingDigits(props.value)}
+      {leadingZeros(props.value)}
     </span>
   );
 }

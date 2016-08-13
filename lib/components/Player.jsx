@@ -11,23 +11,51 @@ const propTypes = {
   isStopwatchOn: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   turns: PropTypes.arrayOf(PropTypes.number).isRequired,
+  turnLimit: PropTypes.number.isRequired,
   inputChangeHandler: PropTypes.func.isRequired,
 };
 
 function Player(props) {
-  const spanCls = classnames({
-    active: props.isActive,
-    no: props.isEditable,
-  });
+  const turns = props.turns.length;
+  const turnElapsed = turns ? props.turns[turns - 1] : 0;
 
-  // sum the turns to get the elapsed time
-  const elapsed = props.turns.reduce(
-    (previous, current) => previous + current,
-    0
+  const percent = 100 * turnElapsed / props.turnLimit;
+  const progressBarStyle = {
+    width: `${percent.toFixed(2)}%`,
+  };
+
+  const playerCls = classnames(
+    'player',
+    { inactive: !props.isEditable && !props.isActive }
   );
 
+  const spanCls = classnames(
+    'player__name',
+    { no: props.isEditable }
+  );
+
+  const progressCls = classnames(
+    'progress',
+    { no: props.isEditable }
+  );
+
+  const progressBarCls = classnames(
+    'progress-bar',
+    'progress-bar-striped',
+    {
+      active: props.isActive && props.isStopwatchOn,
+      'progress-bar-danger': percent >= 90,
+    }
+  );
+
+  //// sum the turns to get the elapsed time
+  //const totalElapsed = props.turns.reduce(
+  //  (previous, current) => previous + current,
+  //  0
+  //);
+
   return (
-    <div>
+    <div className={playerCls}>
       <span className={spanCls}>{props.name}</span>
 
       <PlayerNameInput
@@ -38,10 +66,26 @@ function Player(props) {
       />
 
       <Timer
-        elapsed={elapsed}
+        elapsed={turnElapsed}
         isOn={props.isStopwatchOn}
         isVisible={!props.isEditable}
       />
+
+      <div className={progressCls}>
+        <div className={progressBarCls} style={progressBarStyle}>
+        </div>
+      </div>
+
+      {
+        /*
+      <Timer
+        title="Total"
+        elapsed={totalElapsed}
+        isOn={props.isStopwatchOn}
+        isVisible={!props.isEditable}
+      />
+        */
+      }
     </div>
   );
 }
