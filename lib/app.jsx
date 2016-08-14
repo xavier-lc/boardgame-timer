@@ -23,5 +23,5 @@ render(
       <TotalTimerContainer />
     </div>
   </Provider>,
-  document.getElementById('js-container')
+  document.getElementById('js-app')
 );

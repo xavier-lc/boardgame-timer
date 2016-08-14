@@ -13,7 +13,7 @@ const propTypes = {
 function TimeSelector(props) {
   return (
     <select
-      className="form-control"
+      className="form-control form-control--inb"
       data-units={props.units}
       onChange={props.changeHandler}
       value={props.value}
