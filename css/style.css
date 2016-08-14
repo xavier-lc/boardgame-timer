@@ -8,7 +8,12 @@
     display: inline-block;
     width: auto;
 }
+
 /* APP */
+
+.container--pastNav {
+    padding-top: 51px;
+}
 
 .totalTimer,
 .playerTimers,

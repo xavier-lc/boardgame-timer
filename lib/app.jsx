@@ -7,6 +7,7 @@ import config from './reducers/config';
 import players from './reducers/players';
 import stopwatch from './reducers/stopwatch';
 
+import Header from './components/Header.jsx';
 import ConfigContainer from './containers/ConfigContainer.jsx';
 import PlayerTimersContainer from './containers/PlayerTimersContainer.jsx';
 import TotalTimerContainer from './containers/TotalTimerContainer.jsx';
@@ -18,9 +19,15 @@ const store = createStore(
 render(
   <Provider store={store}>
     <div>
-      <ConfigContainer />
-      <PlayerTimersContainer />
-      <TotalTimerContainer />
+      <Header
+        title="Boardgame timer"
+      />
+
+      <div className="container container--pastNav">
+        <ConfigContainer />
+        <PlayerTimersContainer />
+        <TotalTimerContainer />
+      </div>
     </div>
   </Provider>,
   document.getElementById('js-app')
