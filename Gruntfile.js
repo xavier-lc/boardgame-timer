@@ -10,15 +10,23 @@ module.exports = function (grunt) {
         },
       },
     },
+    uglify: {
+      default: {
+        files: {
+          'src/app.min.js': 'src/app.js',
+        },
+      },
+    },
   });
 
-  //grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.registerTask(
     'default',
     [
       'browserify',
+      //'uglify',
     ]
   );
 };
