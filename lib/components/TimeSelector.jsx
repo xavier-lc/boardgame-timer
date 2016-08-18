@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import _ from 'lodash';
+import range from 'lodash/range';
 
 import { leadingZeros } from '../utils/date';
 
@@ -18,7 +18,7 @@ function TimeSelector(props) {
       onChange={props.changeHandler}
       value={props.value}
     >
-      {_.range(props.max + 1).map((el) => (
+      {range(props.max + 1).map((el) => (
         <option
           key={el}
           value={el}
