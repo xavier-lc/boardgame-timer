@@ -12,21 +12,12 @@ import config from './reducers/config';
 import players from './reducers/players';
 import stopwatch from './reducers/stopwatch';
 
-import { tick } from './actions/actions';
+import { pause, tick } from './actions/actions';
 
 import HeaderContainer from './components/Header.jsx';
 import ConfigContainer from './containers/ConfigContainer.jsx';
 import PlayerTimersContainer from './containers/PlayerTimersContainer.jsx';
 import TotalTimerContainer from './containers/TotalTimerContainer.jsx';
-
-function Index() {
-  return (
-    <div>
-      <PlayerTimersContainer />
-      <TotalTimerContainer />
-    </div>
-  );
-}
 
 const store = createStore(
   combineReducers({
@@ -58,6 +49,30 @@ store.subscribe(() => {
 });
 
 const history = syncHistoryWithStore(hashHistory, store);
+
+history.listen((location) => {
+  const state = store.getState();
+
+  // whenever the user navigates out of the home page (where the timer is),
+  // pause the stopwatch if it's running
+  if (location.pathname !== '/' && state.stopwatch.isOn) {
+    store.dispatch(pause());
+  }
+});
+
+/**
+ * Group together the home page containers so they are provided as one component to the IndexRoute
+ *
+ * @returns {ReactElement}
+ */
+function Index() {
+  return (
+    <div>
+      <PlayerTimersContainer />
+      <TotalTimerContainer />
+    </div>
+  );
+}
 
 render(
   <Provider store={store}>
