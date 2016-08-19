@@ -5,7 +5,7 @@ import Route from 'react-router/lib/Route';
 import IndexRoute from 'react-router/lib/IndexRoute';
 import hashHistory from 'react-router/lib/hashHistory';
 import { createStore, combineReducers } from 'redux';
-import { Provider } from 'react-redux';
+import Provider from 'react-redux/lib/components/Provider';
 
 import config from './reducers/config';
 import players from './reducers/players';
