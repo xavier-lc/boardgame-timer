@@ -6,7 +6,6 @@ import IndexRoute from 'react-router/lib/IndexRoute';
 import hashHistory from 'react-router/lib/hashHistory';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 import config from './reducers/config';
 import players from './reducers/players';
@@ -24,7 +23,6 @@ const store = createStore(
     config,
     players,
     stopwatch,
-    routing: routerReducer,
   })
 );
 
@@ -48,9 +46,7 @@ store.subscribe(() => {
   }
 });
 
-const history = syncHistoryWithStore(hashHistory, store);
-
-history.listen((location) => {
+hashHistory.listen((location) => {
   const state = store.getState();
 
   // whenever the user navigates out of the home page (where the timer is),
@@ -76,7 +72,7 @@ function Index() {
 
 render(
   <Provider store={store}>
-    <Router history={history}>
+    <Router history={hashHistory}>
       <Route path="/" component={HeaderContainer} title="Boardgame timer">
         <IndexRoute component={Index} />
         <Route path="config" component={ConfigContainer} />
