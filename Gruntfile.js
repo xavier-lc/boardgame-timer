@@ -17,15 +17,30 @@ module.exports = function (grunt) {
         },
       },
     },
+    sass: {
+      default: {
+        options: {
+          sourcemap: 'none',
+          style: 'expanded',
+          noCache: true,
+          trace: true,
+        },
+        files: {
+          'css/style.css': 'css/style.scss',
+        }
+      },
+    },
   });
 
   grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.registerTask(
     'default',
     [
       'browserify',
+      'sass',
       //'uglify',
     ]
   );

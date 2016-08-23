@@ -1,0 +1,29 @@
+/* GENERAL */
+
+.no {
+  display: none;
+}
+
+.form-control--inb {
+  display: inline-block;
+  width: auto;
+}
+
+/* APP */
+
+.container--pastNav {
+  $navbar_height: 50px;
+  $navbar_border: 1px;
+  $panel_margin_bottom: 20px;
+
+  /* get past the navbar and add the same margin as .panel */
+  padding-top: $navbar_height + $navbar_border + $panel_margin_bottom;
+}
+
+.player {
+  margin-bottom: 20px;
+}
+
+.inactive {
+  opacity: .5;
+}

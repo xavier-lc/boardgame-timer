@@ -1,25 +1,20 @@
 /* GENERAL */
-
 .no {
-    display: none;
-}
+  display: none; }
 
 .form-control--inb {
-    display: inline-block;
-    width: auto;
-}
+  display: inline-block;
+  width: auto; }
 
 /* APP */
-
 .container--pastNav {
-    /* get past the navbar and add the same margin as .panel */
-    padding-top: 71px;
-}
+  /* get past the navbar and add the same margin as .panel */
+  padding-top: 71px; }
 
 .player {
-    margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
 
 .inactive {
-    opacity: .5;
-}
+  opacity: .5; }
+
+/*# sourceMappingURL=style.css.map */
