@@ -15,11 +15,17 @@ const propTypes = {
 function Timer(props) {
   const timerCls = classnames({ no: !props.isVisible });
   const msCls = classnames({ no: props.isOn || props.elapsed === 0 });
+  //const titleCls = classnames({ no: !props.title });
+
   const time = msToTime(props.elapsed);
 
   return (
     <div className={timerCls}>
-      <span>{props.title ? (props.title + ' ') : ''}</span>
+      {
+        /*
+      <span className={titleCls}>{`${props.title} `}</span>
+        */
+      }
 
       <TwoTimingDigits value={time.hours} />
       :

@@ -1,25 +1,24 @@
 import React from 'react';
 
-import Timer from './Timer.jsx';
 import TimerControls from './TimerControls.jsx';
+import TimerControlsUnstarted from './TimerControlsUnstarted.jsx';
 import Statistics from './Statistics.jsx';
 
 function TotalTimer(props) {
   return (
     <div className="panel panel-primary">
       <div className="panel-body">
-        <Timer
-          elapsed={props.stopwatch.elapsed}
-          isOn={props.stopwatch.isOn}
-          isVisible={props.stopwatch.start !== null && props.stopwatch.finish === null}
+        <TimerControlsUnstarted
+          isVisible={props.stopwatch.start === null}
+          clickAddHandler={props.clickAddHandler}
+          clickPlayHandler={props.clickPlayHandler}
         />
 
         <TimerControls
           isOn={props.stopwatch.isOn}
+          elapsed={props.stopwatch.elapsed}
           start={props.stopwatch.start}
           finish={props.stopwatch.finish}
-          clickPlayHandler={props.clickPlayHandler}
-          clickAddHandler={props.clickAddHandler}
           clickNextHandler={props.clickNextHandler}
           clickPauseHandler={props.clickPauseHandler}
           clickResumeHandler={props.clickResumeHandler}

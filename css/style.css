@@ -20,8 +20,6 @@
     margin-bottom: 20px;
 }
 
-.inactive .player__name,
-.inactive .progress,
-.inactive .timer {
+.inactive {
     opacity: .5;
 }

@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
+import Timer from './Timer.jsx';
 import TimerButton from './TimerButton.jsx';
 
 const propTypes = {
   isOn: PropTypes.bool.isRequired,
+  elapsed: PropTypes.number.isRequired,
   start: PropTypes.number,
   finish: PropTypes.number,
-  clickPlayHandler: PropTypes.func.isRequired,
-  clickAddHandler: PropTypes.func.isRequired,
   clickNextHandler: PropTypes.func.isRequired,
   clickPauseHandler: PropTypes.func.isRequired,
   clickResumeHandler: PropTypes.func.isRequired,
@@ -17,48 +17,51 @@ const propTypes = {
 
 function TimerControls(props) {
   const timerControlsCls = classnames(
-    { no: props.finish !== null }
+    'row',
+    { no: props.start === null || props.finish !== null }
   );
 
   return (
     <div className={timerControlsCls}>
-      <TimerButton
-        clickHandler={props.clickAddHandler}
-        isVisible={props.start === null}
-        txt="Add player"
-        className="btn-info btn-block btn-lg"
-      />
+      <div className="col-xs-4 text-center">
+        <TimerButton
+          clickHandler={props.clickPauseHandler}
+          isVisible={props.isOn}
+          txt="Pause"
+          className="btn-info btn-lg"
+        />
 
-      <TimerButton
-        clickHandler={props.clickPlayHandler}
-        isVisible={props.start === null}
-        txt="Play"
-        className="btn-primary btn-block btn-lg"
-      />
+        <TimerButton
+          clickHandler={props.clickResumeHandler}
+          isVisible={!props.isOn}
+          txt="Resume"
+          className="btn-primary btn-lg"
+        />
+      </div>
 
-      <TimerButton
-        clickHandler={props.clickNextHandler}
-        isVisible={props.isOn}
-        txt="Next"
-      />
+      <div className="col-xs-4 text-center">
+        <Timer
+          elapsed={props.elapsed}
+          isOn={props.isOn}
+          isVisible={props.finish === null}
+        />
+      </div>
 
-      <TimerButton
-        clickHandler={props.clickPauseHandler}
-        isVisible={props.isOn && props.start !== null}
-        txt="Pause"
-      />
+      <div className="col-xs-4 text-center">
+        <TimerButton
+          clickHandler={props.clickNextHandler}
+          isVisible={props.isOn}
+          txt="Next"
+          className="btn-primary btn-lg"
+        />
 
-      <TimerButton
-        clickHandler={props.clickResumeHandler}
-        isVisible={!props.isOn && props.start !== null}
-        txt="Resume"
-      />
-
-      <TimerButton
-        clickHandler={props.clickStopHandler}
-        isVisible={!props.isOn && props.start !== null}
-        txt="Stop"
-      />
+        <TimerButton
+          clickHandler={props.clickStopHandler}
+          isVisible={!props.isOn}
+          txt="Stop"
+          className="btn-warning btn-lg"
+        />
+      </div>
     </div>
   );
 }
