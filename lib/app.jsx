@@ -64,8 +64,8 @@ hashHistory.listen((location) => {
 function Index() {
   return (
     <div>
-      <PlayerTimersContainer />
       <TotalTimerContainer />
+      <PlayerTimersContainer />
     </div>
   );
 }

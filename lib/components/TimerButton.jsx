@@ -5,13 +5,17 @@ const propTypes = {
   clickHandler: PropTypes.func.isRequired,
   isVisible: PropTypes.bool.isRequired,
   txt: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 function TimerButton(props) {
   const btnCls = classnames(
     'btn',
-    'btn-default',
-    { no: !props.isVisible }
+    {
+      no: !props.isVisible,
+      'btn-default': !props.className,
+      [`${props.className}`]: props.className,
+    }
   );
 
   return (

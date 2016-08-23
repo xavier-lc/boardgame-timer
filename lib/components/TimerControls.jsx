@@ -8,20 +8,38 @@ const propTypes = {
   start: PropTypes.number,
   finish: PropTypes.number,
   clickPlayHandler: PropTypes.func.isRequired,
+  clickAddHandler: PropTypes.func.isRequired,
+  clickNextHandler: PropTypes.func.isRequired,
   clickPauseHandler: PropTypes.func.isRequired,
   clickResumeHandler: PropTypes.func.isRequired,
   clickStopHandler: PropTypes.func.isRequired,
 };
 
 function TimerControls(props) {
-  const timerControlsCls = classnames({ no: props.finish !== null });
+  const timerControlsCls = classnames(
+    { no: props.finish !== null }
+  );
 
   return (
     <div className={timerControlsCls}>
       <TimerButton
+        clickHandler={props.clickAddHandler}
+        isVisible={props.start === null}
+        txt="Add player"
+        className="btn-info btn-block btn-lg"
+      />
+
+      <TimerButton
         clickHandler={props.clickPlayHandler}
         isVisible={props.start === null}
         txt="Play"
+        className="btn-primary btn-block btn-lg"
+      />
+
+      <TimerButton
+        clickHandler={props.clickNextHandler}
+        isVisible={props.isOn}
+        txt="Next"
       />
 
       <TimerButton

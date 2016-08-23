@@ -13,10 +13,7 @@ const propTypes = {
 };
 
 function Timer(props) {
-  const timerCls = classnames(
-    'timer',
-    { no: !props.isVisible }
-  );
+  const timerCls = classnames({ no: !props.isVisible });
   const msCls = classnames({ no: props.isOn || props.elapsed === 0 });
   const time = msToTime(props.elapsed);
 

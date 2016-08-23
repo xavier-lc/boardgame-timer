@@ -1,6 +1,6 @@
 import connect from 'react-redux/lib/components/connect';
 
-import { play, pause, resume, stop } from './../actions/actions';
+import { play, addPlayer, next, pause, resume, stop } from './../actions/actions';
 
 import TotalTimer from './../components/TotalTimer.jsx';
 
@@ -12,6 +12,14 @@ function mapDispatchToProps(dispatch) {
   return {
     clickPlayHandler: function () {
       dispatch(play());
+    },
+
+    clickAddHandler: function () {
+      dispatch(addPlayer());
+    },
+
+    clickNextHandler: function () {
+      dispatch(next());
     },
 
     clickPauseHandler: function () {

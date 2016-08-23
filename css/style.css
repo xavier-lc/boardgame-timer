@@ -12,15 +12,8 @@
 /* APP */
 
 .container--pastNav {
-    padding-top: 51px;
-}
-
-.totalTimer,
-.playerTimers,
-.config {
-    border: 1px solid #000;
-    margin-bottom: 10px;
-    padding: 5px 10px;
+    /* get past the navbar and add the same margin as .panel */
+    padding-top: 71px;
 }
 
 .player {
@@ -32,4 +25,3 @@
 .inactive .timer {
     opacity: .5;
 }
-
