@@ -24,11 +24,11 @@ function setup(start, finish, elapsed, isOn) {
 }
 
 describe('Statistics', function () {
-  it('should have "no" class if not finished', function () {
+  it('should have "hidden" class if not finished', function () {
     const element = setup(0, null, 1, true);
 
     expect(element.type).toBe('div');
-    expect(element.props.className).toBe('no');
+    expect(element.props.className).toBe('hidden');
   });
 
   it('should show statistics if finished', function () {

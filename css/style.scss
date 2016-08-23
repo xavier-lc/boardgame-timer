@@ -1,12 +1,51 @@
-/* GENERAL */
+/* MIXINS */
 
-.no {
-  display: none;
+@mixin display-flex() {
+  display: -webkit-flex;
+  display: flex;
 }
+
+@mixin flex-direction($direction) {
+  -webkit-flex-direction: $direction;
+  flex-direction: $direction;
+}
+
+@mixin flex($val) {
+  -webkit-flex: $val;
+  flex: $val;
+}
+
+@mixin align-items($val) {
+  -webkit-align-items: $val;
+  align-items: $val;
+}
+
+@mixin justify-content($val) {
+  -webkit-justify-content: $val;
+  justify-content: $val;
+}
+
+/* GENERAL */
 
 .form-control--inb {
   display: inline-block;
   width: auto;
+}
+
+.flexRow {
+  @include display-flex();
+  @include flex-direction(row);
+}
+
+.flex1 {
+  @include flex(1);
+}
+
+.centerHorVert {
+  @extend .flexRow;
+  @include align-items(center);
+  @include justify-content(center);
+  height: 100%;
 }
 
 /* APP */
@@ -26,4 +65,23 @@
 
 .inactive {
   opacity: .5;
+}
+
+.controlBtn {
+  @extend .flex1;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.controlBtn--lft {
+  padding-right: 10px;
+}
+
+.controlBtn--rgt {
+  padding-left: 10px;
+}
+
+.marginTop0 {
+  // counter bootstrap's ".btn-block + .btn-block" selector
+  margin-top: 0 !important;
 }

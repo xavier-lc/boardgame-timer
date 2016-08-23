@@ -11,7 +11,7 @@ const propTypes = {
 };
 
 function Statistics(props) {
-  const statisticsCls = classnames({ no: props.finish === null });
+  const statisticsCls = classnames({ hidden: props.finish === null });
 
   return (
     <div className={statisticsCls}>

@@ -4,7 +4,8 @@ import classnames from 'classnames';
 const propTypes = {
   clickHandler: PropTypes.func.isRequired,
   isVisible: PropTypes.bool.isRequired,
-  txt: PropTypes.string.isRequired,
+  txt: PropTypes.string,
+  icon: PropTypes.string,
   className: PropTypes.string,
 };
 
@@ -12,7 +13,7 @@ function TimerButton(props) {
   const btnCls = classnames(
     'btn',
     {
-      no: !props.isVisible,
+      hidden: !props.isVisible,
       'btn-default': !props.className,
       [`${props.className}`]: props.className,
     }
@@ -23,7 +24,10 @@ function TimerButton(props) {
       className={btnCls}
       onClick={props.clickHandler}
     >
-      {props.txt}
+      {props.txt ?
+        props.txt :
+        <span className={`glyphicon glyphicon-${props.icon}`} />
+      }
     </button>
   );
 }

@@ -95,9 +95,9 @@ describe('TimerControls', function () {
     ]);
   });
 
-  it('should have "no" class if finished', function () {
+  it('should have "hidden" class if finished', function () {
     const element = setup(false, 0, 1, 1);
 
-    expect(element.props.className).toBe('no');
+    expect(element.props.className).toBe('hidden');
   });
 });

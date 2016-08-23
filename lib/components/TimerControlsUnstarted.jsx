@@ -11,7 +11,7 @@ const propTypes = {
 
 function TimerControlsUnstarted(props) {
   const timerControlsCls = classnames(
-    { no: !props.isVisible }
+    { hidden: !props.isVisible }
   );
 
   return (

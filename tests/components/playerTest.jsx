@@ -45,7 +45,7 @@ describe('Player', function () {
 
     expect(element.type).toBe('div');
     expect(element.props.children).toEqual([
-      <span className="no">{props.name}</span>,
+      <span className="hidden">{props.name}</span>,
       <PlayerNameInput
         id={props.id}
         isEditable

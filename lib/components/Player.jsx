@@ -31,12 +31,12 @@ function Player(props) {
 
   const spanCls = classnames(
     'player__name',
-    { no: props.isEditable }
+    { hidden: props.isEditable }
   );
 
   const progressCls = classnames(
     'progress',
-    { no: props.isEditable }
+    { hidden: props.isEditable }
   );
 
   const progressBarCls = classnames(

@@ -17,49 +17,50 @@ const propTypes = {
 
 function TimerControls(props) {
   const timerControlsCls = classnames(
-    'row',
-    { no: props.start === null || props.finish !== null }
+    'flexRow',
+    { hidden: props.start === null || props.finish !== null }
   );
 
   return (
     <div className={timerControlsCls}>
-      <div className="col-xs-4 text-center">
+      <div className="controlBtn controlBtn--lft">
         <TimerButton
           clickHandler={props.clickPauseHandler}
           isVisible={props.isOn}
-          txt="Pause"
-          className="btn-info btn-lg"
+          icon="pause"
+          className="btn-info btn-block btn-lg"
         />
 
         <TimerButton
           clickHandler={props.clickResumeHandler}
           isVisible={!props.isOn}
-          txt="Resume"
-          className="btn-primary btn-lg"
+          icon="play"
+          className="marginTop0 btn-info btn-block btn-lg"
         />
       </div>
 
-      <div className="col-xs-4 text-center">
+      <div className="flex1">
         <Timer
           elapsed={props.elapsed}
           isOn={props.isOn}
           isVisible={props.finish === null}
+          className="centerHorVert"
         />
       </div>
 
-      <div className="col-xs-4 text-center">
+      <div className="controlBtn controlBtn--rgt">
         <TimerButton
           clickHandler={props.clickNextHandler}
           isVisible={props.isOn}
           txt="Next"
-          className="btn-primary btn-lg"
+          className="btn-primary btn-block btn-lg"
         />
 
         <TimerButton
           clickHandler={props.clickStopHandler}
           isVisible={!props.isOn}
-          txt="Stop"
-          className="btn-warning btn-lg"
+          icon="stop"
+          className="marginTop0 btn-warning btn-block btn-lg"
         />
       </div>
     </div>

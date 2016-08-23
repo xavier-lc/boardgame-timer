@@ -11,7 +11,7 @@ const propTypes = {
 function PlayerNameInput(props) {
   const inputCls = classnames(
     'form-control',
-    { no: !props.isEditable }
+    { hidden: !props.isEditable }
   );
 
   return (

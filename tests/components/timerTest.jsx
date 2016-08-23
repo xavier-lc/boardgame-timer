@@ -33,7 +33,7 @@ describe('Timer', function () {
       <TwoTimingDigits value={1} />,
       ':',
       <TwoTimingDigits value={2} />,
-      <span className="no">
+      <span className="hidden">
         {['.', '125']}
       </span>,
     ]);
@@ -42,7 +42,7 @@ describe('Timer', function () {
   it('should hide element if isVisible is false', function () {
     const element = setup(false);
 
-    expect(element.props.className).toBe('no');
+    expect(element.props.className).toBe('hidden');
   });
 
   it('should show milliseconds if is not on', function () {

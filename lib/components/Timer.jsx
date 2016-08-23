@@ -10,12 +10,16 @@ const propTypes = {
   isOn: PropTypes.bool.isRequired,
   isVisible: PropTypes.bool.isRequired,
   title: PropTypes.string,
+  className: PropTypes.string,
 };
 
 function Timer(props) {
-  const timerCls = classnames({ no: !props.isVisible });
-  const msCls = classnames({ no: props.isOn || props.elapsed === 0 });
-  //const titleCls = classnames({ no: !props.title });
+  const timerCls = classnames({
+    hidden: !props.isVisible,
+    [`${props.className}`]: props.className,
+  });
+  const msCls = classnames({ hidden: props.isOn || props.elapsed === 0 });
+  //const titleCls = classnames({ hidden: !props.title });
 
   const time = msToTime(props.elapsed);
 
