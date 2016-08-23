@@ -45,4 +45,8 @@
 .marginTop0 {
   margin-top: 0 !important; }
 
+.progress-bar {
+  -webkit-transition: none;
+  transition: none; }
+
 /*# sourceMappingURL=style.css.map */

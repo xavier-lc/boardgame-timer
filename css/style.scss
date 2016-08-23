@@ -25,6 +25,12 @@
   justify-content: $val;
 }
 
+@mixin transition($val) {
+  -webkit-transition: $val;
+  transition: $val;
+}
+
+
 /* GENERAL */
 
 .form-control--inb {
@@ -84,4 +90,8 @@
 .marginTop0 {
   // counter bootstrap's ".btn-block + .btn-block" selector
   margin-top: 0 !important;
+}
+
+.progress-bar {
+  @include transition(none);
 }
