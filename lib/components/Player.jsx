@@ -48,44 +48,28 @@ function Player(props) {
     }
   );
 
-  //// sum the turns to get the elapsed time
-  //const totalElapsed = props.turns.reduce(
-  //  (previous, current) => previous + current,
-  //  0
-  //);
-
   return (
     <div className={playerCls}>
-      <span className={spanCls}>{props.name}</span>
-
       <PlayerNameInput
         id={props.id}
-        isEditable={props.isEditable}
+        isVisible={props.isEditable}
         changeHandler={props.inputChangeHandler}
         value={props.name}
       />
+
+      <span className={spanCls}>{props.name}</span>
 
       <Timer
         elapsed={turnElapsed}
         isOn={props.isStopwatchOn}
         isVisible={!props.isEditable}
+        className="inb"
       />
 
       <div className={progressCls}>
         <div className={progressBarCls} style={progressBarStyle}>
         </div>
       </div>
-
-      {
-        /*
-      <Timer
-        title="Total"
-        elapsed={totalElapsed}
-        isOn={props.isStopwatchOn}
-        isVisible={!props.isEditable}
-      />
-        */
-      }
     </div>
   );
 }

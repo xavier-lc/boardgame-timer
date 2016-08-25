@@ -19,18 +19,11 @@ function Timer(props) {
     [`${props.className}`]: props.className,
   });
   const msCls = classnames({ hidden: props.isOn || props.elapsed === 0 });
-  //const titleCls = classnames({ hidden: !props.title });
 
   const time = msToTime(props.elapsed);
 
   return (
     <div className={timerCls}>
-      {
-        /*
-      <span className={titleCls}>{`${props.title} `}</span>
-        */
-      }
-
       <TwoTimingDigits value={time.hours} />
       :
       <TwoTimingDigits value={time.minutes} />

@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 const propTypes = {
   id: PropTypes.number.isRequired,
-  isEditable: PropTypes.bool.isRequired,
+  isVisible: PropTypes.bool.isRequired,
   value: PropTypes.string.isRequired,
   changeHandler: PropTypes.func.isRequired,
 };
@@ -11,7 +11,7 @@ const propTypes = {
 function PlayerNameInput(props) {
   const inputCls = classnames(
     'form-control',
-    { hidden: !props.isEditable }
+    { hidden: !props.isVisible }
   );
 
   return (

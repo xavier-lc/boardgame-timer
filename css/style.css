@@ -2,51 +2,75 @@
 /* GENERAL */
 .form-control--inb {
   display: inline-block;
-  width: auto; }
+  width: auto;
+}
+
+.inb {
+  display: inline-block;
+}
 
 .flexRow, .centerHorVert {
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: row;
-  flex-direction: row; }
+  flex-direction: row;
+}
 
 .flex1, .controlBtn {
   -webkit-flex: 1;
-  flex: 1; }
+  flex: 1;
+}
 
 .centerHorVert {
   -webkit-align-items: center;
   align-items: center;
   -webkit-justify-content: center;
   justify-content: center;
-  height: 100%; }
+  height: 100%;
+}
 
 /* APP */
 .container--pastNav {
   /* get past the navbar and add the same margin as .panel */
-  padding-top: 71px; }
+  padding-top: 71px;
+}
 
+/* TIMER */
 .player {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+}
 
 .inactive {
-  opacity: .5; }
+  opacity: .5;
+}
+
+.player__name {
+  margin-right: 10px;
+}
 
 .controlBtn {
   text-align: center;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 .controlBtn--lft {
-  padding-right: 10px; }
+  padding-right: 10px;
+}
 
 .controlBtn--rgt {
-  padding-left: 10px; }
+  padding-left: 10px;
+}
 
 .marginTop0 {
-  margin-top: 0 !important; }
+  margin-top: 0 !important;
+}
 
 .progress-bar {
   -webkit-transition: none;
-  transition: none; }
+  transition: none;
+}
 
-/*# sourceMappingURL=style.css.map */
+/* CONFIG */
+.configTitle {
+  margin-right: 10px;
+}

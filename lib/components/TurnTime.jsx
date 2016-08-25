@@ -11,23 +11,21 @@ const propTypes = {
 function TurnTime(props) {
   return (
     <div>
-      <span>Turn time:</span>
+      <span className="configTitle">Player turn time</span>
 
-      <div>
-        <TimeSelector
-          value={props.minutes}
-          units="minutes"
-          changeHandler={props.selectChangeHandler}
-          max={props.maxMinutes}
-        />
-        :
-        <TimeSelector
-          value={props.seconds}
-          units="seconds"
-          changeHandler={props.selectChangeHandler}
-          max={59}
-        />
-      </div>
+      <TimeSelector
+        value={props.minutes}
+        units="minutes"
+        changeHandler={props.selectChangeHandler}
+        max={props.maxMinutes}
+      />
+      :
+      <TimeSelector
+        value={props.seconds}
+        units="seconds"
+        changeHandler={props.selectChangeHandler}
+        max={59}
+      />
     </div>
   );
 }
