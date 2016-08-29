@@ -11,7 +11,6 @@ describe('stopwatch reducer', function () {
     expect(initialState.offset).toBe(null);
     expect(initialState.elapsed).toBe(0);
     expect(initialState.finish).toBe(null);
-    expect(initialState.intervalId).toBe(null);
   });
 
   context('PLAY/PAUSE/RESUME/TICK', function () {
@@ -24,7 +23,6 @@ describe('stopwatch reducer', function () {
     let resumeAction;
     let stateAfterResume;
 
-    const intervalId = 1;
     let tickAction;
     let stateAfterTick;
 
@@ -48,7 +46,7 @@ describe('stopwatch reducer', function () {
           stateAfterResume = stopwatch(stateAfterPause, resumeAction);
 
           setTimeout(function () {
-            tickAction = tick(intervalId);
+            tickAction = tick();
             stateAfterTick = stopwatch(stateAfterResume, tickAction);
 
             setTimeout(function () {
@@ -75,14 +73,10 @@ describe('stopwatch reducer', function () {
       const elapsed = pauseAction.time - stateAfterPlay.offset;
 
       expect(stateAfterPause).toEqual(
-        Object.assign(
-          {},
-          stateAfterPlay,
-          {
-            isOn: false,
-            elapsed,
-          }
-        )
+        Object.assign({}, stateAfterPlay, {
+          isOn: false,
+          elapsed,
+        })
       );
 
       const time = msToTime(elapsed);
@@ -98,29 +92,19 @@ describe('stopwatch reducer', function () {
 
     it('should be updated on "TICK" action', function () {
       expect(stateAfterTick).toEqual(
-        Object.assign(
-          {},
-          stateAfterResume,
-          {
-            elapsed: tickAction.time - stateAfterResume.offset,
-            intervalId: intervalId,
-          }
-        )
+        Object.assign({}, stateAfterResume, {
+          elapsed: tickAction.time - stateAfterResume.offset,
+        })
       );
     });
 
     it('should finish on "STOP" action', function () {
       expect(stateAfterStop).toEqual(
-        Object.assign(
-          {},
-          stateAfterTick,
-          {
-            isOn: false,
-            elapsed: secondPauseAction.time - stateAfterTick.offset,
-            finish: stopAction.time,
-            intervalId: null,
-          }
-        )
+        Object.assign({}, stateAfterTick, {
+          isOn: false,
+          elapsed: secondPauseAction.time - stateAfterTick.offset,
+          finish: stopAction.time,
+        })
       );
     });
   });
