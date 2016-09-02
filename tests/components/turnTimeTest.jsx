@@ -43,22 +43,20 @@ describe('TurnTime', function () {
 
     expect(element.type).toBe('div');
     expect(element.props.children).toEqual([
-      <span>Turn time:</span>,
-      <div>
-        <TimeSelector
-          value={minutes}
-          units="minutes"
-          changeHandler={change}
-          max={maxMinutes}
-        />
-        :
-        <TimeSelector
-          value={seconds}
-          units="seconds"
-          changeHandler={change}
-          max={59}
-        />
-      </div>,
+      <span className="configTitle">Player turn time</span>,
+      <TimeSelector
+        value={minutes}
+        units="minutes"
+        changeHandler={change}
+        max={maxMinutes}
+      />,
+      ':',
+      <TimeSelector
+        value={seconds}
+        units="seconds"
+        changeHandler={change}
+        max={59}
+      />,
     ]);
   });
 });

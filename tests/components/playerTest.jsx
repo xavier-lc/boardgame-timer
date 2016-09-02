@@ -30,6 +30,7 @@ const testProps = {
   id: 1,
   name: 'Player #1',
   turns: [],
+  turnLimit: 60000,
   isStopwatchOn: false,
   inputChangeHandler: change,
 };
@@ -45,22 +46,27 @@ describe('Player', function () {
 
     expect(element.type).toBe('div');
     expect(element.props.children).toEqual([
-      <span className="hidden">{props.name}</span>,
       <PlayerNameInput
         id={props.id}
-        isEditable
+        isVisible
         changeHandler={props.inputChangeHandler}
         value={props.name}
       />,
+      <span className="player__name hidden">{props.name}</span>,
       <Timer
         elapsed={0}
         isOn={props.isStopwatchOn}
         isVisible={false}
+        className="inb"
       />,
+      <div className="progress hidden">
+        <div className="progress-bar progress-bar-striped" style={{ width: '0.00%' }}>
+        </div>
+      </div>,
     ]);
   });
 
-  it('should have "active" class on "span" and visible Timer when active', function () {
+  it('should have name, Timer and progress bar visible when active', function () {
     const props = Object.assign({
       isEditable: false,
       isActive: true,
@@ -71,18 +77,23 @@ describe('Player', function () {
 
     expect(element.type).toBe('div');
     expect(element.props.children).toEqual([
-      <span className="active">{props.name}</span>,
       <PlayerNameInput
         id={props.id}
-        isEditable={false}
+        isVisible={false}
         changeHandler={props.inputChangeHandler}
         value={props.name}
       />,
+      <span className="player__name">{props.name}</span>,
       <Timer
         elapsed={0}
         isOn={props.isStopwatchOn}
         isVisible
+        className="inb"
       />,
+      <div className="progress">
+        <div className="progress-bar progress-bar-striped" style={{ width: '0.00%' }}>
+        </div>
+      </div>,
     ]);
   });
 });

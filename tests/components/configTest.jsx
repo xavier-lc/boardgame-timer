@@ -39,15 +39,16 @@ describe('Config', function () {
     const element = setup(props);
 
     expect(element.type).toBe('div');
-    expect(element.props.className).toBe('config');
-    expect(element.props.children).toEqual([
-      <h2>Config</h2>,
-      <TurnTime
-        minutes={props.config.turnTime.minutes}
-        seconds={props.config.turnTime.seconds}
-        maxMinutes={props.config.turnTime.maxMinutes}
-        selectChangeHandler={props.selectChangeHandler}
-      />,
-    ]);
+    expect(element.props.className).toBe('panel panel-primary');
+    expect(element.props.children).toEqual(
+      <div className="panel-body">
+        <TurnTime
+          minutes={props.config.turnTime.minutes}
+          seconds={props.config.turnTime.seconds}
+          maxMinutes={props.config.turnTime.maxMinutes}
+          selectChangeHandler={props.selectChangeHandler}
+        />
+      </div>
+    );
   });
 });

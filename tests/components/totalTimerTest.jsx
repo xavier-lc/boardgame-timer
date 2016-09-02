@@ -2,6 +2,7 @@ import expect from 'expect';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import Timer from './../../lib/components/Timer.jsx';
+import TimerControlsUnstarted from './../../lib/components/TimerControlsUnstarted.jsx';
 import TimerControls from './../../lib/components/TimerControls.jsx';
 import Statistics from './../../lib/components/Statistics.jsx';
 import TotalTimer from './../../lib/components/TotalTimer.jsx';
@@ -9,8 +10,22 @@ import TotalTimer from './../../lib/components/TotalTimer.jsx';
 /**
  * dummy button handler function
  */
+function add() {
+  console.log('add');
+}
+
+/**
+ * dummy button handler function
+ */
 function play() {
   console.log('play');
+}
+
+/**
+ * dummy button handler function
+ */
+function next() {
+  console.log('next');
 }
 
 /**
@@ -58,7 +73,9 @@ describe('TotalTimer', function () {
         finish: null,
         offset: null,
       },
+      clickAddHandler: add,
       clickPlayHandler: play,
+      clickNextHandler: next,
       clickPauseHandler: pause,
       clickResumeHandler: resume,
       clickStopHandler: stop,
@@ -67,27 +84,31 @@ describe('TotalTimer', function () {
     const element = setup(props);
 
     expect(element.type).toBe('div');
-    expect(element.props.children).toEqual([
-      <Timer
-        elapsed={props.stopwatch.elapsed}
-        isOn={props.stopwatch.isOn}
-        isVisible
-      />,
-      <TimerControls
-        isOn={props.stopwatch.isOn}
-        start={props.stopwatch.start}
-        finish={props.stopwatch.finish}
-        clickPlayHandler={props.clickPlayHandler}
-        clickPauseHandler={props.clickPauseHandler}
-        clickResumeHandler={props.clickResumeHandler}
-        clickStopHandler={props.clickStopHandler}
-      />,
-      <Statistics
-        elapsed={props.stopwatch.elapsed}
-        isOn={props.stopwatch.isOn}
-        start={props.stopwatch.start}
-        finish={props.stopwatch.finish}
-      />,
-    ]);
+    expect(element.props.className).toBe('panel panel-primary');
+    expect(element.props.children).toEqual(
+      <div className="panel-body">
+        <TimerControlsUnstarted
+          isVisible={props.stopwatch.start === null}
+          clickAddHandler={props.clickAddHandler}
+          clickPlayHandler={props.clickPlayHandler}
+        />
+        <TimerControls
+          isOn={props.stopwatch.isOn}
+          elapsed={props.stopwatch.elapsed}
+          start={props.stopwatch.start}
+          finish={props.stopwatch.finish}
+          clickNextHandler={props.clickNextHandler}
+          clickPauseHandler={props.clickPauseHandler}
+          clickResumeHandler={props.clickResumeHandler}
+          clickStopHandler={props.clickStopHandler}
+        />
+        <Statistics
+          elapsed={props.stopwatch.elapsed}
+          isOn={props.stopwatch.isOn}
+          start={props.stopwatch.start}
+          finish={props.stopwatch.finish}
+        />
+      </div>
+    );
   });
 });

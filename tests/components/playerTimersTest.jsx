@@ -67,6 +67,12 @@ function getTestProps(isOn = false, start = null) {
       isOn: isOn,
       start: start,
     },
+    config: {
+      turnTime: {
+        minutes: 1,
+        seconds: 0,
+      },
+    },
     clickAddHandler: add,
     clickNextHandler: next,
     inputChangeHandler: change,
@@ -74,120 +80,39 @@ function getTestProps(isOn = false, start = null) {
 }
 
 describe('PlayerTimers', function () {
-  it('should render element with "add player" button if not started', function () {
+  it('should render as many Player elements as players exist in the state', function () {
     const testProps = getTestProps();
     const element = setup(testProps);
 
     expect(element.type).toBe('div');
-    expect(element.props.children).toEqual([
-      <TimerButton
-        clickHandler={testProps.clickAddHandler}
-        isVisible
-        txt="Add player"
-      />,
-      <TimerButton
-        clickHandler={testProps.clickNextHandler}
-        isVisible={false}
-        txt="Next"
-      />,
-      [
-        <Player
-          id={1}
-          key="1"
-          isEditable
-          isStopwatchOn={testProps.stopwatch.isOn}
-          {...testProps.players.data[1]}
-          turns={testProps.players.turns[1]}
-          inputChangeHandler={testProps.inputChangeHandler}
-        />,
-        <Player
-          id={2}
-          key="2"
-          isEditable
-          isStopwatchOn={testProps.stopwatch.isOn}
-          {...testProps.players.data[2]}
-          turns={testProps.players.turns[2]}
-          inputChangeHandler={testProps.inputChangeHandler}
-        />,
-      ],
-    ]);
-  });
-
-  it('should render element with "next" button if started', function () {
-    const testProps = getTestProps(true, 0);
-    const element = setup(testProps);
-
-    expect(element.type).toBe('div');
-    expect(element.props.children).toEqual([
-      <TimerButton
-        clickHandler={testProps.clickAddHandler}
-        isVisible={false}
-        txt="Add player"
-      />,
-      <TimerButton
-        clickHandler={testProps.clickNextHandler}
-        isVisible
-        txt="Next"
-      />,
-      [
-        <Player
-          id={1}
-          key="1"
-          isEditable={false}
-          isStopwatchOn={testProps.stopwatch.isOn}
-          {...testProps.players.data[1]}
-          turns={testProps.players.turns[1]}
-          inputChangeHandler={testProps.inputChangeHandler}
-        />,
-        <Player
-          id={2}
-          key="2"
-          isEditable={false}
-          isStopwatchOn={testProps.stopwatch.isOn}
-          {...testProps.players.data[2]}
-          turns={testProps.players.turns[2]}
-          inputChangeHandler={testProps.inputChangeHandler}
-        />,
-      ],
-    ]);
-  });
-
-  it('should render element with no buttons if finished', function () {
-    const testProps = getTestProps(false, 0);
-    const element = setup(testProps);
-
-    expect(element.type).toBe('div');
-    expect(element.props.children).toEqual([
-      <TimerButton
-        clickHandler={testProps.clickAddHandler}
-        isVisible={false}
-        txt="Add player"
-      />,
-      <TimerButton
-        clickHandler={testProps.clickNextHandler}
-        isVisible={false}
-        txt="Next"
-      />,
-      [
-        <Player
-          id={1}
-          key="1"
-          isEditable={false}
-          isStopwatchOn={testProps.stopwatch.isOn}
-          {...testProps.players.data[1]}
-          turns={testProps.players.turns[1]}
-          inputChangeHandler={testProps.inputChangeHandler}
-        />,
-        <Player
-          id={2}
-          key="2"
-          isEditable={false}
-          isStopwatchOn={testProps.stopwatch.isOn}
-          {...testProps.players.data[2]}
-          turns={testProps.players.turns[2]}
-          inputChangeHandler={testProps.inputChangeHandler}
-        />,
-      ],
-    ]);
+    expect(element.props.className).toBe('panel panel-primary');
+    expect(element.props.children).toEqual(
+      <div className="panel-body">
+        {
+          [
+            <Player
+              id={1}
+              key="1"
+              isEditable
+              isStopwatchOn={testProps.stopwatch.isOn}
+              {...testProps.players.data[1]}
+              turns={testProps.players.turns[1]}
+              turnLimit={60000}
+              inputChangeHandler={testProps.inputChangeHandler}
+            />,
+            <Player
+              id={2}
+              key="2"
+              isEditable
+              isStopwatchOn={testProps.stopwatch.isOn}
+              {...testProps.players.data[2]}
+              turns={testProps.players.turns[2]}
+              turnLimit={60000}
+              inputChangeHandler={testProps.inputChangeHandler}
+            />,
+          ]
+        }
+      </div>
+    );
   });
 });
