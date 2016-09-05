@@ -13,10 +13,9 @@ import stopwatch from './reducers/stopwatch';
 
 import { pause, tick } from './actions/actions';
 
-import HeaderContainer from './components/Header.jsx';
+import LayoutContainer from './containers/LayoutContainer.jsx';
+import IndexContainer from './containers/IndexContainer.jsx';
 import ConfigContainer from './containers/ConfigContainer.jsx';
-import PlayerTimersContainer from './containers/PlayerTimersContainer.jsx';
-import TotalTimerContainer from './containers/TotalTimerContainer.jsx';
 
 const store = createStore(
   combineReducers({
@@ -56,25 +55,11 @@ hashHistory.listen((location) => {
   }
 });
 
-/**
- * Group together the home page containers so they are provided as one component to the IndexRoute
- *
- * @returns {ReactElement}
- */
-function Index() {
-  return (
-    <div>
-      <TotalTimerContainer />
-      <PlayerTimersContainer />
-    </div>
-  );
-}
-
 render(
   <Provider store={store}>
     <Router history={hashHistory}>
-      <Route path="/" component={HeaderContainer} title="Boardgame timer">
-        <IndexRoute component={Index} />
+      <Route path="/" component={LayoutContainer} title="Boardgame timer">
+        <IndexRoute component={IndexContainer} />
         <Route path="config" component={ConfigContainer} />
       </Route>
     </Router>
