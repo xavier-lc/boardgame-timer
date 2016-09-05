@@ -6,7 +6,7 @@ module.exports = function (grunt) {
           'src/app.js': 'lib/app.jsx',
         },
         options: {
-          transform: [['babelify', { presets: ['react', 'es2015'] }]],
+          transform: ['babelify'],
         },
       },
     },
