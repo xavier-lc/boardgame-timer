@@ -16,22 +16,25 @@ function Statistics(props) {
   return (
     <div className={statisticsCls}>
       <div>
-        <span>Total time:</span>
+        <span className="stats__title">Total time:</span>
 
         <Timer
           elapsed={props.finish - props.start}
           isOn={props.isOn}
           isVisible
+          className="inb"
         />
       </div>
 
       <div>
-        <span>Paused time:</span>
+        <span className="stats__title">Paused time:</span>
 
         <Timer
           elapsed={props.finish - props.start - props.elapsed}
           isOn={props.isOn}
-          isVisible />
+          isVisible
+          className="inb"
+        />
       </div>
     </div>
   );

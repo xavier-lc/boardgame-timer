@@ -44,7 +44,7 @@
   opacity: .5;
 }
 
-.player__name {
+.player__name, .stats__title {
   margin-right: 10px;
 }
 

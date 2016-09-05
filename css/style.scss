@@ -106,6 +106,10 @@
   @include transition(none);
 }
 
+.stats__title {
+  @extend .player__name;
+}
+
 /* CONFIG */
 
 .configTitle {
