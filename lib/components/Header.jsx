@@ -55,19 +55,4 @@ class Header extends React.Component {
 
 Header.propTypes = propTypes;
 
-function HeaderContainer(props) {
-  return (
-    <div>
-      <Header
-        activePath={props.location.pathname}
-        title={props.route.title}
-      />
-
-      <div className="container container--pastNav">
-        {props.children}
-      </div>
-    </div>
-  );
-}
-
-export default HeaderContainer;
+export default Header;
