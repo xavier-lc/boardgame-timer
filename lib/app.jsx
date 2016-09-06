@@ -45,7 +45,7 @@ store.subscribe(() => {
   }
 });
 
-hashHistory.listen((location) => {
+hashHistory.listen(location => {
   const state = store.getState();
 
   // whenever the user navigates out of the home page (where the timer is),
