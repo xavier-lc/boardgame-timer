@@ -8,6 +8,7 @@ const propTypes = {
   isOn: PropTypes.bool.isRequired,
   start: PropTypes.number,
   finish: PropTypes.number,
+  turns: PropTypes.number.isRequired,
 };
 
 function Statistics(props) {
@@ -15,6 +16,12 @@ function Statistics(props) {
 
   return (
     <div className={statisticsCls}>
+      <div>
+        <span className="stats__title">Turns:</span>
+
+        <div className="inb">{props.turns}</div>
+      </div>
+
       <div>
         <span className="stats__title">Total time:</span>
 

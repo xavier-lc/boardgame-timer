@@ -4,6 +4,8 @@ import TimerControls from './TimerControls.jsx';
 import TimerControlsUnstarted from './TimerControlsUnstarted.jsx';
 import Statistics from './Statistics.jsx';
 
+import { getCurrentTurn } from './../reducers/players';
+
 function TotalTimer(props) {
   return (
     <div className="panel panel-primary">
@@ -30,6 +32,7 @@ function TotalTimer(props) {
           isOn={props.stopwatch.isOn}
           start={props.stopwatch.start}
           finish={props.stopwatch.finish}
+          turns={getCurrentTurn(props.players)}
         />
       </div>
     </div>
