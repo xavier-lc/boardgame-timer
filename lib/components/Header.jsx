@@ -5,16 +5,20 @@ import NavItem from 'react-bootstrap/lib/NavItem';
 
 const propTypes = {
   activePath: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  headerTitle: PropTypes.string.isRequired,
+  links: PropTypes.arrayOf(
+    React.PropTypes.shape({
+      title: React.PropTypes.string,
+      path: React.PropTypes.string,
+    })
+  ).isRequired,
 };
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      expanded: false,
-    };
+    this.state = { expanded: false };
 
     this.onNavbarToggle = this.onNavbarToggle.bind(this);
     this.onNavItemClick = this.onNavItemClick.bind(this);
@@ -37,15 +41,24 @@ class Header extends React.Component {
       >
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">{this.props.title}</a>
+            <a href="#">{this.props.headerTitle}</a>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
 
         <Navbar.Collapse>
           <Nav activeHref={`#${this.props.activePath}`}>
-            <NavItem onClick={this.onNavItemClick} href="#/">Timer</NavItem>
-            <NavItem onClick={this.onNavItemClick} href="#/config">Config</NavItem>
+            {this.props.links.map(
+              link => (
+                <NavItem
+                  onClick={this.onNavItemClick}
+                  href={`#${link.path}`}
+                  key={link.path}
+                >
+                  {link.title}
+                </NavItem>
+              )
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

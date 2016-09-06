@@ -58,9 +58,9 @@ hashHistory.listen((location) => {
 render(
   <Provider store={store}>
     <Router history={hashHistory}>
-      <Route path="/" component={LayoutContainer} title="Boardgame timer">
-        <IndexRoute component={IndexContainer} />
-        <Route path="config" component={ConfigContainer} />
+      <Route path="/" component={LayoutContainer} headerTitle="Boardgame timer">
+        <IndexRoute component={IndexContainer} title="Timer" />
+        <Route path="/config" component={ConfigContainer} title="Config" />
       </Route>
     </Router>
   </Provider>,
