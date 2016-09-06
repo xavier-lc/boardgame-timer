@@ -40,19 +40,21 @@ describe('Statistics', function () {
 
     expect(element.props.children).toEqual([
       <div>
-        <span>Total time:</span>
+        <span className="stats__title">Total time:</span>
         <Timer
           elapsed={finish - start}
           isVisible
           isOn={false}
+          className="inb"
         />
       </div>,
       <div>
-        <span>Paused time:</span>
+        <span className="stats__title">Paused time:</span>
         <Timer
           elapsed={finish - start - elapsed}
           isVisible
           isOn={false}
+          className="inb"
         />
       </div>,
     ]);
