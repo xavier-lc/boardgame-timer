@@ -17,10 +17,43 @@ class PlayerTotals extends React.Component {
     this.state = { showTotals: false };
 
     this.clickHandler = this.clickHandler.bind(this);
+    this.total = this.total.bind(this);
   }
 
   clickHandler() {
     this.setState({ showTotals: !this.state.showTotals });
+  }
+
+  total(id) {
+    const total = this.props.players.turns[id].reduce((previous, val) => previous + val, 0);
+    const turns = this.props.players.turns[id].length;
+    const average = turns ? total / turns : 0;
+
+    return (
+      <div key={`total_${id}`}>
+        <span className="stats__title">{`${this.props.players.data[id].name}:`}</span>
+
+        <Timer
+          elapsed={total}
+          isOn
+          isVisible
+          className="inb"
+        />
+
+        <div className="inb">
+          (avg.
+
+          <Timer
+            elapsed={average}
+            isOn
+            isVisible
+            className="inb"
+          />
+
+          )
+        </div>
+      </div>
+    );
   }
 
   render() {
@@ -41,21 +74,10 @@ class PlayerTotals extends React.Component {
         />
 
         <div className={totalsCls}>
-          {this.props.players.ids.map(id => (
-            <div key={`total_${id}`}>
-              <span className="stats__title">{`${this.props.players.data[id].name}:`}</span>
-
-              <Timer
-                elapsed={this.props.players.turns[id].reduce((previous, val) => previous + val, 0)}
-                isOn={this.props.stopwatch.isOn}
-                isVisible
-                className="inb"
-              />
-            </div>
-          ))}
+          {this.props.players.ids.map(this.total)}
         </div>
       </div>
-    )
+    );
   }
 }
 
