@@ -70,6 +70,10 @@
   transition: none;
 }
 
+.player__totals {
+  margin-top: 15px;
+}
+
 /* CONFIG */
 .configTitle {
   margin-right: 10px;

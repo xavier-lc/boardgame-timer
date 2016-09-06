@@ -92,7 +92,7 @@ describe('PlayerTimers', function () {
           [
             <Player
               id={1}
-              key="1"
+              key="player_1"
               isEditable
               isStopwatchOn={testProps.stopwatch.isOn}
               {...testProps.players.data[1]}
@@ -102,7 +102,7 @@ describe('PlayerTimers', function () {
             />,
             <Player
               id={2}
-              key="2"
+              key="player_2"
               isEditable
               isStopwatchOn={testProps.stopwatch.isOn}
               {...testProps.players.data[2]}

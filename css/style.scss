@@ -106,6 +106,10 @@
   @include transition(none);
 }
 
+.player__totals {
+  margin-top: 15px;
+}
+
 .stats__title {
   @extend .player__name;
 }
