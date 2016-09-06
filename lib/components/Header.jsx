@@ -53,7 +53,7 @@ class Header extends React.Component {
                 <NavItem
                   onClick={this.onNavItemClick}
                   href={`#${link.path}`}
-                  key={link.path}
+                  key={`path_${link.path}`}
                 >
                   {link.title}
                 </NavItem>

@@ -18,9 +18,9 @@ function TimeSelector(props) {
       onChange={props.changeHandler}
       value={props.value}
     >
-      {range(props.max + 1).map((el) => (
+      {range(props.max + 1).map(el => (
         <option
-          key={el}
+          key={`${props.units}_${el}`}
           value={el}
         >
           {leadingZeros(el)}
