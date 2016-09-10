@@ -32,12 +32,28 @@
 /* APP */
 .container--pastNav {
   /* get past the navbar and add the same margin as .panel */
-  padding-top: 71px;
+  padding-top: 66px;
+}
+
+.panel {
+  margin-bottom: 15px;
+}
+
+h4 {
+  margin-top: 0;
 }
 
 /* TIMER */
 .player {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+}
+
+.progress {
+  margin: 0;
+}
+
+.player:last-child {
+  margin-bottom: 0;
 }
 
 .inactive {
@@ -45,6 +61,7 @@
 }
 
 .player__name, .stats__title {
+  font-weight: bold;
   margin-right: 10px;
 }
 
@@ -70,8 +87,12 @@
   transition: none;
 }
 
-.player__totals {
+.toggleTotals, .player__totals {
   margin-top: 15px;
+}
+
+.player__avg {
+  margin-left: 15px;
 }
 
 /* CONFIG */

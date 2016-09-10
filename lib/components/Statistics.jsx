@@ -12,18 +12,18 @@ const propTypes = {
 };
 
 function Statistics(props) {
-  const statisticsCls = classnames({ hidden: props.finish === null });
+  const statisticsCls = classnames('text-center', { hidden: props.finish === null });
 
   return (
     <div className={statisticsCls}>
       <div>
-        <span className="stats__title">Turns:</span>
+        <span className="stats__title">Turns</span>
 
         <div className="inb">{props.turns}</div>
       </div>
 
       <div>
-        <span className="stats__title">Total time:</span>
+        <span className="stats__title">Total time</span>
 
         <Timer
           elapsed={props.finish - props.start}
@@ -34,7 +34,7 @@ function Statistics(props) {
       </div>
 
       <div>
-        <span className="stats__title">Paused time:</span>
+        <span className="stats__title">Paused time</span>
 
         <Timer
           elapsed={props.finish - props.start - props.elapsed}

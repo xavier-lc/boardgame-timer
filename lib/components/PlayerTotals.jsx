@@ -24,6 +24,12 @@ class PlayerTotals extends React.Component {
     this.setState({ showTotals: !this.state.showTotals });
   }
 
+  /**
+   * Total and average time of a player
+   *
+   * @param {number} id
+   * @returns {ReactElement}
+   */
   total(id) {
     const total = this.props.players.turns[id].reduce((previous, val) => previous + val, 0);
     const turns = this.props.players.turns[id].length;
@@ -31,36 +37,37 @@ class PlayerTotals extends React.Component {
 
     return (
       <div key={`total_${id}`}>
-        <span className="stats__title">{`${this.props.players.data[id].name}:`}</span>
+        <span className="stats__title">{this.props.players.data[id].name}</span>
 
         <Timer
           elapsed={total}
           isOn
           isVisible
           className="inb"
+          hideHours
         />
 
-        <div className="inb">
-          (avg.
-
-          <Timer
+        <div className="player__avg inb text-muted">
+          (avg. <Timer
             elapsed={average}
             isOn
             isVisible
             className="inb"
-          />
-
-          )
+            hideHours
+          />)
         </div>
       </div>
     );
   }
 
   render() {
-    const totalsCls = classnames({
-      player__totals: this.props.stopwatch.finish === null,
-      hidden: !this.state.showTotals && this.props.stopwatch.finish === null,
-    });
+    const totalsCls = classnames(
+      'text-center',
+      {
+        player__totals: this.props.stopwatch.finish === null,
+        hidden: !this.state.showTotals && this.props.stopwatch.finish === null,
+      }
+    );
 
     const buttonTxt = `${this.state.showTotals ? 'Hide' : 'Show'} accumulated time`;
 
@@ -70,7 +77,7 @@ class PlayerTotals extends React.Component {
           clickHandler={this.clickHandler}
           isVisible={this.props.stopwatch.start !== null && this.props.stopwatch.finish === null}
           txt={buttonTxt}
-          className="btn-link btn-block btn-lg"
+          className="toggleTotals btn-link btn-block btn-lg"
         />
 
         <div className={totalsCls}>

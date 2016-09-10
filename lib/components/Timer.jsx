@@ -11,6 +11,7 @@ const propTypes = {
   isVisible: PropTypes.bool.isRequired,
   title: PropTypes.string,
   className: PropTypes.string,
+  hideHours: PropTypes.bool,
 };
 
 function Timer(props) {
@@ -22,10 +23,16 @@ function Timer(props) {
 
   const time = msToTime(props.elapsed);
 
+  // even with the prop set, hide the hours bit only if it's 0
+  const hoursCls = classnames({ hidden: props.hideHours && time.hours === 0 });
+
   return (
     <div className={timerCls}>
-      <TwoTimingDigits value={time.hours} />
-      :
+      <span className={hoursCls}>
+        <TwoTimingDigits value={time.hours} />
+        :
+      </span>
+
       <TwoTimingDigits value={time.minutes} />
       :
       <TwoTimingDigits value={time.seconds} />

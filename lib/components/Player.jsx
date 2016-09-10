@@ -64,6 +64,7 @@ function Player(props) {
         isOn={props.isStopwatchOn}
         isVisible={!props.isEditable}
         className="inb"
+        hideHours
       />
 
       <div className={progressCls}>

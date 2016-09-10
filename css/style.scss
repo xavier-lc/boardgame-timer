@@ -60,19 +60,38 @@
 
 /* APP */
 
+$panel_margin_bottom: 15px;
+
 .container--pastNav {
   $navbar_height: 50px;
   $navbar_border: 1px;
-  $panel_margin_bottom: 20px;
 
   /* get past the navbar and add the same margin as .panel */
   padding-top: $navbar_height + $navbar_border + $panel_margin_bottom;
 }
 
+.panel {
+  margin-bottom: $panel_margin_bottom;
+}
+
+h4 {
+  margin-top: 0;
+}
+
 /* TIMER */
 
+$player_margin: 15px;
+
 .player {
-  margin-bottom: 20px;
+  margin-bottom: $player_margin;
+}
+
+.progress {
+  margin: 0;
+}
+
+.player:last-child {
+  margin-bottom: 0;
 }
 
 .inactive {
@@ -80,6 +99,7 @@
 }
 
 .player__name {
+  font-weight: bold;
   margin-right: 10px;
 }
 
@@ -106,8 +126,16 @@
   @include transition(none);
 }
 
+.toggleTotals {
+  margin-top: $player_margin;
+}
+
 .player__totals {
-  margin-top: 15px;
+  @extend .toggleTotals;
+}
+
+.player__avg {
+  margin-left: 15px;
 }
 
 .stats__title {
