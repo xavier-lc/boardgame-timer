@@ -19,12 +19,12 @@ function Timer(props) {
     hidden: !props.isVisible,
     [`${props.className}`]: props.className,
   });
-  const msCls = classnames({ hidden: props.isOn || props.elapsed === 0 });
 
   const time = msToTime(props.elapsed);
 
   // even with the prop set, hide the hours bit only if it's 0
   const hoursCls = classnames({ hidden: props.hideHours && time.hours === 0 });
+  const msCls = classnames({ hidden: props.isOn || props.elapsed === 0 });
 
   return (
     <div className={timerCls}>

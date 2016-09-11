@@ -40,7 +40,7 @@ function setup(props) {
   return renderer.getRenderOutput();
 }
 
-function getTestProps(isOn = false, start = null) {
+function getTestProps(isOn = false, start = null, finish = null) {
   return {
     players: {
       ids: [1, 2],
@@ -61,11 +61,12 @@ function getTestProps(isOn = false, start = null) {
       turns: {
         1: [],
         2: [],
-      }
+      },
     },
     stopwatch: {
-      isOn: isOn,
-      start: start,
+      isOn,
+      start,
+      finish,
     },
     config: {
       turnTime: {
@@ -80,39 +81,56 @@ function getTestProps(isOn = false, start = null) {
 }
 
 describe('PlayerTimers', function () {
+  it('should show Players w/out heading if not started', function () {
+    const element = setup(getTestProps());
+
+    const body = element.props.children;
+    const timersDiv = body.props.children[0];
+    const h4 = timersDiv.props.children[0];
+    const totals = body.props.children[1];
+
+    expect(element.props.className).toBe('panel panel-primary');
+
+    expect(body.props.className).toBe('panel-body');
+
+    expect(timersDiv.type).toBe('div');
+    expect(timersDiv.props.className).toNotInclude('hidden');
+
+    expect(h4.type).toBe('h4');
+    expect(h4.props.className).toInclude('hidden');
+
+    expect(totals.type.name).toBe('PlayerTotals');
+  });
+
   it('should render as many Player elements as players exist in the state', function () {
     const testProps = getTestProps();
     const element = setup(testProps);
 
-    expect(element.type).toBe('div');
-    expect(element.props.className).toBe('panel panel-primary');
-    expect(element.props.children).toEqual(
-      <div className="panel-body">
-        {
-          [
-            <Player
-              id={1}
-              key="player_1"
-              isEditable
-              isStopwatchOn={testProps.stopwatch.isOn}
-              {...testProps.players.data[1]}
-              turns={testProps.players.turns[1]}
-              turnLimit={60000}
-              inputChangeHandler={testProps.inputChangeHandler}
-            />,
-            <Player
-              id={2}
-              key="player_2"
-              isEditable
-              isStopwatchOn={testProps.stopwatch.isOn}
-              {...testProps.players.data[2]}
-              turns={testProps.players.turns[2]}
-              turnLimit={60000}
-              inputChangeHandler={testProps.inputChangeHandler}
-            />,
-          ]
-        }
-      </div>
-    );
+    const body = element.props.children;
+    const timersDiv = body.props.children[0];
+    const players = timersDiv.props.children[1];
+
+    expect(Array.isArray(players)).toBe(true);
+    expect(players.length).toBe(testProps.players.ids.length);
+    players.forEach(player => expect(player.type.name).toBe('Player'));
+  });
+
+  it('should show heading if started', function () {
+    const element = setup(getTestProps(true, 0, null));
+
+    const body = element.props.children;
+    const timersDiv = body.props.children[0];
+    const h4 = timersDiv.props.children[0];
+
+    expect(h4.props.className).toNotInclude('hidden');
+  });
+
+  it('should hide players if is finished', function () {
+    const element = setup(getTestProps(false, 0, 1));
+
+    const body = element.props.children;
+    const timersDiv = body.props.children[0];
+
+    expect(timersDiv.props.className).toInclude('hidden');
   });
 });

@@ -9,10 +9,12 @@ import TwoTimingDigits from './../../lib/components/TwoTimingDigits.jsx';
  *
  * @param {boolean} isVisible
  * @param {boolean} isOn
+ * @param {boolean} hideHours
+ * @param {number} elapsed
  * @returns {ReactElement}
  */
-function setup(isVisible = true, isOn = true) {
-  const props = { elapsed: 62125, isVisible, isOn };
+function setup(isVisible = true, isOn = true, hideHours = false, elapsed = 62125) {
+  const props = { isVisible, isOn, hideHours, elapsed };
 
   const renderer = TestUtils.createRenderer();
 
@@ -22,41 +24,54 @@ function setup(isVisible = true, isOn = true) {
 }
 
 describe('Timer', function () {
-  it('should render element without milliseconds if isOn and has elapsed time', function () {
-    const element = setup();
-
-    expect(element.type).toBe('div');
-    expect(element.props.className).toBe('');
-    expect(element.props.children).toEqual([
-      <TwoTimingDigits value={0} />,
-      ':',
-      <TwoTimingDigits value={1} />,
-      ':',
-      <TwoTimingDigits value={2} />,
-      <span className="hidden">
-        {['.', '125']}
-      </span>,
-    ]);
-  });
-
   it('should hide element if isVisible is false', function () {
     const element = setup(false);
 
-    expect(element.props.className).toBe('hidden');
+    expect(element.type).toBe('div');
+    expect(element.props.className).toInclude('hidden');
+  });
+
+  it('should hide hours if hideHours prop is true', function () {
+    const element = setup(true, true, true);
+
+    const hours = element.props.children[0];
+
+    expect(element.props.className).toNotInclude('hidden');
+
+    expect(hours.type).toBe('span');
+    expect(hours.props.className).toInclude('hidden');
+  });
+
+  it('should show hours if bigger than 0 even if hideHours prop is true', function () {
+    const element = setup(true, true, true, 3610000);
+
+    const hours = element.props.children[0];
+
+    expect(hours.props.className).toNotInclude('hidden');
+  });
+
+  it('should render element without milliseconds if isOn and has elapsed time', function () {
+    const element = setup();
+
+    const hours = element.props.children[0];
+    const hoursDigits = hours.props.children[0];
+    const minDigits = element.props.children[1];
+    const secDigits = element.props.children[3];
+    const ms = element.props.children[4];
+
+    expect(hoursDigits.props.value).toBe(0);
+    expect(minDigits.props.value).toBe(1);
+    expect(secDigits.props.value).toBe(2);
+
+    expect(ms.props.className).toInclude('hidden');
   });
 
   it('should show milliseconds if is not on', function () {
     const element = setup(true, false);
 
-    expect(element.props.children).toEqual([
-      <TwoTimingDigits value={0} />,
-      ':',
-      <TwoTimingDigits value={1} />,
-      ':',
-      <TwoTimingDigits value={2} />,
-      <span className="">
-        {['.', '125']}
-      </span>,
-    ]);
+    const ms = element.props.children[4];
+
+    expect(ms.props.className).toNotInclude('hidden');
+    expect(ms.props.children).toEqual(['.', '125']);
   });
 });

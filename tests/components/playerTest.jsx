@@ -44,26 +44,22 @@ describe('Player', function () {
 
     const element = setup(props);
 
-    expect(element.type).toBe('div');
-    expect(element.props.children).toEqual([
-      <PlayerNameInput
-        id={props.id}
-        isVisible
-        changeHandler={props.inputChangeHandler}
-        value={props.name}
-      />,
-      <span className="player__name hidden">{props.name}</span>,
-      <Timer
-        elapsed={0}
-        isOn={props.isStopwatchOn}
-        isVisible={false}
-        className="inb"
-      />,
-      <div className="progress hidden">
-        <div className="progress-bar progress-bar-striped" style={{ width: '0.00%' }}>
-        </div>
-      </div>,
-    ]);
+    const input = element.props.children[0];
+    const nameSpan = element.props.children[1];
+    const timer = element.props.children[2];
+    const progress = element.props.children[3];
+
+    expect(input.type.name).toBe('PlayerNameInput');
+    expect(input.props.isVisible).toExist();
+
+    expect(nameSpan.type).toBe('span');
+    expect(nameSpan.props.className).toInclude('hidden');
+
+    expect(timer.type.name).toBe('Timer');
+    expect(timer.props.isVisible).toNotExist();
+
+    expect(progress.type).toBe('div');
+    expect(progress.props.className).toInclude('hidden');
   });
 
   it('should have name, Timer and progress bar visible when active', function () {
@@ -75,25 +71,17 @@ describe('Player', function () {
 
     const element = setup(props);
 
-    expect(element.type).toBe('div');
-    expect(element.props.children).toEqual([
-      <PlayerNameInput
-        id={props.id}
-        isVisible={false}
-        changeHandler={props.inputChangeHandler}
-        value={props.name}
-      />,
-      <span className="player__name">{props.name}</span>,
-      <Timer
-        elapsed={0}
-        isOn={props.isStopwatchOn}
-        isVisible
-        className="inb"
-      />,
-      <div className="progress">
-        <div className="progress-bar progress-bar-striped" style={{ width: '0.00%' }}>
-        </div>
-      </div>,
-    ]);
+    const input = element.props.children[0];
+    const nameSpan = element.props.children[1];
+    const timer = element.props.children[2];
+    const progress = element.props.children[3];
+
+    expect(input.props.isVisible).toNotExist();
+
+    expect(nameSpan.props.className).toNotInclude('hidden');
+
+    expect(timer.props.isVisible).toExist();
+
+    expect(progress.props.className).toNotInclude('hidden');
   });
 });

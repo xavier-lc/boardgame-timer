@@ -1,6 +1,7 @@
 import expect from 'expect';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
+import { initialState } from './../../lib/reducers/players';
 import Timer from './../../lib/components/Timer.jsx';
 import TimerControlsUnstarted from './../../lib/components/TimerControlsUnstarted.jsx';
 import TimerControls from './../../lib/components/TimerControls.jsx';
@@ -73,6 +74,7 @@ describe('TotalTimer', function () {
         finish: null,
         offset: null,
       },
+      players: initialState,
       clickAddHandler: add,
       clickPlayHandler: play,
       clickNextHandler: next,
@@ -107,6 +109,7 @@ describe('TotalTimer', function () {
           isOn={props.stopwatch.isOn}
           start={props.stopwatch.start}
           finish={props.stopwatch.finish}
+          turns={0}
         />
       </div>
     );
