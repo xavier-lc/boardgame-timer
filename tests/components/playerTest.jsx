@@ -49,13 +49,13 @@ describe('Player', function () {
     const timer = element.props.children[2];
     const progress = element.props.children[3];
 
-    expect(input.type.name).toBe('PlayerNameInput');
+    expect(TestUtils.isElementOfType(input, PlayerNameInput)).toBe(true);
     expect(input.props.isVisible).toExist();
 
     expect(nameSpan.type).toBe('span');
     expect(nameSpan.props.className).toInclude('hidden');
 
-    expect(timer.type.name).toBe('Timer');
+    expect(TestUtils.isElementOfType(timer, Timer)).toBe(true);
     expect(timer.props.isVisible).toNotExist();
 
     expect(progress.type).toBe('div');

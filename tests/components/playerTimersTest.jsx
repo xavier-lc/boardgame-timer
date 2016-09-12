@@ -4,6 +4,7 @@ import TestUtils from 'react-addons-test-utils';
 import TimerButton from './../../lib/components/TimerButton.jsx';
 import Player from './../../lib/components/Player.jsx';
 import PlayerTimers from './../../lib/components/PlayerTimers.jsx';
+import PlayerTotals from './../../lib/components/PlayerTotals.jsx';
 
 /**
  * dummy button handler function
@@ -99,7 +100,7 @@ describe('PlayerTimers', function () {
     expect(h4.type).toBe('h4');
     expect(h4.props.className).toInclude('hidden');
 
-    expect(totals.type.name).toBe('PlayerTotals');
+    expect(TestUtils.isElementOfType(totals, PlayerTotals)).toBe(true);
   });
 
   it('should render as many Player elements as players exist in the state', function () {
@@ -112,7 +113,7 @@ describe('PlayerTimers', function () {
 
     expect(Array.isArray(players)).toBe(true);
     expect(players.length).toBe(testProps.players.ids.length);
-    players.forEach(player => expect(player.type.name).toBe('Player'));
+    players.forEach(player => expect(TestUtils.isElementOfType(player, Player)).toBe(true));
   });
 
   it('should show heading if started', function () {
