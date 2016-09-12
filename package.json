@@ -1,13 +1,17 @@
 {
-  "name": "boardgametimer",
-  "version": "1.0.0",
-  "description": "timer app for boardgames",
+  "name": "boardgame-timer",
+  "version": "0.0.1",
+  "description": "Timer web app for boardgames",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patillades/boardgame-timer"
+  },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --compilers jsx:babel-register --recursive tests"
   },
   "author": "patillades",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.11.1",
