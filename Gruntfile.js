@@ -27,14 +27,26 @@ module.exports = function (grunt) {
         },
         files: {
           'css/style.css': 'css/style.scss',
-        }
+        },
+      },
+    },
+    cssmin: {
+      options: {
+        report: 'min',
+        keepSpecialComments: 0,
+      },
+      default: {
+        files: {
+          'css/style.min.css': 'css/style.css',
+        },
       },
     },
   });
 
   grunt.loadNpmTasks('grunt-browserify');
-  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   grunt.registerTask(
     'default',
@@ -42,6 +54,7 @@ module.exports = function (grunt) {
       'browserify',
       'uglify',
       'sass',
+      'cssmin',
     ]
   );
 };
