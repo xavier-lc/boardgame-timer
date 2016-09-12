@@ -3,6 +3,7 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import Config from './../../lib/components/Config.jsx';
 import TurnTime from './../../lib/components/TurnTime.jsx';
+import { initialState } from './../../lib/reducers/config';
 
 /**
  * dummy change handler function
@@ -27,28 +28,19 @@ function setup(props) {
 describe('Config', function () {
   it('should render element', function () {
     const props = {
-      config: {
-        turnTime: {
-          minutes: 1,
-          seconds: 0,
-          maxMinutes: 59,
-        },
-      },
+      config: initialState,
       selectChangeHandler: change,
     };
     const element = setup(props);
+    const panelBody = element.props.children;
+    const turnTime = panelBody.props.children[0];
 
     expect(element.type).toBe('div');
     expect(element.props.className).toBe('panel panel-primary');
-    expect(element.props.children).toEqual(
-      <div className="panel-body">
-        <TurnTime
-          minutes={props.config.turnTime.minutes}
-          seconds={props.config.turnTime.seconds}
-          maxMinutes={props.config.turnTime.maxMinutes}
-          selectChangeHandler={props.selectChangeHandler}
-        />
-      </div>
-    );
+
+    expect(panelBody.type).toBe('div');
+    expect(panelBody.props.className).toBe('panel-body');
+
+    expect(TestUtils.isElementOfType(turnTime, TurnTime)).toBe(true);
   });
 });
