@@ -40,8 +40,8 @@ module.exports = function (grunt) {
     'default',
     [
       'browserify',
+      'uglify',
       'sass',
-      //'uglify',
     ]
   );
 };
