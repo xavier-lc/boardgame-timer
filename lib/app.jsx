@@ -53,6 +53,9 @@ hashHistory.listen(location => {
   if (location.pathname !== '/' && state.stopwatch.isOn) {
     store.dispatch(pause());
   }
+
+  ga('set', 'page', location.pathname);
+  ga('send', 'pageview');
 });
 
 render(

@@ -229,6 +229,9 @@ _hashHistory2.default.listen(function (location) {
   if (location.pathname !== '/' && state.stopwatch.isOn) {
     store.dispatch((0, _actions.pause)());
   }
+
+  ga('set', 'page', location.pathname);
+  ga('send', 'pageview');
 });
 
 (0, _reactDom.render)(_react2.default.createElement(
