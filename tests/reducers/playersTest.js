@@ -1,6 +1,7 @@
 import expect from 'expect';
 import { ADD_PLAYER, PLAY, PAUSE, RESUME, TICK, NEXT } from './../../lib/constants/actionTypes';
-import { play, tick, pause, resume, stop, addPlayer, next, changeName } from './../../lib/actions/actions';
+import { play, tick, pause, resume, stop, addPlayer, next, changeName }
+  from './../../lib/actions/actions';
 import players, { initialState } from './../../lib/reducers/players';
 
 describe('players reducer', function () {
