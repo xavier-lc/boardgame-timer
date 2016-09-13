@@ -61,6 +61,17 @@ module.exports = function (grunt) {
         },
       },
     },
+    htmlmin: {
+      default: {
+        options: {
+          collapseWhitespace: true,
+          minifyJS: true,
+        },
+        files: {
+          'index.html': 'index.html',
+        },
+      },
+    },
   });
 
   grunt.loadNpmTasks('grunt-browserify');
@@ -68,6 +79,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-targethtml');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
   grunt.registerTask('default', ['dev']);
 
@@ -88,6 +100,7 @@ module.exports = function (grunt) {
       'sass',
       'cssmin',
       'targethtml:prod',
+      'htmlmin',
     ]
   );
 };
