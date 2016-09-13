@@ -17,7 +17,7 @@ import LayoutContainer from './containers/LayoutContainer.jsx';
 import IndexContainer from './containers/IndexContainer.jsx';
 import ConfigContainer from './containers/ConfigContainer.jsx';
 
-if (process.env.NODE_ENV === 'prod') {
+if (process.env.NODE_ENV === 'production') {
   ga('create', 'UA-83961876-1', 'auto');
 }
 
@@ -58,7 +58,7 @@ hashHistory.listen(location => {
     store.dispatch(pause());
   }
 
-  if (process.env.NODE_ENV === 'prod') {
+  if (process.env.NODE_ENV === 'production') {
     ga('set', 'page', location.pathname);
     ga('send', 'pageview');
   }

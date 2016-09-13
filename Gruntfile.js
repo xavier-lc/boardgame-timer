@@ -6,7 +6,7 @@ module.exports = function (grunt) {
           'src/app.js': 'lib/app.jsx',
         },
         options: {
-          transform: [['loose-envify', { NODE_ENV: 'dev' }], 'babelify'],
+          transform: [['loose-envify', { NODE_ENV: 'dev', global: true }], 'babelify'],
         },
       },
       prod: {
@@ -14,7 +14,7 @@ module.exports = function (grunt) {
           'src/app.js': 'lib/app.jsx',
         },
         options: {
-          transform: [['loose-envify', { NODE_ENV: 'prod' }], 'babelify'],
+          transform: [['loose-envify', { NODE_ENV: 'production', global: true }], 'babelify'],
         },
       },
     },
