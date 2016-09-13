@@ -2,13 +2,14 @@
   "name": "boardgame-timer",
   "version": "0.0.1",
   "description": "Timer web app for boardgames",
-  "main": "index.js",
+  "main": "src/app.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/patillades/boardgame-timer"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --compilers jsx:babel-register --recursive tests"
+    "test": "./node_modules/mocha/bin/mocha --compilers jsx:babel-register --recursive tests",
+    "prepublish": "./node_modules/grunt/bin/grunt prod"
   },
   "author": "patillades",
   "license": "MIT",
@@ -24,6 +25,7 @@
     "grunt-contrib-cssmin": "^1.0.2",
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-uglify": "^2.0.0",
+    "grunt-targethtml": "^0.2.6",
     "jscs": "^3.0.6",
     "loose-envify": "^1.2.0",
     "mocha": "^2.5.3",

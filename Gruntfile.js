@@ -49,12 +49,25 @@ module.exports = function (grunt) {
         },
       },
     },
+    targethtml: {
+      dev: {
+        files: {
+          'index.html': 'lib/index.html',
+        },
+      },
+      prod: {
+        files: {
+          'index.html': 'lib/index.html',
+        },
+      },
+    },
   });
 
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-targethtml');
 
   grunt.registerTask('default', ['dev']);
 
@@ -63,6 +76,7 @@ module.exports = function (grunt) {
     [
       'browserify:dev',
       'sass',
+      'targethtml:dev',
     ]
   );
 
@@ -73,6 +87,7 @@ module.exports = function (grunt) {
       'uglify',
       'sass',
       'cssmin',
+      'targethtml:prod',
     ]
   );
 };
