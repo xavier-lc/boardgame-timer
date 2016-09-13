@@ -196,6 +196,10 @@ var _ConfigContainer2 = _interopRequireDefault(_ConfigContainer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+if ("dev" === 'prod') {
+  ga('create', 'UA-83961876-1', 'auto');
+}
+
 var store = (0, _redux.createStore)((0, _redux.combineReducers)({
   config: _config2.default,
   players: _players2.default,
@@ -230,8 +234,10 @@ _hashHistory2.default.listen(function (location) {
     store.dispatch((0, _actions.pause)());
   }
 
-  ga('set', 'page', location.pathname);
-  ga('send', 'pageview');
+  if ("dev" === 'prod') {
+    ga('set', 'page', location.pathname);
+    ga('send', 'pageview');
+  }
 });
 
 (0, _reactDom.render)(_react2.default.createElement(
