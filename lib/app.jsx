@@ -17,6 +17,10 @@ import LayoutContainer from './containers/LayoutContainer.jsx';
 import IndexContainer from './containers/IndexContainer.jsx';
 import ConfigContainer from './containers/ConfigContainer.jsx';
 
+if (process.env.NODE_ENV === 'prod') {
+  ga('create', 'UA-83961876-1', 'auto');
+}
+
 const store = createStore(
   combineReducers({
     config,
@@ -54,8 +58,10 @@ hashHistory.listen(location => {
     store.dispatch(pause());
   }
 
-  ga('set', 'page', location.pathname);
-  ga('send', 'pageview');
+  if (process.env.NODE_ENV === 'prod') {
+    ga('set', 'page', location.pathname);
+    ga('send', 'pageview');
+  }
 });
 
 render(

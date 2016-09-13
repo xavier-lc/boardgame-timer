@@ -25,6 +25,7 @@
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-uglify": "^2.0.0",
     "jscs": "^3.0.6",
+    "loose-envify": "^1.2.0",
     "mocha": "^2.5.3",
     "react-addons-test-utils": "^15.2.1",
     "redux-devtools": "^3.3.1"

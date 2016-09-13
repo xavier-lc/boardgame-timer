@@ -1,12 +1,20 @@
 module.exports = function (grunt) {
   grunt.initConfig({
     browserify: {
-      default: {
+      dev: {
         files: {
           'src/app.js': 'lib/app.jsx',
         },
         options: {
-          transform: ['babelify'],
+          transform: [['loose-envify', { NODE_ENV: 'dev' }], 'babelify'],
+        },
+      },
+      prod: {
+        files: {
+          'src/app.js': 'lib/app.jsx',
+        },
+        options: {
+          transform: [['loose-envify', { NODE_ENV: 'prod' }], 'babelify'],
         },
       },
     },
@@ -48,10 +56,20 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
+  grunt.registerTask('default', ['dev']);
+
   grunt.registerTask(
-    'default',
+    'dev',
     [
-      'browserify',
+      'browserify:dev',
+      'sass',
+    ]
+  );
+
+  grunt.registerTask(
+    'prod',
+    [
+      'browserify:prod',
       'uglify',
       'sass',
       'cssmin',
