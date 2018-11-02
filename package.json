@@ -26,21 +26,23 @@
     "grunt-contrib-htmlmin": "^2.0.0",
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.1.0",
     "grunt-targethtml": "^0.2.6",
     "jscs": "^3.0.6",
     "loose-envify": "^1.2.0",
-    "mocha": "^2.5.3",
-    "react-addons-test-utils": "^15.2.1",
-    "redux-devtools": "^3.3.1"
+    "mocha": "5.x",
+    "react-test-renderer": "^16.6.0"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
-    "lodash": "^4.14.2",
-    "react": "^15.2.0",
-    "react-bootstrap": "^0.30.2",
-    "react-dom": "^15.2.0",
-    "react-redux": "^4.4.5",
-    "react-router": "^2.6.1",
-    "redux": "^3.5.2"
+    "classnames": "2.2.x",
+    "lodash": "4.x",
+    "prop-types": "^15.6.2",
+    "react": "16.x",
+    "react-bootstrap": "0.32.x",
+    "react-dom": "16.x",
+    "react-redux": "5.x",
+    "react-router": "4.3.x",
+    "react-router-dom": "^4.3.1",
+    "redux": "4.x"
   }
 }
