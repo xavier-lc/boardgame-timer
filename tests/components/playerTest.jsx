@@ -1,30 +1,10 @@
 import expect from 'expect';
-import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import TestUtils from 'react-dom/test-utils';
+import setup from './../setup';
+import dummyHandler from './../dummyHandler';
 import Timer from './../../lib/components/Timer.jsx';
 import PlayerNameInput from './../../lib/components/PlayerNameInput.jsx';
 import Player from './../../lib/components/Player.jsx';
-
-/**
- * dummy input handler function
- */
-function change() {
-  console.log('change');
-}
-
-/**
- * Set up a Player element for testing purposes
- *
- * @param {object} props
- * @returns {ReactElement}
- */
-function setup(props) {
-  const renderer = TestUtils.createRenderer();
-
-  renderer.render(<Player {...props} />);
-
-  return renderer.getRenderOutput();
-}
 
 const testProps = {
   id: 1,
@@ -32,7 +12,7 @@ const testProps = {
   turns: [],
   turnLimit: 60000,
   isStopwatchOn: false,
-  inputChangeHandler: change,
+  inputChangeHandler: dummyHandler('change'),
 };
 
 describe('Player', function () {
@@ -42,7 +22,7 @@ describe('Player', function () {
       isActive: false,
     }, testProps);
 
-    const element = setup(props);
+    const element = setup(Player, props);
 
     const input = element.props.children[0];
     const nameSpan = element.props.children[1];
@@ -69,7 +49,7 @@ describe('Player', function () {
       isStopwatchOn: true,
     }, testProps);
 
-    const element = setup(props);
+    const element = setup(Player, props);
 
     const input = element.props.children[0];
     const nameSpan = element.props.children[1];

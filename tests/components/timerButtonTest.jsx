@@ -1,14 +1,9 @@
 import expect from 'expect';
-import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import setup from './../setup';
+import dummyHandler from './../dummyHandler';
 import TimerButton from './../../lib/components/TimerButton.jsx';
 
-/**
- * dummy button handler function
- */
-function clic() {
-  console.log('clic');
-}
+const clic = dummyHandler('clic');
 
 /**
  * Set up a TimerButton element for testing purposes
@@ -16,23 +11,19 @@ function clic() {
  * @param {boolean} isVisible
  * @returns {ReactElement}
  */
-function setup(isVisible) {
+function propsSetup(isVisible) {
   const props = {
     clickHandler: clic,
     isVisible: isVisible,
     txt: 'test me',
   };
 
-  const renderer = TestUtils.createRenderer();
-
-  renderer.render(<TimerButton {...props} />);
-
-  return renderer.getRenderOutput();
+  return setup(TimerButton, props);
 }
 
 describe('TimerButton', function () {
   it('should render element', function () {
-    const element = setup(true);
+    const element = propsSetup(true);
 
     expect(element.type).toBe('button');
     expect(element.props.children).toBe('test me');
@@ -41,7 +32,7 @@ describe('TimerButton', function () {
   });
 
   it('should have "hidden" class if not visible', function () {
-    const element = setup(false);
+    const element = propsSetup(false);
 
     expect(element.props.className).toInclude('hidden');
   });

@@ -1,68 +1,12 @@
 import expect from 'expect';
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import setup from './../setup';
+import dummyHandler from './../dummyHandler';
 import { initialState } from './../../lib/reducers/players';
-import Timer from './../../lib/components/Timer.jsx';
 import TimerControlsUnstarted from './../../lib/components/TimerControlsUnstarted.jsx';
 import TimerControls from './../../lib/components/TimerControls.jsx';
 import Statistics from './../../lib/components/Statistics.jsx';
 import TotalTimer from './../../lib/components/TotalTimer.jsx';
-
-/**
- * dummy button handler function
- */
-function add() {
-  console.log('add');
-}
-
-/**
- * dummy button handler function
- */
-function play() {
-  console.log('play');
-}
-
-/**
- * dummy button handler function
- */
-function next() {
-  console.log('next');
-}
-
-/**
- * dummy button handler function
- */
-function pause() {
-  console.log('pause');
-}
-
-/**
- * dummy button handler function
- */
-function resume() {
-  console.log('resume');
-}
-
-/**
- * dummy button handler function
- */
-function stop() {
-  console.log('stop');
-}
-
-/**
- * Set up a TotalTimer element for testing purposes
- *
- * @param {object} props
- * @returns {ReactElement}
- */
-function setup(props) {
-  const renderer = TestUtils.createRenderer();
-
-  renderer.render(<TotalTimer {...props} />);
-
-  return renderer.getRenderOutput();
-}
 
 describe('TotalTimer', function () {
   it('should render element', function () {
@@ -75,15 +19,15 @@ describe('TotalTimer', function () {
         offset: null,
       },
       players: initialState,
-      clickAddHandler: add,
-      clickPlayHandler: play,
-      clickNextHandler: next,
-      clickPauseHandler: pause,
-      clickResumeHandler: resume,
-      clickStopHandler: stop,
+      clickAddHandler: dummyHandler('add'),
+      clickPlayHandler: dummyHandler('play'),
+      clickNextHandler: dummyHandler('next'),
+      clickPauseHandler: dummyHandler('pause'),
+      clickResumeHandler: dummyHandler('resume'),
+      clickStopHandler: dummyHandler('stop'),
     };
 
-    const element = setup(props);
+    const element = setup(TotalTimer, props);
 
     expect(element.type).toBe('div');
     expect(element.props.className).toBe('panel panel-primary');

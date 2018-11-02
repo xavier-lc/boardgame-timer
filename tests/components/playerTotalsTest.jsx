@@ -1,6 +1,6 @@
 import expect from 'expect';
-import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import TestUtils from 'react-dom/test-utils';
+import setup from './../setup';
 import { initialState as playersInitialState } from './../../lib/reducers/players';
 import { initialState as stopwatchInitialState } from './../../lib/reducers/stopwatch';
 import PlayerTotals from './../../lib/components/PlayerTotals.jsx';
@@ -19,23 +19,9 @@ function getProps(start = null, finish = null) {
   return { players: playersInitialState, stopwatch };
 }
 
-/**
- * Set up a PlayerTotals element for testing purposes
- *
- * @param {object} props
- * @returns {ReactElement}
- */
-function setup(props) {
-  const renderer = TestUtils.createRenderer();
-
-  renderer.render(<PlayerTotals {...props} />);
-
-  return renderer.getRenderOutput();
-}
-
 describe('PlayerTotals', function () {
   it('should be hidden if timer has not started', function () {
-    const element = setup(getProps());
+    const element = setup(PlayerTotals, getProps());
     const button = element.props.children[0];
     const totalsDiv = element.props.children[1];
 
@@ -49,7 +35,7 @@ describe('PlayerTotals', function () {
   });
 
   it('should have as many totals as players has the state', function () {
-    const element = setup(getProps());
+    const element = setup(PlayerTotals, getProps());
     const totalsDiv = element.props.children[1];
 
     expect(Array.isArray(totalsDiv.props.children)).toBe(true);
@@ -57,7 +43,7 @@ describe('PlayerTotals', function () {
   });
 
   it('should have button visible but not totals when timer starts', function () {
-    const element = setup(getProps(0));
+    const element = setup(PlayerTotals, getProps(0));
     const button = element.props.children[0];
     const totalsDiv = element.props.children[1];
 
@@ -67,7 +53,7 @@ describe('PlayerTotals', function () {
   });
 
   it('should have totals visible but not button when timer finishes', function () {
-    const element = setup(getProps(0, 1));
+    const element = setup(PlayerTotals, getProps(0, 1));
     const button = element.props.children[0];
     const totalsDiv = element.props.children[1];
 

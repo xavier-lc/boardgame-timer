@@ -1,15 +1,11 @@
 import expect from 'expect';
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import setup from './../setup';
+import dummyHandler from './../dummyHandler';
 import TurnTime from './../../lib/components/TurnTime.jsx';
 import TimeSelector from './../../lib/components/TimeSelector.jsx';
 
-/**
- * dummy change handler function
- */
-function change() {
-  console.log('change');
-}
+const change = dummyHandler('change');
 
 /**
  * Set up a TurnTime element for testing purposes
@@ -19,7 +15,7 @@ function change() {
  * @param {number} maxMinutes
  * @returns {ReactElement}
  */
-function setup(minutes, seconds, maxMinutes) {
+function propsSetup(minutes, seconds, maxMinutes) {
   const props = {
     minutes,
     seconds,
@@ -27,11 +23,7 @@ function setup(minutes, seconds, maxMinutes) {
     selectChangeHandler: change,
   };
 
-  const renderer = TestUtils.createRenderer();
-
-  renderer.render(<TurnTime {...props} />);
-
-  return renderer.getRenderOutput();
+  return setup(TurnTime, props);
 }
 
 describe('TurnTime', function () {
@@ -39,7 +31,7 @@ describe('TurnTime', function () {
     const minutes = 1;
     const seconds = 0;
     const maxMinutes = 10;
-    const element = setup(minutes, seconds, maxMinutes);
+    const element = propsSetup(minutes, seconds, maxMinutes);
 
     expect(element.type).toBe('div');
     expect(element.props.children).toEqual([

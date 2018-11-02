@@ -1,8 +1,6 @@
 import expect from 'expect';
-import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import setup from './../setup';
 import Timer from './../../lib/components/Timer.jsx';
-import TwoTimingDigits from './../../lib/components/TwoTimingDigits.jsx';
 
 /**
  * Set up a Timer element for testing purposes
@@ -13,26 +11,22 @@ import TwoTimingDigits from './../../lib/components/TwoTimingDigits.jsx';
  * @param {number} elapsed
  * @returns {ReactElement}
  */
-function setup(isVisible = true, isOn = true, hideHours = false, elapsed = 62125) {
+function propsSetup(isVisible = true, isOn = true, hideHours = false, elapsed = 62125) {
   const props = { isVisible, isOn, hideHours, elapsed };
 
-  const renderer = TestUtils.createRenderer();
-
-  renderer.render(<Timer {...props} />);
-
-  return renderer.getRenderOutput();
+  return setup(Timer, props);
 }
 
 describe('Timer', function () {
   it('should hide element if isVisible is false', function () {
-    const element = setup(false);
+    const element = propsSetup(false);
 
     expect(element.type).toBe('div');
     expect(element.props.className).toInclude('hidden');
   });
 
   it('should hide hours if hideHours prop is true', function () {
-    const element = setup(true, true, true);
+    const element = propsSetup(true, true, true);
 
     const hours = element.props.children[0];
 
@@ -43,7 +37,7 @@ describe('Timer', function () {
   });
 
   it('should show hours if bigger than 0 even if hideHours prop is true', function () {
-    const element = setup(true, true, true, 3610000);
+    const element = propsSetup(true, true, true, 3610000);
 
     const hours = element.props.children[0];
 
@@ -51,7 +45,7 @@ describe('Timer', function () {
   });
 
   it('should render element without milliseconds if isOn and has elapsed time', function () {
-    const element = setup();
+    const element = propsSetup();
 
     const hours = element.props.children[0];
     const hoursDigits = hours.props.children[0];
@@ -67,7 +61,7 @@ describe('Timer', function () {
   });
 
   it('should show milliseconds if is not on', function () {
-    const element = setup(true, false);
+    const element = propsSetup(true, false);
 
     const ms = element.props.children[4];
 

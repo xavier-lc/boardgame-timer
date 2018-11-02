@@ -1,37 +1,15 @@
 import expect from 'expect';
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import setup from './../setup';
+import dummyHandler from './../dummyHandler';
 import Timer from './../../lib/components/Timer.jsx';
 import TimerButton from './../../lib/components/TimerButton.jsx';
 import TimerControls from './../../lib/components/TimerControls.jsx';
 
-/**
- * dummy button handler function
- */
-function next() {
-  console.log('next');
-}
-
-/**
- * dummy button handler function
- */
-function pause() {
-  console.log('pause');
-}
-
-/**
- * dummy button handler function
- */
-function resume() {
-  console.log('resume');
-}
-
-/**
- * dummy button handler function
- */
-function stop() {
-  console.log('stop');
-}
+const next = dummyHandler('next');
+const pause = dummyHandler('pause');
+const resume = dummyHandler('resume');
+const stop = dummyHandler('stop');
 
 /**
  * Set up a TimerControls element for testing purposes
@@ -42,7 +20,7 @@ function stop() {
  * @param {number} elapsed
  * @returns {ReactElement}
  */
-function setup(isOn, start, finish, elapsed) {
+function propsSetup(isOn, start, finish, elapsed) {
   const props = Object.assign({
     clickNextHandler: next,
     clickPauseHandler: pause,
@@ -50,23 +28,19 @@ function setup(isOn, start, finish, elapsed) {
     clickStopHandler: stop,
   }, { isOn, start, finish, elapsed });
 
-  const renderer = TestUtils.createRenderer();
-
-  renderer.render(<TimerControls {...props} />);
-
-  return renderer.getRenderOutput();
+  return setup(TimerControls, props);
 }
 
 describe('TimerControls', function () {
   it('should be hidden if not started', function () {
-    const element = setup(false, null, null, 0);
+    const element = propsSetup(false, null, null, 0);
 
     expect(element.type).toBe('div');
     expect(element.props.className).toInclude('hidden');
   });
 
   it('should render PAUSE/NEXT buttons if started', function () {
-    const element = setup(true, 0, null, 0);
+    const element = propsSetup(true, 0, null, 0);
 
     expect(element.props.className).toExclude('hidden');
     expect(element.props.children).toEqual([
@@ -110,7 +84,7 @@ describe('TimerControls', function () {
   });
 
   it('should render RESUME/STOP buttons if paused', function () {
-    const element = setup(false, 0, null, 1);
+    const element = propsSetup(false, 0, null, 1);
 
     expect(element.props.className).toExclude('hidden');
     expect(element.props.children).toEqual([
@@ -154,7 +128,7 @@ describe('TimerControls', function () {
   });
 
   it('should have "hidden" class if finished', function () {
-    const element = setup(false, 0, 1, 1);
+    const element = propsSetup(false, 0, 1, 1);
 
     expect(element.props.className).toInclude('hidden');
   });

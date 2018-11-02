@@ -1,45 +1,10 @@
 import expect from 'expect';
-import React from 'react';
-import TestUtils from 'react-addons-test-utils';
-import TimerButton from './../../lib/components/TimerButton.jsx';
+import TestUtils from 'react-dom/test-utils';
+import setup from './../setup';
+import dummyHandler from './../dummyHandler';
 import Player from './../../lib/components/Player.jsx';
 import PlayerTimers from './../../lib/components/PlayerTimers.jsx';
 import PlayerTotals from './../../lib/components/PlayerTotals.jsx';
-
-/**
- * dummy button handler function
- */
-function add() {
-  console.log('add');
-}
-
-/**
- * dummy button handler function
- */
-function next() {
-  console.log('next');
-}
-
-/**
- * dummy input handler function
- */
-function change() {
-  console.log('change');
-}
-
-/**
- * Set up a PlayerTimers element for testing purposes
- *
- * @param {object} props
- * @returns {ReactElement}
- */
-function setup(props) {
-  const renderer = TestUtils.createRenderer();
-
-  renderer.render(<PlayerTimers {...props} />);
-
-  return renderer.getRenderOutput();
-}
 
 function getTestProps(isOn = false, start = null, finish = null) {
   return {
@@ -75,15 +40,15 @@ function getTestProps(isOn = false, start = null, finish = null) {
         seconds: 0,
       },
     },
-    clickAddHandler: add,
-    clickNextHandler: next,
-    inputChangeHandler: change,
+    clickAddHandler: dummyHandler('add'),
+    clickNextHandler: dummyHandler('next'),
+    inputChangeHandler: dummyHandler('change'),
   };
 }
 
 describe('PlayerTimers', function () {
   it('should show Players w/out heading if not started', function () {
-    const element = setup(getTestProps());
+    const element = setup(PlayerTimers, getTestProps());
 
     const body = element.props.children;
     const timersDiv = body.props.children[0];
@@ -105,7 +70,7 @@ describe('PlayerTimers', function () {
 
   it('should render as many Player elements as players exist in the state', function () {
     const testProps = getTestProps();
-    const element = setup(testProps);
+    const element = setup(PlayerTimers, testProps);
 
     const body = element.props.children;
     const timersDiv = body.props.children[0];
@@ -117,7 +82,7 @@ describe('PlayerTimers', function () {
   });
 
   it('should show heading if started', function () {
-    const element = setup(getTestProps(true, 0, null));
+    const element = setup(PlayerTimers, getTestProps(true, 0, null));
 
     const body = element.props.children;
     const timersDiv = body.props.children[0];
@@ -127,7 +92,7 @@ describe('PlayerTimers', function () {
   });
 
   it('should hide players if is finished', function () {
-    const element = setup(getTestProps(false, 0, 1));
+    const element = setup(PlayerTimers, getTestProps(false, 0, 1));
 
     const body = element.props.children;
     const timersDiv = body.props.children[0];
