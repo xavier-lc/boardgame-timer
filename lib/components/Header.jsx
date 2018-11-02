@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
@@ -7,9 +8,9 @@ const propTypes = {
   activePath: PropTypes.string.isRequired,
   headerTitle: PropTypes.string.isRequired,
   links: PropTypes.arrayOf(
-    React.PropTypes.shape({
-      title: React.PropTypes.string,
-      path: React.PropTypes.string,
+    PropTypes.shape({
+      title: PropTypes.string,
+      path: PropTypes.string,
     })
   ).isRequired,
 };
