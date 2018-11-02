@@ -1,9 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Router from 'react-router/lib/Router';
-import Route from 'react-router/lib/Route';
-import IndexRoute from 'react-router/lib/IndexRoute';
-import hashHistory from 'react-router/lib/hashHistory';
+import Route from 'react-router/Route';
+import withRouter from 'react-router/withRouter';
+import HashRouter from 'react-router-dom';
 import { createStore, combineReducers } from 'redux';
 import Provider from 'react-redux/lib/components/Provider';
 
@@ -49,29 +48,30 @@ store.subscribe(() => {
   }
 });
 
-hashHistory.listen(location => {
-  const state = store.getState();
+// TODO: withRouter
+// hashHistory.listen(location => {
+//   const state = store.getState();
 
-  // whenever the user navigates out of the home page (where the timer is),
-  // pause the stopwatch if it's running
-  if (location.pathname !== '/' && state.stopwatch.isOn) {
-    store.dispatch(pause());
-  }
+//   // whenever the user navigates out of the home page (where the timer is),
+//   // pause the stopwatch if it's running
+//   if (location.pathname !== '/' && state.stopwatch.isOn) {
+//     store.dispatch(pause());
+//   }
 
-  if (process.env.NODE_ENV === 'production') {
-    ga('set', 'page', location.pathname);
-    ga('send', 'pageview');
-  }
-});
+//   if (process.env.NODE_ENV === 'production') {
+//     ga('set', 'page', location.pathname);
+//     ga('send', 'pageview');
+//   }
+// });
 
 render(
   <Provider store={store}>
-    <Router history={hashHistory}>
+    <HashRouter>
       <Route path="/" component={LayoutContainer} headerTitle="Boardgame timer">
         <IndexRoute component={IndexContainer} title="Timer" />
         <Route path="/config" component={ConfigContainer} title="Config" />
       </Route>
-    </Router>
+    </HashRouter>
   </Provider>,
   document.getElementById('js-app')
 );
