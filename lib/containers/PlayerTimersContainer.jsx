@@ -1,4 +1,4 @@
-import connect from 'react-redux/lib/components/connect';
+import connect from 'react-redux/lib/connect/connect';
 
 import { changeName } from './../actions/actions';
 

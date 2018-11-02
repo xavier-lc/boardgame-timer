@@ -1,4 +1,4 @@
-import connect from 'react-redux/lib/components/connect';
+import connect from 'react-redux/lib/connect/connect';
 
 import { play, addPlayer, next, pause, resume, stop } from './../actions/actions';
 
