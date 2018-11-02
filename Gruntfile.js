@@ -72,6 +72,10 @@ module.exports = function (grunt) {
         },
       },
     },
+    watch: {
+      files: ['lib/**/*'],
+      tasks: ['dev'],
+    },
   });
 
   grunt.loadNpmTasks('grunt-browserify');
@@ -80,6 +84,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-targethtml');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', ['dev']);
 
