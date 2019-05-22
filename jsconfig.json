@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "checkJs": true,
+        "baseUrl": "lib",
+        "jsx": "react",
+        "noUnusedLocals": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "module": "commonjs"
+    },
+    "include": ["lib/**/*"],
+    "exclude": ["node_modules", "src"]
+}
