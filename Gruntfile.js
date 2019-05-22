@@ -8,6 +8,8 @@ const browserifyConfig = env => ({
     }
 });
 
+const targethtmlConfig = { files: { 'index.html': 'lib/index.html' } };
+
 module.exports = function(grunt) {
     grunt.initConfig({
         browserify: {
@@ -52,11 +54,9 @@ module.exports = function(grunt) {
             }
         },
         targethtml: {
-            default: {
-                files: {
-                    'index.html': 'lib/index.html'
-                }
-            }
+            // the config is the same, but the "target" value is needed on the index.html template
+            dev: targethtmlConfig,
+            prod: targethtmlConfig
         },
         htmlmin: {
             default: {
@@ -91,14 +91,14 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['dev']);
 
-    grunt.registerTask('dev', ['browserify:dev', 'sass', 'targethtml']);
+    grunt.registerTask('dev', ['browserify:dev', 'sass', 'targethtml:dev']);
 
     grunt.registerTask('prod', [
         'browserify:prod',
         'uglify',
         'sass',
         'cssmin',
-        'targethtml',
+        'targethtml:prod',
         'htmlmin'
     ]);
 };
