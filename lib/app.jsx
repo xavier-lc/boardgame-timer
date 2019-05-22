@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Route from 'react-router/Route';
+import Route from 'react-router-dom/Route';
 import withRouter from 'react-router/withRouter';
-import HashRouter from 'react-router-dom';
+import HashRouter from 'react-router-dom/HashRouter';
 import { createStore, combineReducers } from 'redux';
 import Provider from 'react-redux/lib/components/Provider';
 
@@ -15,37 +15,35 @@ import { pause, tick } from './actions/actions';
 import LayoutContainer from './containers/LayoutContainer.jsx';
 import IndexContainer from './containers/IndexContainer.jsx';
 import ConfigContainer from './containers/ConfigContainer.jsx';
+import mapToLinkObj from './utils/mapToLinkObj';
 
 if (process.env.NODE_ENV === 'production') {
-  ga('create', 'UA-83961876-1', 'auto');
+    ga('create', 'UA-83961876-1', 'auto');
 }
 
 const store = createStore(
-  combineReducers({
-    config,
-    players,
-    stopwatch,
-  })
+    combineReducers({
+        config,
+        players,
+        stopwatch
+    })
 );
 
 // keep track of the interval id being used to by the stopwatch's tick action
 let intervalId = null;
 
 store.subscribe(() => {
-  const state = store.getState();
+    const state = store.getState();
 
-  if (state.stopwatch.isOn && !intervalId) {
-    return intervalId = setInterval(
-      () => store.dispatch(tick()),
-      100
-    );
-  }
+    if (state.stopwatch.isOn && !intervalId) {
+        return (intervalId = setInterval(() => store.dispatch(tick()), 100));
+    }
 
-  if (!state.stopwatch.isOn && intervalId) {
-    clearInterval(intervalId);
+    if (!state.stopwatch.isOn && intervalId) {
+        clearInterval(intervalId);
 
-    return intervalId = null;
-  }
+        return (intervalId = null);
+    }
 });
 
 // TODO: withRouter
@@ -64,14 +62,44 @@ store.subscribe(() => {
 //   }
 // });
 
+const links = [
+    ['/', 'Timer', IndexContainer],
+    ['/config', 'Config', ConfigContainer]
+].map(mapToLinkObj);
+
 render(
-  <Provider store={store}>
-    <HashRouter>
-      <Route path="/" component={LayoutContainer} headerTitle="Boardgame timer">
-        <IndexRoute component={IndexContainer} title="Timer" />
-        <Route path="/config" component={ConfigContainer} title="Config" />
-      </Route>
-    </HashRouter>
-  </Provider>,
-  document.getElementById('js-app')
+    <Provider store={store}>
+        <HashRouter>
+            <Route
+                path="/"
+                render={props => (
+                    <LayoutContainer
+                        activePath={props.location.pathname}
+                        headerTitle="Boardgame timer"
+                        links={links}
+                    />
+                )}
+            />
+
+            {/* <Route
+                path="/"
+                component={LayoutContainer}
+                headerTitle="Boardgame timer"
+            >
+                <Route
+                    exact
+                    path="/"
+                    component={IndexContainer}
+                    title="Timer"
+                />
+
+                <Route
+                    path="/config"
+                    component={ConfigContainer}
+                    title="Config"
+                />
+            </Route> */}
+        </HashRouter>
+    </Provider>,
+    document.getElementById('js-app')
 );
