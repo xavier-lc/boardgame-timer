@@ -1,27 +1,22 @@
 import connect from 'react-redux/lib/connect/connect';
-
-import { changeName } from './../actions/actions';
-
-import PlayerTimers from './../components/PlayerTimers.jsx';
+import { changeName } from 'state/actions/actions';
+import PlayerTimers from 'components/PlayerTimers';
 
 function mapStateToProps(state) {
-  return state;
+    return state;
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    inputChangeHandler: function (e) {
-      dispatch(changeName(
-        e.target.dataset.playerid,
-        e.target.value
-      ));
-    },
-  };
+    return {
+        inputChangeHandler: function(e) {
+            dispatch(changeName(e.target.dataset.playerid, e.target.value));
+        }
+    };
 }
 
 const PlayerTimersContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(PlayerTimers);
 
 export default PlayerTimersContainer;

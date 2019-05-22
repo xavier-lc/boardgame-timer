@@ -1,44 +1,42 @@
 import connect from 'react-redux/lib/connect/connect';
-
-import { play, addPlayer, next, pause, resume, stop } from './../actions/actions';
-
-import TotalTimer from './../components/TotalTimer.jsx';
+import { play, addPlayer, next, pause, resume } from 'state/actions/actions';
+import TotalTimer from 'components/TotalTimer';
 
 function mapStateToProps(state) {
-  return state;
+    return state;
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    clickPlayHandler: function () {
-      dispatch(play());
-    },
+    return {
+        clickPlayHandler: function() {
+            dispatch(play());
+        },
 
-    clickAddHandler: function () {
-      dispatch(addPlayer());
-    },
+        clickAddHandler: function() {
+            dispatch(addPlayer());
+        },
 
-    clickNextHandler: function () {
-      dispatch(next());
-    },
+        clickNextHandler: function() {
+            dispatch(next());
+        },
 
-    clickPauseHandler: function () {
-      dispatch(pause());
-    },
+        clickPauseHandler: function() {
+            dispatch(pause());
+        },
 
-    clickResumeHandler: function () {
-      dispatch(resume());
-    },
+        clickResumeHandler: function() {
+            dispatch(resume());
+        },
 
-    clickStopHandler: function () {
-      dispatch(stop());
-    },
-  };
+        clickStopHandler: function() {
+            dispatch(stop());
+        }
+    };
 }
 
 const TotalTimerContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(TotalTimer);
 
 export default TotalTimerContainer;

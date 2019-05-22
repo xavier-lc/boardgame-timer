@@ -1,34 +1,30 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import range from 'lodash/range';
-
-import { leadingZeros } from '../utils/date';
+import { leadingZeros } from 'utils/date';
 
 const propTypes = {
-  value: PropTypes.number.isRequired,
-  units: PropTypes.string.isRequired,
-  changeHandler: PropTypes.func.isRequired,
-  max: PropTypes.number.isRequired,
+    value: PropTypes.number.isRequired,
+    units: PropTypes.string.isRequired,
+    changeHandler: PropTypes.func.isRequired,
+    max: PropTypes.number.isRequired
 };
 
 function TimeSelector(props) {
-  return (
-    <select
-      className="form-control form-control--inb"
-      data-units={props.units}
-      onChange={props.changeHandler}
-      value={props.value}
-    >
-      {range(props.max + 1).map(el => (
-        <option
-          key={`${props.units}_${el}`}
-          value={el}
+    return (
+        <select
+            className="form-control form-control--inb"
+            data-units={props.units}
+            onChange={props.changeHandler}
+            value={props.value}
         >
-          {leadingZeros(el)}
-        </option>
-      ))}
-    </select>
-  );
+            {range(props.max + 1).map(el => (
+                <option key={`${props.units}_${el}`} value={el}>
+                    {leadingZeros(el)}
+                </option>
+            ))}
+        </select>
+    );
 }
 
 TimeSelector.propTypes = propTypes;
