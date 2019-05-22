@@ -77,28 +77,22 @@ render(
                         activePath={props.location.pathname}
                         headerTitle="Boardgame timer"
                         links={links}
-                    />
+                    >
+                        <Route
+                            exact
+                            path="/"
+                            component={IndexContainer}
+                            title="Timer"
+                        />
+
+                        <Route
+                            path="/config"
+                            component={ConfigContainer}
+                            title="Config"
+                        />
+                    </LayoutContainer>
                 )}
             />
-
-            {/* <Route
-                path="/"
-                component={LayoutContainer}
-                headerTitle="Boardgame timer"
-            >
-                <Route
-                    exact
-                    path="/"
-                    component={IndexContainer}
-                    title="Timer"
-                />
-
-                <Route
-                    path="/config"
-                    component={ConfigContainer}
-                    title="Config"
-                />
-            </Route> */}
         </HashRouter>
     </Provider>,
     document.getElementById('js-app')
