@@ -12,10 +12,10 @@ import stopwatch from './reducers/stopwatch';
 
 import { pause, tick } from './actions/actions';
 
-import LayoutContainer from './containers/LayoutContainer.jsx';
 import IndexContainer from './containers/IndexContainer.jsx';
 import ConfigContainer from './containers/ConfigContainer.jsx';
 import mapToLinkObj from './utils/mapToLinkObj';
+import LayoutContainerWithRouter from './containers/LayoutContainerWithRouter';
 
 if (process.env.NODE_ENV === 'production') {
     ga('create', 'UA-83961876-1', 'auto');
@@ -70,29 +70,23 @@ const links = [
 render(
     <Provider store={store}>
         <HashRouter>
-            <Route
-                path="/"
-                render={props => (
-                    <LayoutContainer
-                        activePath={props.location.pathname}
-                        headerTitle="Boardgame timer"
-                        links={links}
-                    >
-                        <Route
-                            exact
-                            path="/"
-                            component={IndexContainer}
-                            title="Timer"
-                        />
+            <LayoutContainerWithRouter
+                headerTitle="Boardgame timer"
+                links={links}
+            >
+                <Route
+                    exact
+                    path="/"
+                    component={IndexContainer}
+                    title="Timer"
+                />
 
-                        <Route
-                            path="/config"
-                            component={ConfigContainer}
-                            title="Config"
-                        />
-                    </LayoutContainer>
-                )}
-            />
+                <Route
+                    path="/config"
+                    component={ConfigContainer}
+                    title="Config"
+                />
+            </LayoutContainerWithRouter>
         </HashRouter>
     </Provider>,
     document.getElementById('js-app')
