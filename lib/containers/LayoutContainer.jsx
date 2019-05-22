@@ -1,5 +1,5 @@
 import React from 'react';
-import { pause } from 'state/actions/actions';
+import { pause } from 'state/actions';
 import Header from 'components/Header';
 import store from 'state/index';
 

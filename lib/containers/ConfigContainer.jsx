@@ -1,5 +1,5 @@
 import connect from 'react-redux/lib/connect/connect';
-import { changeTurnTime } from 'state/actions/actions';
+import { changeTurnTime } from 'state/actions';
 import Config from 'components/Config';
 
 function mapStateToProps(state) {

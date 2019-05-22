@@ -1,5 +1,5 @@
 import connect from 'react-redux/lib/connect/connect';
-import { play, addPlayer, next, pause, resume } from 'state/actions/actions';
+import { play, addPlayer, next, pause, resume } from 'state/actions';
 import TotalTimer from 'components/TotalTimer';
 
 function mapStateToProps(state) {

@@ -1,5 +1,5 @@
 import connect from 'react-redux/lib/connect/connect';
-import { changeName } from 'state/actions/actions';
+import { changeName } from 'state/actions';
 import PlayerTimers from 'components/PlayerTimers';
 
 function mapStateToProps(state) {
