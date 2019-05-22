@@ -1,31 +1,24 @@
+const browserifyConfig = env => ({
+    files: { 'src/app.js': 'lib/app.jsx' },
+    options: {
+        transform: [
+            ['loose-envify', { NODE_ENV: env, global: true }],
+            'babelify'
+        ]
+    }
+});
+
 module.exports = function(grunt) {
     grunt.initConfig({
         browserify: {
-            dev: {
-                files: {
-                    'src/app.js': 'lib/app.jsx'
-                },
-                options: {
-                    transform: [
-                        ['loose-envify', { NODE_ENV: 'dev', global: true }],
-                        'babelify'
-                    ]
+            options: {
+                browserifyOptions: {
+                    paths: ['./lib'],
+                    extensions: ['.jsx']
                 }
             },
-            prod: {
-                files: {
-                    'src/app.js': 'lib/app.jsx'
-                },
-                options: {
-                    transform: [
-                        [
-                            'loose-envify',
-                            { NODE_ENV: 'production', global: true }
-                        ],
-                        'babelify'
-                    ]
-                }
-            }
+            dev: browserifyConfig('dev'),
+            prod: browserifyConfig('production')
         },
         uglify: {
             default: {
@@ -59,12 +52,7 @@ module.exports = function(grunt) {
             }
         },
         targethtml: {
-            dev: {
-                files: {
-                    'index.html': 'lib/index.html'
-                }
-            },
-            prod: {
+            default: {
                 files: {
                     'index.html': 'lib/index.html'
                 }
@@ -103,14 +91,14 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['dev']);
 
-    grunt.registerTask('dev', ['browserify:dev', 'sass', 'targethtml:dev']);
+    grunt.registerTask('dev', ['browserify:dev', 'sass', 'targethtml']);
 
     grunt.registerTask('prod', [
         'browserify:prod',
         'uglify',
         'sass',
         'cssmin',
-        'targethtml:prod',
+        'targethtml',
         'htmlmin'
     ]);
 };
