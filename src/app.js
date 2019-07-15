@@ -1440,7 +1440,7 @@ function mapDispatchToProps(dispatch) {
         },
 
         clickStopHandler: function clickStopHandler() {
-            dispatch(stop());
+            dispatch((0, _actions.stop)());
         }
     };
 }
